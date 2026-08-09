@@ -39,8 +39,8 @@ export default function DashboardPage() {
   async function loadDashboardData() {
     try {
       const [busRes, respRes] = await Promise.all([
-        fetch(`/api/business?id=${businessId}`),
-        fetch(`/api/responses?businessId=${businessId}`),
+        fetch(`/api/business?id=${businessId}`, { cache: 'no-store' }),
+        fetch(`/api/responses?businessId=${businessId}`, { cache: 'no-store' }),
       ]);
 
       if (!busRes.ok) {
@@ -53,7 +53,9 @@ export default function DashboardPage() {
       const respData = await respRes.json();
 
       setBusiness(busData);
-      setResponses(Array.isArray(respData) ? respData : []);
+      if (Array.isArray(respData)) {
+        setResponses(respData);
+      }
     } catch (err) {
       setError(true);
     } finally {
@@ -78,7 +80,7 @@ export default function DashboardPage() {
     if (isInjectingDemo) return;
     setIsInjectingDemo(true);
     try {
-      await fetch('/api/responses', {
+      const res = await fetch('/api/responses', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -86,6 +88,11 @@ export default function DashboardPage() {
           action: 'inject_demo',
         }),
       });
+
+      const data = await res.json();
+      if (data && data.responses && Array.isArray(data.responses)) {
+        setResponses(data.responses);
+      }
       await loadDashboardData();
     } catch (err) {
       console.error(err);

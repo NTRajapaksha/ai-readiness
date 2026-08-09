@@ -11,7 +11,11 @@ export async function POST(req: NextRequest) {
     if (body.action === 'inject_demo' && body.businessId) {
       const demoData = generateSampleResponses(body.businessId);
       demoData.forEach((res) => saveResponse(res));
-      return NextResponse.json({ success: true, count: demoData.length });
+      return NextResponse.json({
+        success: true,
+        count: demoData.length,
+        responses: demoData,
+      });
     }
 
     if (!body.businessId || !body.team || !Array.isArray(body.answers)) {
@@ -44,5 +48,9 @@ export async function GET(req: NextRequest) {
   }
 
   const responses = getResponsesForBusiness(businessId);
-  return NextResponse.json(responses);
+  return NextResponse.json(responses, {
+    headers: {
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
+    },
+  });
 }
