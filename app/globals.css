@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #FAFAF8;
+  --surface: #F0EEE7;
+  --surface-raised: #FFFFFF;
+  --ink: #1C2333;
+  --ink-muted: #5B6472;
+  --accent: #2A6F6F;
+  --accent-dark: #1E4F4F;
+  --accent-light: #DCEAEA;
+  --score-low: #C9D6D6;
+  --score-mid: #6FA3A3;
+  --score-high: #2A6F6F;
+  --border: #E2E0D8;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, .font-fraunces {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+}
+
+.data-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  font-weight: 600;
+}
+
+/* Quiet 150ms fade-in transition on mount, strictly avoiding heavy bounces/glassmorphism */
+.fade-in-quiet {
+  animation: fadeInQuiet 150ms ease-out forwards;
+}
+
+@keyframes fadeInQuiet {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Accessible, clear keyboard focus ring */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Print Styles for Executive Report Export */
+@media print {
+  body {
+    background-color: #FFFFFF !important;
+  }
+  header, footer, button, .no-print {
+    display: none !important;
+  }
+  main {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+  .bg-surface {
+    background-color: #FAFAF8 !important;
+    border-color: #CCCCCC !important;
+  }
+}

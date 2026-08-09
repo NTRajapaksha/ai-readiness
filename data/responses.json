@@ -1,0 +1,4213 @@
+[
+  {
+    "id": "resp-demo-1",
+    "businessId": "nim-org-c509f",
+    "team": "Engineering",
+    "createdAt": "2026-08-09T11:50:00.714Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 80,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 80,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 65,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 65,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 70,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 70,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 85,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Automating meeting summaries and updating Jira tickets directly."
+  },
+  {
+    "id": "resp-demo-2",
+    "businessId": "nim-org-c509f",
+    "team": "Engineering",
+    "createdAt": "2026-08-09T07:50:00.714Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 90,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 90,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 85,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 85,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 70,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 70,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 75,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 90,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Drafting personalized cold outreach emails based on prospect LinkedIn data."
+  },
+  {
+    "id": "resp-demo-3",
+    "businessId": "nim-org-c509f",
+    "team": "Engineering",
+    "createdAt": "2026-08-09T03:50:00.714Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 75,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 75,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 60,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 60,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 60,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 60,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 75,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Checking customer contract clauses against compliance regulations."
+  },
+  {
+    "id": "resp-demo-4",
+    "businessId": "nim-org-c509f",
+    "team": "Sales",
+    "createdAt": "2026-08-08T23:50:00.714Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 45,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 45,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 25,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 25,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 30,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 35,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 35,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 45,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Synthesizing weekly feedback tickets into prioritized bug reports."
+  },
+  {
+    "id": "resp-demo-5",
+    "businessId": "nim-org-c509f",
+    "team": "Sales",
+    "createdAt": "2026-08-08T19:50:00.714Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 50,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 50,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 30,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 25,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 25,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 40,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 40,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 50,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Translating user guides into multiple language variants automatically."
+  },
+  {
+    "id": "resp-demo-6",
+    "businessId": "nim-org-c509f",
+    "team": "Sales",
+    "createdAt": "2026-08-08T15:50:00.714Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 40,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 40,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 20,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 20,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 35,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 35,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 30,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 40,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Automating meeting summaries and updating Jira tickets directly."
+  },
+  {
+    "id": "resp-demo-7",
+    "businessId": "nim-org-c509f",
+    "team": "Ops",
+    "createdAt": "2026-08-08T11:50:00.714Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 55,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 55,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 40,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 40,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 50,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 50,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 80,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 80,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 55,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Drafting personalized cold outreach emails based on prospect LinkedIn data."
+  },
+  {
+    "id": "resp-demo-8",
+    "businessId": "nim-org-c509f",
+    "team": "Ops",
+    "createdAt": "2026-08-08T07:50:00.714Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 60,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 60,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 45,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 45,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 45,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 45,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 85,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 60,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Checking customer contract clauses against compliance regulations."
+  },
+  {
+    "id": "resp-demo-9",
+    "businessId": "nim-org-c509f",
+    "team": "Marketing",
+    "createdAt": "2026-08-08T03:50:00.714Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 80,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 80,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 65,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 65,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 75,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 75,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 40,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 40,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 80,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Synthesizing weekly feedback tickets into prioritized bug reports."
+  },
+  {
+    "id": "resp-demo-10",
+    "businessId": "nim-org-c509f",
+    "team": "Marketing",
+    "createdAt": "2026-08-07T23:50:00.715Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 70,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 70,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 80,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 80,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 45,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 45,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 85,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Translating user guides into multiple language variants automatically."
+  },
+  {
+    "id": "resp-demo-11",
+    "businessId": "nim-org-c509f",
+    "team": "Support",
+    "createdAt": "2026-08-07T19:50:00.715Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 35,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 35,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 30,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 60,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 60,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 50,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 50,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 35,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Automating meeting summaries and updating Jira tickets directly."
+  },
+  {
+    "id": "resp-1786276369533-5cj9",
+    "businessId": "nim-org-c509f",
+    "team": "Engineering",
+    "createdAt": "2026-08-09T11:52:49.533Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 100,
+        "rawAnswer": 5
+      },
+      {
+        "questionId": "q2",
+        "value": 100,
+        "rawAnswer": 5
+      },
+      {
+        "questionId": "q3",
+        "value": 33,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q4",
+        "value": 100,
+        "rawAnswer": 5
+      },
+      {
+        "questionId": "q5",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q6",
+        "value": 100,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q7",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 100,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 67,
+        "rawAnswer": 2
+      }
+    ]
+  },
+  {
+    "id": "resp-demo-1",
+    "businessId": "ntr-2d88o",
+    "team": "Engineering",
+    "createdAt": "2026-08-09T12:06:36.659Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 80,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 80,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 65,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 65,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 70,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 70,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 85,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Automating meeting summaries and updating Jira tickets directly."
+  },
+  {
+    "id": "resp-demo-2",
+    "businessId": "ntr-2d88o",
+    "team": "Engineering",
+    "createdAt": "2026-08-09T08:06:36.659Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 90,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 90,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 85,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 85,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 70,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 70,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 75,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 90,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Drafting personalized cold outreach emails based on prospect LinkedIn data."
+  },
+  {
+    "id": "resp-demo-3",
+    "businessId": "ntr-2d88o",
+    "team": "Engineering",
+    "createdAt": "2026-08-09T04:06:36.659Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 75,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 75,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 60,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 60,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 60,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 60,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 75,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Checking customer contract clauses against compliance regulations."
+  },
+  {
+    "id": "resp-demo-4",
+    "businessId": "ntr-2d88o",
+    "team": "Sales",
+    "createdAt": "2026-08-09T00:06:36.659Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 45,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 45,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 25,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 25,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 30,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 35,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 35,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 45,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Synthesizing weekly feedback tickets into prioritized bug reports."
+  },
+  {
+    "id": "resp-demo-5",
+    "businessId": "ntr-2d88o",
+    "team": "Sales",
+    "createdAt": "2026-08-08T20:06:36.659Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 50,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 50,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 30,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 25,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 25,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 40,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 40,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 50,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Translating user guides into multiple language variants automatically."
+  },
+  {
+    "id": "resp-demo-6",
+    "businessId": "ntr-2d88o",
+    "team": "Sales",
+    "createdAt": "2026-08-08T16:06:36.659Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 40,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 40,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 20,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 20,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 35,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 35,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 30,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 40,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Automating meeting summaries and updating Jira tickets directly."
+  },
+  {
+    "id": "resp-demo-7",
+    "businessId": "ntr-2d88o",
+    "team": "Ops",
+    "createdAt": "2026-08-08T12:06:36.659Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 55,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 55,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 40,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 40,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 50,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 50,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 80,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 80,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 55,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Drafting personalized cold outreach emails based on prospect LinkedIn data."
+  },
+  {
+    "id": "resp-demo-8",
+    "businessId": "ntr-2d88o",
+    "team": "Ops",
+    "createdAt": "2026-08-08T08:06:36.659Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 60,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 60,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 45,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 45,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 45,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 45,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 85,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 60,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Checking customer contract clauses against compliance regulations."
+  },
+  {
+    "id": "resp-demo-9",
+    "businessId": "ntr-2d88o",
+    "team": "Marketing",
+    "createdAt": "2026-08-08T04:06:36.660Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 80,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 80,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 65,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 65,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 75,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 75,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 40,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 40,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 80,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Synthesizing weekly feedback tickets into prioritized bug reports."
+  },
+  {
+    "id": "resp-demo-10",
+    "businessId": "ntr-2d88o",
+    "team": "Marketing",
+    "createdAt": "2026-08-08T00:06:36.660Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 70,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 70,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 80,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 80,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 45,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 45,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 85,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Translating user guides into multiple language variants automatically."
+  },
+  {
+    "id": "resp-demo-11",
+    "businessId": "ntr-2d88o",
+    "team": "Support",
+    "createdAt": "2026-08-07T20:06:36.660Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 35,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 35,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 30,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 60,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 60,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 50,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 50,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 35,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Automating meeting summaries and updating Jira tickets directly."
+  },
+  {
+    "id": "resp-demo-1",
+    "businessId": "nimorg-lj8l6",
+    "team": "Engineering",
+    "createdAt": "2026-08-09T12:26:57.275Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 80,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 80,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 65,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 65,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 70,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 70,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 85,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Automating meeting summaries and updating Jira tickets directly."
+  },
+  {
+    "id": "resp-demo-2",
+    "businessId": "nimorg-lj8l6",
+    "team": "Engineering",
+    "createdAt": "2026-08-09T08:26:57.275Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 90,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 90,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 85,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 85,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 70,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 70,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 75,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 90,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Drafting personalized cold outreach emails based on prospect LinkedIn data."
+  },
+  {
+    "id": "resp-demo-3",
+    "businessId": "nimorg-lj8l6",
+    "team": "Engineering",
+    "createdAt": "2026-08-09T04:26:57.275Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 75,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 75,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 60,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 60,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 60,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 60,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 75,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Checking customer contract clauses against compliance regulations."
+  },
+  {
+    "id": "resp-demo-4",
+    "businessId": "nimorg-lj8l6",
+    "team": "Sales",
+    "createdAt": "2026-08-09T00:26:57.275Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 45,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 45,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 25,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 25,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 30,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 35,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 35,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 45,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Synthesizing weekly feedback tickets into prioritized bug reports."
+  },
+  {
+    "id": "resp-demo-5",
+    "businessId": "nimorg-lj8l6",
+    "team": "Sales",
+    "createdAt": "2026-08-08T20:26:57.275Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 50,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 50,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 30,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 25,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 25,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 40,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 40,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 50,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Translating user guides into multiple language variants automatically."
+  },
+  {
+    "id": "resp-demo-6",
+    "businessId": "nimorg-lj8l6",
+    "team": "Sales",
+    "createdAt": "2026-08-08T16:26:57.275Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 40,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 40,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 20,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 20,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 35,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 35,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 30,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 40,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Automating meeting summaries and updating Jira tickets directly."
+  },
+  {
+    "id": "resp-demo-7",
+    "businessId": "nimorg-lj8l6",
+    "team": "Ops",
+    "createdAt": "2026-08-08T12:26:57.275Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 55,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 55,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 40,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 40,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 50,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 50,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 80,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 80,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 55,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Drafting personalized cold outreach emails based on prospect LinkedIn data."
+  },
+  {
+    "id": "resp-demo-8",
+    "businessId": "nimorg-lj8l6",
+    "team": "Ops",
+    "createdAt": "2026-08-08T08:26:57.275Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 60,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 60,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 45,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 45,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 45,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 45,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 85,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 60,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Checking customer contract clauses against compliance regulations."
+  },
+  {
+    "id": "resp-demo-9",
+    "businessId": "nimorg-lj8l6",
+    "team": "Marketing",
+    "createdAt": "2026-08-08T04:26:57.275Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 80,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 80,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 65,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 65,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 75,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 75,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 40,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 40,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 80,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Synthesizing weekly feedback tickets into prioritized bug reports."
+  },
+  {
+    "id": "resp-demo-10",
+    "businessId": "nimorg-lj8l6",
+    "team": "Marketing",
+    "createdAt": "2026-08-08T00:26:57.275Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 70,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 70,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 80,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 80,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 45,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 45,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 85,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Translating user guides into multiple language variants automatically."
+  },
+  {
+    "id": "resp-demo-11",
+    "businessId": "nimorg-lj8l6",
+    "team": "Support",
+    "createdAt": "2026-08-07T20:26:57.275Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 35,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 35,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 30,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 60,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 60,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 50,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 50,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 35,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Automating meeting summaries and updating Jira tickets directly."
+  },
+  {
+    "id": "resp-demo-1",
+    "businessId": "ntr-ksayq",
+    "team": "Engineering",
+    "createdAt": "2026-08-09T12:46:27.049Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 80,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 80,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 65,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 65,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 70,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 70,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 85,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Automating meeting summaries and updating Jira tickets directly."
+  },
+  {
+    "id": "resp-demo-2",
+    "businessId": "ntr-ksayq",
+    "team": "Engineering",
+    "createdAt": "2026-08-09T08:46:27.049Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 90,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 90,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 85,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 85,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 70,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 70,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 75,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 90,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Drafting personalized cold outreach emails based on prospect LinkedIn data."
+  },
+  {
+    "id": "resp-demo-3",
+    "businessId": "ntr-ksayq",
+    "team": "Engineering",
+    "createdAt": "2026-08-09T04:46:27.049Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 75,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 75,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 60,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 60,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 60,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 60,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 75,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Checking customer contract clauses against compliance regulations."
+  },
+  {
+    "id": "resp-demo-4",
+    "businessId": "ntr-ksayq",
+    "team": "Sales",
+    "createdAt": "2026-08-09T00:46:27.049Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 45,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 45,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 25,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 25,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 30,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 35,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 35,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 45,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Synthesizing weekly feedback tickets into prioritized bug reports."
+  },
+  {
+    "id": "resp-demo-5",
+    "businessId": "ntr-ksayq",
+    "team": "Sales",
+    "createdAt": "2026-08-08T20:46:27.049Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 50,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 50,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 30,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 25,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 25,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 40,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 40,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 50,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Translating user guides into multiple language variants automatically."
+  },
+  {
+    "id": "resp-demo-6",
+    "businessId": "ntr-ksayq",
+    "team": "Sales",
+    "createdAt": "2026-08-08T16:46:27.050Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 40,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 40,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 20,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 20,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 35,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 35,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 30,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 40,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Automating meeting summaries and updating Jira tickets directly."
+  },
+  {
+    "id": "resp-demo-7",
+    "businessId": "ntr-ksayq",
+    "team": "Ops",
+    "createdAt": "2026-08-08T12:46:27.050Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 55,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 55,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 40,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 40,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 50,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 50,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 80,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 80,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 55,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Drafting personalized cold outreach emails based on prospect LinkedIn data."
+  },
+  {
+    "id": "resp-demo-8",
+    "businessId": "ntr-ksayq",
+    "team": "Ops",
+    "createdAt": "2026-08-08T08:46:27.050Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 60,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 60,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 45,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 45,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 45,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 45,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 85,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 60,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Checking customer contract clauses against compliance regulations."
+  },
+  {
+    "id": "resp-demo-9",
+    "businessId": "ntr-ksayq",
+    "team": "Marketing",
+    "createdAt": "2026-08-08T04:46:27.050Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 80,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 80,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 65,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 65,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 75,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 75,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 40,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 40,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 80,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Synthesizing weekly feedback tickets into prioritized bug reports."
+  },
+  {
+    "id": "resp-demo-10",
+    "businessId": "ntr-ksayq",
+    "team": "Marketing",
+    "createdAt": "2026-08-08T00:46:27.050Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 70,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 70,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 80,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 80,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 45,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 45,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 85,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Translating user guides into multiple language variants automatically."
+  },
+  {
+    "id": "resp-demo-11",
+    "businessId": "ntr-ksayq",
+    "team": "Support",
+    "createdAt": "2026-08-07T20:46:27.050Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 35,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 35,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 30,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 60,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 60,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 50,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 50,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 35,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Automating meeting summaries and updating Jira tickets directly."
+  },
+  {
+    "id": "resp-demo-1",
+    "businessId": "nim-st41b",
+    "team": "Engineering",
+    "createdAt": "2026-08-09T12:57:18.431Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 80,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 80,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 65,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 65,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 70,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 70,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 85,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Automating meeting summaries and updating Jira tickets directly."
+  },
+  {
+    "id": "resp-demo-2",
+    "businessId": "nim-st41b",
+    "team": "Engineering",
+    "createdAt": "2026-08-09T08:57:18.431Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 90,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 90,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 85,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 85,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 70,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 70,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 75,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 90,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Drafting personalized cold outreach emails based on prospect LinkedIn data."
+  },
+  {
+    "id": "resp-demo-3",
+    "businessId": "nim-st41b",
+    "team": "Engineering",
+    "createdAt": "2026-08-09T04:57:18.431Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 75,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 75,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 60,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 60,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 60,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 60,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 75,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Checking customer contract clauses against compliance regulations."
+  },
+  {
+    "id": "resp-demo-4",
+    "businessId": "nim-st41b",
+    "team": "Sales",
+    "createdAt": "2026-08-09T00:57:18.431Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 45,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 45,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 25,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 25,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 30,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 35,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 35,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 45,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Synthesizing weekly feedback tickets into prioritized bug reports."
+  },
+  {
+    "id": "resp-demo-5",
+    "businessId": "nim-st41b",
+    "team": "Sales",
+    "createdAt": "2026-08-08T20:57:18.431Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 50,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 50,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 30,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 25,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 25,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 40,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 40,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 50,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Translating user guides into multiple language variants automatically."
+  },
+  {
+    "id": "resp-demo-6",
+    "businessId": "nim-st41b",
+    "team": "Sales",
+    "createdAt": "2026-08-08T16:57:18.431Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 40,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 40,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 20,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 20,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 35,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 35,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 30,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 40,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Automating meeting summaries and updating Jira tickets directly."
+  },
+  {
+    "id": "resp-demo-7",
+    "businessId": "nim-st41b",
+    "team": "Ops",
+    "createdAt": "2026-08-08T12:57:18.431Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 55,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 55,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 40,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 40,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 50,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 50,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 80,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 80,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 55,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Drafting personalized cold outreach emails based on prospect LinkedIn data."
+  },
+  {
+    "id": "resp-demo-8",
+    "businessId": "nim-st41b",
+    "team": "Ops",
+    "createdAt": "2026-08-08T08:57:18.431Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 60,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 60,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 45,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 45,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 45,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 45,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 85,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 60,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Checking customer contract clauses against compliance regulations."
+  },
+  {
+    "id": "resp-demo-9",
+    "businessId": "nim-st41b",
+    "team": "Marketing",
+    "createdAt": "2026-08-08T04:57:18.431Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 80,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 80,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 65,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 65,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 75,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 75,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 40,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 40,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 80,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Synthesizing weekly feedback tickets into prioritized bug reports."
+  },
+  {
+    "id": "resp-demo-10",
+    "businessId": "nim-st41b",
+    "team": "Marketing",
+    "createdAt": "2026-08-08T00:57:18.432Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 70,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 70,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 80,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 80,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 45,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 45,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 85,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Translating user guides into multiple language variants automatically."
+  },
+  {
+    "id": "resp-demo-11",
+    "businessId": "nim-st41b",
+    "team": "Support",
+    "createdAt": "2026-08-07T20:57:18.432Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 35,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 35,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 30,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 60,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 60,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 50,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 50,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 35,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Automating meeting summaries and updating Jira tickets directly."
+  },
+  {
+    "id": "resp-demo-1",
+    "businessId": "name-an3qp",
+    "team": "Engineering",
+    "createdAt": "2026-08-09T13:05:31.723Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 80,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 80,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 65,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 65,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 70,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 70,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 85,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Automating meeting summaries and updating Jira tickets directly."
+  },
+  {
+    "id": "resp-demo-2",
+    "businessId": "name-an3qp",
+    "team": "Engineering",
+    "createdAt": "2026-08-09T09:05:31.723Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 90,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 90,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 85,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 85,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 70,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 70,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 75,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 90,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Drafting personalized cold outreach emails based on prospect LinkedIn data."
+  },
+  {
+    "id": "resp-demo-3",
+    "businessId": "name-an3qp",
+    "team": "Engineering",
+    "createdAt": "2026-08-09T05:05:31.723Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 75,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 75,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 60,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 60,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 60,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 60,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 75,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Checking customer contract clauses against compliance regulations."
+  },
+  {
+    "id": "resp-demo-4",
+    "businessId": "name-an3qp",
+    "team": "Sales",
+    "createdAt": "2026-08-09T01:05:31.723Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 45,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 45,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 25,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 25,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 30,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 35,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 35,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 45,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Synthesizing weekly feedback tickets into prioritized bug reports."
+  },
+  {
+    "id": "resp-demo-5",
+    "businessId": "name-an3qp",
+    "team": "Sales",
+    "createdAt": "2026-08-08T21:05:31.723Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 50,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 50,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 30,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 25,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 25,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 40,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 40,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 50,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Translating user guides into multiple language variants automatically."
+  },
+  {
+    "id": "resp-demo-6",
+    "businessId": "name-an3qp",
+    "team": "Sales",
+    "createdAt": "2026-08-08T17:05:31.723Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 40,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 40,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 20,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 20,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 35,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 35,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 30,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 40,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Automating meeting summaries and updating Jira tickets directly."
+  },
+  {
+    "id": "resp-demo-7",
+    "businessId": "name-an3qp",
+    "team": "Ops",
+    "createdAt": "2026-08-08T13:05:31.723Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 55,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 55,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 40,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 40,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 50,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 50,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 80,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 80,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 55,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Drafting personalized cold outreach emails based on prospect LinkedIn data."
+  },
+  {
+    "id": "resp-demo-8",
+    "businessId": "name-an3qp",
+    "team": "Ops",
+    "createdAt": "2026-08-08T09:05:31.723Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 60,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 60,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 45,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 45,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 45,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 45,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 85,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 60,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Checking customer contract clauses against compliance regulations."
+  },
+  {
+    "id": "resp-demo-9",
+    "businessId": "name-an3qp",
+    "team": "Marketing",
+    "createdAt": "2026-08-08T05:05:31.723Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 80,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 80,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 65,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 65,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 75,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 75,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 40,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 40,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 80,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Synthesizing weekly feedback tickets into prioritized bug reports."
+  },
+  {
+    "id": "resp-demo-10",
+    "businessId": "name-an3qp",
+    "team": "Marketing",
+    "createdAt": "2026-08-08T01:05:31.723Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 70,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 70,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 80,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 80,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 45,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 45,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 85,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Translating user guides into multiple language variants automatically."
+  },
+  {
+    "id": "resp-demo-11",
+    "businessId": "name-an3qp",
+    "team": "Support",
+    "createdAt": "2026-08-07T21:05:31.723Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 35,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 35,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 30,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 60,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 60,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 50,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 50,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 35,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Automating meeting summaries and updating Jira tickets directly."
+  },
+  {
+    "id": "resp-demo-1",
+    "businessId": "hioy-s1vpc",
+    "team": "Engineering",
+    "createdAt": "2026-08-09T13:15:27.777Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 80,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 80,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 65,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 65,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 70,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 70,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 85,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Automating meeting summaries and updating Jira tickets directly."
+  },
+  {
+    "id": "resp-demo-2",
+    "businessId": "hioy-s1vpc",
+    "team": "Engineering",
+    "createdAt": "2026-08-09T09:15:27.777Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 90,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 90,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 85,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 85,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 70,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 70,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 75,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 90,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Drafting personalized cold outreach emails based on prospect LinkedIn data."
+  },
+  {
+    "id": "resp-demo-3",
+    "businessId": "hioy-s1vpc",
+    "team": "Engineering",
+    "createdAt": "2026-08-09T05:15:27.777Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 75,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 75,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 75,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 60,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 60,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 60,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 60,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 75,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Checking customer contract clauses against compliance regulations."
+  },
+  {
+    "id": "resp-demo-4",
+    "businessId": "hioy-s1vpc",
+    "team": "Sales",
+    "createdAt": "2026-08-09T01:15:27.777Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 45,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 45,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 25,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 25,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 30,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 35,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 35,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 45,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Synthesizing weekly feedback tickets into prioritized bug reports."
+  },
+  {
+    "id": "resp-demo-5",
+    "businessId": "hioy-s1vpc",
+    "team": "Sales",
+    "createdAt": "2026-08-08T21:15:27.777Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 50,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 50,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 30,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 25,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 25,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 40,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 40,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 50,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Translating user guides into multiple language variants automatically."
+  },
+  {
+    "id": "resp-demo-6",
+    "businessId": "hioy-s1vpc",
+    "team": "Sales",
+    "createdAt": "2026-08-08T17:15:27.777Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 40,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 40,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 20,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 20,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 35,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 35,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 30,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 40,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Automating meeting summaries and updating Jira tickets directly."
+  },
+  {
+    "id": "resp-demo-7",
+    "businessId": "hioy-s1vpc",
+    "team": "Ops",
+    "createdAt": "2026-08-08T13:15:27.777Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 55,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 55,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 40,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 40,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 50,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 50,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 80,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 80,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 55,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Drafting personalized cold outreach emails based on prospect LinkedIn data."
+  },
+  {
+    "id": "resp-demo-8",
+    "businessId": "hioy-s1vpc",
+    "team": "Ops",
+    "createdAt": "2026-08-08T09:15:27.777Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 60,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 60,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 45,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 45,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 45,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 45,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q8",
+        "value": 85,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q9",
+        "value": 60,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Checking customer contract clauses against compliance regulations."
+  },
+  {
+    "id": "resp-demo-9",
+    "businessId": "hioy-s1vpc",
+    "team": "Marketing",
+    "createdAt": "2026-08-08T05:15:27.777Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 80,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 80,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 65,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 65,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 75,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 75,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 40,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 40,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 80,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Synthesizing weekly feedback tickets into prioritized bug reports."
+  },
+  {
+    "id": "resp-demo-10",
+    "businessId": "hioy-s1vpc",
+    "team": "Marketing",
+    "createdAt": "2026-08-08T01:15:27.777Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 85,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 70,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 70,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 80,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 80,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 45,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 45,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 85,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Translating user guides into multiple language variants automatically."
+  },
+  {
+    "id": "resp-demo-11",
+    "businessId": "hioy-s1vpc",
+    "team": "Support",
+    "createdAt": "2026-08-07T21:15:27.777Z",
+    "answers": [
+      {
+        "questionId": "q1",
+        "value": 35,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q2",
+        "value": 35,
+        "rawAnswer": 4
+      },
+      {
+        "questionId": "q3",
+        "value": 30,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q4",
+        "value": 30,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q5",
+        "value": 60,
+        "rawAnswer": 3
+      },
+      {
+        "questionId": "q6",
+        "value": 60,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q7",
+        "value": 50,
+        "rawAnswer": 2
+      },
+      {
+        "questionId": "q8",
+        "value": 50,
+        "rawAnswer": 1
+      },
+      {
+        "questionId": "q9",
+        "value": 35,
+        "rawAnswer": 2
+      }
+    ],
+    "qualitativeWish": "Automating meeting summaries and updating Jira tickets directly."
+  }
+]
