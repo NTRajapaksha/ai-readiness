@@ -83,7 +83,8 @@ export const ExecutiveBrief: React.FC<ExecutiveBriefProps> = ({
             AI
           </div>
           <div className="min-w-0">
-            <span className="data-label text-ink block truncate">AI Executive Brief & Strategic Synthesis</span>
+            <span className="data-label text-ink block sm:hidden">AI Executive Brief</span>
+            <span className="data-label text-ink hidden sm:block">AI Executive Brief & Strategic Synthesis</span>
             <span className="text-[11px] text-ink-muted block truncate">Scannable Insights & Priority Initiatives</span>
           </div>
         </div>
