@@ -17,17 +17,18 @@ module.exports = {
           muted: '#5B6472',
         },
         accent: {
+          DEFAULT: '#F0631E',
+          dark: '#D95315',
+          light: '#FDEEE7',
+        },
+        brandPurple: {
+          DEFAULT: '#6C4CE0',
+          light: '#F0ECFC',
+        },
+        brandTeal: {
           DEFAULT: '#2A6F6F',
           dark: '#1E4F4F',
           light: '#DCEAEA',
-        },
-        taiViolet: {
-          DEFAULT: '#6C4CE0',
-          light: 'rgba(108,76,224,0.12)',
-        },
-        taiCoral: {
-          DEFAULT: '#F0631E',
-          light: 'rgba(240,99,30,0.12)',
         },
         score: {
           low: '#C9D6D6',

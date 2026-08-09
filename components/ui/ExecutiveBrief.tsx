@@ -79,7 +79,7 @@ export const ExecutiveBrief: React.FC<ExecutiveBriefProps> = ({
       {/* Header Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
-          <div className="w-6 h-6 bg-accent rounded flex items-center justify-center text-white text-[11px] font-bold font-mono shadow-sm flex-shrink-0">
+          <div className="w-6 h-6 bg-brandPurple rounded flex items-center justify-center text-white text-[11px] font-bold font-mono shadow-sm flex-shrink-0">
             AI
           </div>
           <div className="min-w-0">
@@ -117,7 +117,7 @@ export const ExecutiveBrief: React.FC<ExecutiveBriefProps> = ({
       {/* Initial Empty State */}
       {!brief ? (
         <div className="p-6 bg-surface-raised border border-borderCustom rounded-lg text-center space-y-4">
-          <div className="w-10 h-10 bg-accent-light text-accent rounded-full flex items-center justify-center mx-auto text-lg">
+          <div className="w-10 h-10 bg-brandPurple/10 text-brandPurple rounded-full flex items-center justify-center mx-auto text-lg">
             ✨
           </div>
           <div className="space-y-1">
