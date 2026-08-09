@@ -1,3 +1,5 @@
+# ⚡ Tai Labs — AI Readiness Assessment Tool for Teams
+
 > **Product Vision**: Clinical confidence crossed with a coaching companion. A high-craft diagnostic web application built for **Tai Labs** that turns organizational AI uncertainty into a clear readiness score, team-by-team breakdown, and targeted upskilling roadmap.
 
 🌐 **Live Deployed Application**: [Visit](https://ai-readiness-rho-self.vercel.app/)
