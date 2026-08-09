@@ -7,7 +7,6 @@ import { AssessmentResponse, Answer } from '@/types';
 export const ENABLE_DEMO_MODE = true;
 
 export function generateSampleResponses(businessId: string): AssessmentResponse[] {
-  const teams = ['Engineering', 'Sales', 'Ops', 'Marketing', 'Support'];
   const sampleData: AssessmentResponse[] = [];
 
   const responseConfigs = [
@@ -33,12 +32,19 @@ export function generateSampleResponses(businessId: string): AssessmentResponse[
     { team: 'Support', fluency: 35, integration: 30, culture: 60, risk: 50 },
   ];
 
+  // 11 distinct, non-duplicative qualitative team wishlist submissions
   const wishlists = [
     'Automating meeting summaries and updating Jira tickets directly.',
     'Drafting personalized cold outreach emails based on prospect LinkedIn data.',
-    'Checking customer contract clauses against compliance regulations.',
-    'Synthesizing weekly feedback tickets into prioritized bug reports.',
-    'Translating user guides into multiple language variants automatically.',
+    'Checking customer contract clauses against internal compliance regulations.',
+    'Synthesizing weekly customer support feedback tickets into prioritized bug reports.',
+    'Translating technical user guides into multiple international language variants.',
+    'Generating release notes automatically from recent Git commit messages.',
+    'Extracting data points from vendor PDF invoices directly into accounting spreadsheets.',
+    'Summarizing competitor product announcements and highlighting feature gaps.',
+    'Auto-generating test cases and unit assertions from API spec docs.',
+    'Categorizing inbound sales leads based on company size and tech stack.',
+    'Drafting responses for recurring customer support inquiries with verified docs.',
   ];
 
   responseConfigs.forEach((config, idx) => {
@@ -60,7 +66,7 @@ export function generateSampleResponses(businessId: string): AssessmentResponse[
       team: config.team,
       createdAt: new Date(Date.now() - idx * 3600000 * 4).toISOString(),
       answers,
-      qualitativeWish: wishlists[idx % wishlists.length],
+      qualitativeWish: wishlists[idx],
     });
   });
 

@@ -9,8 +9,8 @@ interface RadarChartProps {
 }
 
 export const RadarChart: React.FC<RadarChartProps> = ({ dimensionScores }) => {
-  // SVG Radar Dimensions
-  const viewBoxWidth = 340;
+  // SVG Radar Dimensions with ample padding for full labels
+  const viewBoxWidth = 380;
   const viewBoxHeight = 300;
   const centerX = viewBoxWidth / 2;
   const centerY = viewBoxHeight / 2;
@@ -64,7 +64,7 @@ export const RadarChart: React.FC<RadarChartProps> = ({ dimensionScores }) => {
         <span className="text-xs text-ink-muted font-mono">4 Dimensions</span>
       </div>
 
-      <div className="relative w-full max-w-[320px] aspect-square flex items-center justify-center">
+      <div className="relative w-full max-w-[340px] aspect-square flex items-center justify-center">
         <svg viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`} className="w-full h-full">
           {/* Concentric Grid Lines */}
           {gridPoints.map((points, idx) => (
@@ -121,7 +121,7 @@ export const RadarChart: React.FC<RadarChartProps> = ({ dimensionScores }) => {
 
           {/* Category Axis Labels */}
           {keys.map((key, i) => {
-            const { x, y } = getCoordinates(i, 1.28);
+            const { x, y } = getCoordinates(i, 1.22);
             const score = dimensionScores[key] || 0;
             let textAnchor: 'middle' | 'end' | 'start' = 'middle';
             if (x < centerX - 15) textAnchor = 'end';

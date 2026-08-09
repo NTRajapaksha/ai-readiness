@@ -212,9 +212,13 @@ export default function DashboardPage() {
   });
 
   const allRecommendations = generateRecommendations(dimensionScores, teamScores);
-  const qualitativeFeedback = responses
-    .map((r) => r.qualitativeWish)
-    .filter((w): w is string => Boolean(w && w.trim().length > 0));
+  const qualitativeFeedback = Array.from(
+    new Set(
+      responses
+        .map((r) => r.qualitativeWish)
+        .filter((w): w is string => Boolean(w && w.trim().length > 0))
+    )
+  );
 
   // Filter Logic
   const filteredRecommendations = allRecommendations.filter((rec) => {
