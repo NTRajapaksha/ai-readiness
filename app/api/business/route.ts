@@ -36,7 +36,7 @@ export async function GET(req: NextRequest) {
 
   const business = getBusiness(id);
   if (!business) {
-    return NextResponse.json({ error: 'Business not found' }, { status: 44 });
+    return NextResponse.json({ error: 'Business not found' }, { status: 404 });
   }
 
   return NextResponse.json(business);

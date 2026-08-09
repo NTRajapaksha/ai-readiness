@@ -23,6 +23,7 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({ score, totalResponses })
 
   useEffect(() => {
     let startTimestamp: number | null = null;
+    let frameId: number;
     const duration = 1200; // 1.2s ease-out
 
     const step = (timestamp: number) => {
@@ -33,11 +34,14 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({ score, totalResponses })
       setDisplayScore(Math.round(easeProgress * score));
 
       if (progress < 1) {
-        window.requestAnimationFrame(step);
+        frameId = window.requestAnimationFrame(step);
       }
     };
 
-    window.requestAnimationFrame(step);
+    frameId = window.requestAnimationFrame(step);
+    return () => {
+      if (frameId) window.cancelAnimationFrame(frameId);
+    };
   }, [score]);
 
   // SVG Geometry
