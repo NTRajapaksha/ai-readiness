@@ -19,19 +19,19 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
         onClick ? 'cursor-pointer hover:border-accent/60' : ''
       }`}
     >
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 sm:gap-4">
         <div className="flex items-center gap-2">
           <span
             className={`w-2 h-2 rounded-full flex-shrink-0 ${
               isHighPriority ? 'bg-accent' : 'bg-score-mid'
             }`}
           />
-          <h3 className="font-sans font-semibold text-ink text-sm sm:text-base">
+          <h3 className="font-sans font-semibold text-ink text-sm sm:text-base leading-snug">
             {recommendation.title}
           </h3>
         </div>
 
-        <div className="flex items-center gap-2 flex-shrink-0">
+        <div className="flex flex-wrap items-center gap-1.5 flex-shrink-0 pl-4 sm:pl-0">
           {recommendation.targetTeam && (
             <span className="px-2 py-0.5 bg-surface-raised border border-borderCustom rounded text-[10px] font-mono uppercase font-semibold text-ink">
               {recommendation.targetTeam}

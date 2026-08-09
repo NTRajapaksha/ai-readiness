@@ -238,10 +238,10 @@ export default function DashboardPage() {
           </h1>
         </div>
 
-        <div className="flex items-center gap-3 w-full sm:w-auto no-print">
+        <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto no-print">
           <button
             onClick={handleExportReport}
-            className="px-3 py-1.5 bg-surface-raised border border-borderCustom rounded text-xs font-mono font-medium text-ink hover:bg-surface transition-colors flex items-center gap-1.5"
+            className="px-2.5 py-1 bg-surface-raised border border-borderCustom rounded text-xs font-mono font-medium text-ink hover:bg-surface transition-colors flex items-center gap-1"
           >
             <span>🖨️</span> Export Report
           </button>
@@ -251,7 +251,7 @@ export default function DashboardPage() {
           >
             {copied ? 'Link copied' : 'Copy survey link'}
           </button>
-          <span className="px-3 py-1 bg-surface border border-borderCustom rounded font-mono text-xs text-ink">
+          <span className="px-2.5 py-1 bg-surface border border-borderCustom rounded font-mono text-xs text-ink">
             {totalResponses} {totalResponses === 1 ? 'Response' : 'Responses'}
           </span>
         </div>

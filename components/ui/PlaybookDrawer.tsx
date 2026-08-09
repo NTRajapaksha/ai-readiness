@@ -75,8 +75,8 @@ export const PlaybookDrawer: React.FC<PlaybookDrawerProps> = ({ recommendation, 
                   <p className="text-xs text-ink-muted leading-relaxed">
                     {step.action}
                   </p>
-                  <div className="mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-1 bg-surface-raised border border-borderCustom rounded text-[11px] text-ink font-mono">
-                    <span className="text-accent font-bold">Deliverable:</span> {step.deliverable}
+                  <div className="mt-1.5 flex flex-wrap items-center gap-1.5 p-2 bg-surface-raised border border-borderCustom rounded text-[11px] text-ink font-mono max-w-full overflow-hidden break-words">
+                    <span className="text-accent font-bold">Deliverable:</span> <span className="break-words">{step.deliverable}</span>
                   </div>
                 </div>
               ))}

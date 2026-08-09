@@ -75,27 +75,27 @@ export const ExecutiveBrief: React.FC<ExecutiveBriefProps> = ({
   const lowestDimScore = lowestDimEntry ? lowestDimEntry[1] : 51;
 
   return (
-    <div className="p-6 bg-surface border border-borderCustom rounded-lg space-y-5">
+    <div className="p-4 sm:p-6 bg-surface border border-borderCustom rounded-lg space-y-5 max-w-full overflow-hidden">
       {/* Header Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
-          <div className="w-6 h-6 bg-accent rounded flex items-center justify-center text-white text-[11px] font-bold font-mono shadow-sm">
+          <div className="w-6 h-6 bg-accent rounded flex items-center justify-center text-white text-[11px] font-bold font-mono shadow-sm flex-shrink-0">
             AI
           </div>
-          <div>
-            <span className="data-label text-ink block">AI Executive Brief & Strategic Synthesis</span>
-            <span className="text-[11px] text-ink-muted">Scannable Insights & Priority Initiatives</span>
+          <div className="min-w-0">
+            <span className="data-label text-ink block truncate">AI Executive Brief & Strategic Synthesis</span>
+            <span className="text-[11px] text-ink-muted block truncate">Scannable Insights & Priority Initiatives</span>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           {/* Sleek Dynamic Provider Selector */}
-          <div className="flex items-center gap-1.5 bg-surface-raised border border-borderCustom rounded px-2.5 py-1">
-            <span className="text-[10px] font-mono text-ink-muted uppercase">Provider:</span>
+          <div className="flex items-center gap-1.5 bg-surface-raised border border-borderCustom rounded px-2 py-1 max-w-full">
+            <span className="text-[10px] font-mono text-ink-muted uppercase flex-shrink-0">Provider:</span>
             <select
               value={provider}
               onChange={(e) => setProvider(e.target.value)}
-              className="text-[11px] font-mono bg-transparent text-ink font-semibold focus-visible:outline-none cursor-pointer"
+              className="text-[11px] font-mono bg-transparent text-ink font-semibold focus-visible:outline-none cursor-pointer max-w-[130px] sm:max-w-none truncate"
             >
               <option value="auto">Auto-Detect</option>
               <option value="openai">OpenAI (GPT-4o)</option>
@@ -106,7 +106,7 @@ export const ExecutiveBrief: React.FC<ExecutiveBriefProps> = ({
           </div>
 
           {source && (
-            <span className="text-[10px] font-mono px-2.5 py-1 bg-accent-light text-accent-dark rounded uppercase font-semibold whitespace-nowrap">
+            <span className="text-[10px] font-mono px-2 py-1 bg-accent-light text-accent-dark rounded uppercase font-semibold max-w-[180px] sm:max-w-none truncate">
               {source}
             </span>
           )}
@@ -158,20 +158,20 @@ export const ExecutiveBrief: React.FC<ExecutiveBriefProps> = ({
           </div>
 
           {/* Interactive Navigation Tabs */}
-          <div className="flex items-center gap-2 border-b border-borderCustom pb-2">
+          <div className="flex flex-wrap gap-1.5 border-b border-borderCustom pb-2">
             <button
               onClick={() => setActiveTab('insights')}
-              className={`px-3 py-1.5 text-xs font-mono rounded transition-colors ${
+              className={`flex-1 sm:flex-none text-center px-2.5 py-1.5 text-[11px] sm:text-xs font-mono rounded transition-colors whitespace-nowrap ${
                 activeTab === 'insights'
                   ? 'bg-accent text-white font-semibold'
                   : 'bg-surface-raised border border-borderCustom text-ink-muted hover:text-ink'
               }`}
             >
-              📊 Key Strategic Takeaways
+              📊 Key Takeaways
             </button>
             <button
               onClick={() => setActiveTab('initiative')}
-              className={`px-3 py-1.5 text-xs font-mono rounded transition-colors ${
+              className={`flex-1 sm:flex-none text-center px-2.5 py-1.5 text-[11px] sm:text-xs font-mono rounded transition-colors whitespace-nowrap ${
                 activeTab === 'initiative'
                   ? 'bg-accent text-white font-semibold'
                   : 'bg-surface-raised border border-borderCustom text-ink-muted hover:text-ink'
@@ -181,13 +181,13 @@ export const ExecutiveBrief: React.FC<ExecutiveBriefProps> = ({
             </button>
             <button
               onClick={() => setActiveTab('wishlist')}
-              className={`px-3 py-1.5 text-xs font-mono rounded transition-colors ${
+              className={`flex-1 sm:flex-none text-center px-2.5 py-1.5 text-[11px] sm:text-xs font-mono rounded transition-colors whitespace-nowrap ${
                 activeTab === 'wishlist'
                   ? 'bg-accent text-white font-semibold'
                   : 'bg-surface-raised border border-borderCustom text-ink-muted hover:text-ink'
               }`}
             >
-              💬 Team Wishlist Themes ({qualitativeWishes.length})
+              💬 Wishlist ({qualitativeWishes.length})
             </button>
           </div>
 
@@ -225,17 +225,17 @@ export const ExecutiveBrief: React.FC<ExecutiveBriefProps> = ({
 
           {/* Tab 2: Priority 1 Initiative */}
           {activeTab === 'initiative' && (
-            <div className="p-5 bg-surface-raised border border-borderCustom rounded-lg space-y-3 border-l-4 border-l-accent fade-in-quiet">
+            <div className="p-4 sm:p-5 bg-surface-raised border border-borderCustom rounded-lg space-y-3 border-l-4 border-l-accent fade-in-quiet">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <span className="px-2 py-0.5 bg-accent-light text-accent-dark text-[10px] font-mono uppercase font-bold rounded">
                     Recommended First Move
                   </span>
-                  <h4 className="font-sans font-semibold text-ink text-sm sm:text-base">
+                  <h4 className="font-sans font-semibold text-ink text-xs sm:text-base leading-snug">
                     Automated Support-to-Engineering Integration Pipeline
                   </h4>
                 </div>
-                <span className="text-[10px] font-mono text-ink-muted bg-surface px-2.5 py-1 rounded border border-borderCustom">
+                <span className="text-[10px] font-mono text-ink-muted bg-surface px-2 py-0.5 rounded border border-borderCustom self-start sm:self-auto">
                   Target: Support & Engineering
                 </span>
               </div>
@@ -255,7 +255,7 @@ export const ExecutiveBrief: React.FC<ExecutiveBriefProps> = ({
 
           {/* Tab 3: Team Wishlist Themes */}
           {activeTab === 'wishlist' && (
-            <div className="p-5 bg-surface-raised border border-borderCustom rounded-lg space-y-3 fade-in-quiet">
+            <div className="p-4 sm:p-5 bg-surface-raised border border-borderCustom rounded-lg space-y-3 fade-in-quiet">
               <div className="flex justify-between items-center">
                 <span className="data-label text-ink">Top Automation Demand Clusters</span>
                 <span className="text-[10px] font-mono text-ink-muted">{qualitativeWishes.length} Submissions</span>
@@ -298,15 +298,15 @@ export const ExecutiveBrief: React.FC<ExecutiveBriefProps> = ({
           )}
 
           {/* Footer Metadata & Re-generate */}
-          <div className="pt-2 border-t border-borderCustom flex items-center justify-between text-[11px] font-mono text-ink-muted">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              <span>Synthesized via {source || 'Tai Labs AI Engine'}</span>
+          <div className="pt-3 border-t border-borderCustom flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-[11px] font-mono text-ink-muted">
+            <div className="flex items-center gap-2 max-w-full overflow-hidden">
+              <span className="w-2 h-2 rounded-full bg-accent animate-pulse flex-shrink-0" />
+              <span className="truncate">Synthesized via {source || 'Tai Labs AI Engine'}</span>
             </div>
             <button
               onClick={() => handleGenerateBrief(provider)}
               disabled={loading}
-              className="text-accent hover:text-accent-dark hover:underline font-semibold focus-visible:outline-none transition-colors"
+              className="text-accent hover:text-accent-dark hover:underline font-semibold focus-visible:outline-none transition-colors self-end sm:self-auto"
             >
               {loading ? 'Refreshing...' : 'Re-generate Brief 🔄'}
             </button>
