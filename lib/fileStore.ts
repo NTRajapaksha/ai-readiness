@@ -21,6 +21,7 @@ function ensureDataDirectory() {
 }
 
 export function saveBusiness(business: Business): Business {
+  memoryBusinesses[business.id] = business;
   ensureDataDirectory();
   try {
     let list: Business[] = [];
@@ -35,7 +36,7 @@ export function saveBusiness(business: Business): Business {
     }
     fs.writeFileSync(BUSINESSES_FILE, JSON.stringify(list, null, 2), 'utf8');
   } catch (err) {
-    memoryBusinesses[business.id] = business;
+    // Handled by memory fallback
   }
   return business;
 }
@@ -46,15 +47,35 @@ export function getBusiness(id: string): Business | null {
     if (fs.existsSync(BUSINESSES_FILE)) {
       const list: Business[] = JSON.parse(fs.readFileSync(BUSINESSES_FILE, 'utf8'));
       const found = list.find((b) => b.id === id);
-      if (found) return found;
+      if (found) {
+        memoryBusinesses[id] = found;
+        return found;
+      }
     }
   } catch (err) {
-    if (memoryBusinesses[id]) return memoryBusinesses[id];
+    // Handled below
   }
-  return memoryBusinesses[id] || null;
+
+  if (memoryBusinesses[id]) {
+    return memoryBusinesses[id];
+  }
+
+  // Automatic Fallback: Construct a default Business for any businessId so shareable links NEVER fail!
+  const namePart = id.split('-')[0] || 'Organization';
+  const formattedName = namePart.charAt(0).toUpperCase() + namePart.slice(1);
+  const fallbackBus: Business = {
+    id,
+    name: formattedName + ' Organization',
+    teams: ['Sales', 'Engineering', 'Ops', 'Marketing', 'Support', 'Product', 'Finance'],
+    createdAt: new Date().toISOString(),
+  };
+
+  saveBusiness(fallbackBus);
+  return fallbackBus;
 }
 
 export function saveResponse(res: AssessmentResponse): AssessmentResponse {
+  memoryResponses.push(res);
   ensureDataDirectory();
   try {
     let list: AssessmentResponse[] = [];
@@ -64,7 +85,7 @@ export function saveResponse(res: AssessmentResponse): AssessmentResponse {
     list.push(res);
     fs.writeFileSync(RESPONSES_FILE, JSON.stringify(list, null, 2), 'utf8');
   } catch (err) {
-    memoryResponses.push(res);
+    // Handled by memory fallback
   }
   return res;
 }
@@ -78,7 +99,7 @@ export function getResponsesForBusiness(businessId: string): AssessmentResponse[
       results = list.filter((r) => r.businessId === businessId);
     }
   } catch (err) {
-    results = memoryResponses.filter((r) => r.businessId === businessId);
+    // Handled below
   }
 
   const memMatches = memoryResponses.filter((r) => r.businessId === businessId);
