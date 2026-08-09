@@ -21,6 +21,14 @@ module.exports = {
           dark: '#1E4F4F',
           light: '#DCEAEA',
         },
+        taiViolet: {
+          DEFAULT: '#6C4CE0',
+          light: 'rgba(108,76,224,0.12)',
+        },
+        taiCoral: {
+          DEFAULT: '#F0631E',
+          light: 'rgba(240,99,30,0.12)',
+        },
         score: {
           low: '#C9D6D6',
           mid: '#6FA3A3',
