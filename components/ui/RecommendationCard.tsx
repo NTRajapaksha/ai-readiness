@@ -22,8 +22,8 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 sm:gap-4">
         <div className="flex items-center gap-2">
           <span
-            className={`w-2 h-2 rounded-full flex-shrink-0 ${
-              isHighPriority ? 'bg-accent' : 'bg-score-mid'
+            className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${
+              isHighPriority ? 'bg-taiCoral' : 'bg-taiViolet'
             }`}
           />
           <h3 className="font-sans font-semibold text-ink text-sm sm:text-base leading-snug">
@@ -33,14 +33,14 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
 
         <div className="flex flex-wrap items-center gap-1.5 flex-shrink-0 pl-4 sm:pl-0">
           {recommendation.targetTeam && (
-            <span className="px-2 py-0.5 bg-surface-raised border border-borderCustom rounded text-[10px] font-mono uppercase font-semibold text-ink">
+            <span className="px-2 py-0.5 bg-taiViolet/10 text-taiViolet border border-taiViolet/20 rounded text-[10px] font-mono uppercase font-semibold">
               {recommendation.targetTeam}
             </span>
           )}
           <span
             className={`px-2 py-0.5 rounded text-[10px] font-mono uppercase font-semibold ${
               isHighPriority
-                ? 'bg-accent-light text-accent-dark'
+                ? 'bg-taiCoral/10 text-taiCoral border border-taiCoral/30'
                 : 'bg-surface-raised text-ink-muted border border-borderCustom'
             }`}
           >

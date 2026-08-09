@@ -79,13 +79,13 @@ export const ExecutiveBrief: React.FC<ExecutiveBriefProps> = ({
       {/* Header Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
-          <div className="w-6 h-6 bg-brandPurple rounded flex items-center justify-center text-white text-[11px] font-bold font-mono shadow-sm flex-shrink-0">
+          <div className="w-6 h-6 bg-taiViolet rounded flex items-center justify-center text-white text-[11px] font-bold font-mono shadow-sm flex-shrink-0">
             AI
           </div>
           <div className="min-w-0">
             <span className="data-label text-ink block sm:hidden">AI Executive Brief</span>
             <span className="data-label text-ink hidden sm:block">AI Executive Brief & Strategic Synthesis</span>
-            <span className="text-[11px] text-ink-muted block truncate">Scannable Insights & Priority Initiatives</span>
+            <span className="text-[11px] text-taiViolet font-medium block truncate">Scannable Insights & Priority Initiatives</span>
           </div>
         </div>
 
@@ -107,7 +107,7 @@ export const ExecutiveBrief: React.FC<ExecutiveBriefProps> = ({
           </div>
 
           {source && (
-            <span className="text-[10px] font-mono px-2 py-1 bg-accent-light text-accent-dark rounded uppercase font-semibold max-w-[180px] sm:max-w-none truncate">
+            <span className="text-[10px] font-mono px-2 py-1 bg-taiViolet/10 text-taiViolet rounded uppercase font-semibold max-w-[180px] sm:max-w-none truncate">
               {source}
             </span>
           )}
@@ -117,7 +117,7 @@ export const ExecutiveBrief: React.FC<ExecutiveBriefProps> = ({
       {/* Initial Empty State */}
       {!brief ? (
         <div className="p-6 bg-surface-raised border border-borderCustom rounded-lg text-center space-y-4">
-          <div className="w-10 h-10 bg-brandPurple/10 text-brandPurple rounded-full flex items-center justify-center mx-auto text-lg">
+          <div className="w-10 h-10 bg-accent-light text-accent rounded-full flex items-center justify-center mx-auto text-lg">
             ✨
           </div>
           <div className="space-y-1">
@@ -141,10 +141,10 @@ export const ExecutiveBrief: React.FC<ExecutiveBriefProps> = ({
         /* Rich Interactive Scannable Display */
         <div className="space-y-4 fade-in-quiet">
           {/* Top Key Takeaway Banner */}
-          <div className="p-3.5 bg-accent-light border border-accent/20 rounded-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+          <div className="p-3.5 bg-taiCoral/10 border border-taiCoral/30 rounded-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
             <div className="flex items-center gap-2">
               <span className="text-base">🎯</span>
-              <span className="text-xs font-semibold text-accent-dark">
+              <span className="text-xs font-semibold text-taiCoral">
                 Primary Bottleneck: <span className="font-mono">{lowestDimName} ({lowestDimScore}/100)</span>
               </span>
             </div>
@@ -152,7 +152,7 @@ export const ExecutiveBrief: React.FC<ExecutiveBriefProps> = ({
               <span className="px-2 py-0.5 bg-surface-raised border border-borderCustom rounded text-ink">
                 Leader: {leadingTeam}
               </span>
-              <span className="px-2 py-0.5 bg-surface-raised border border-borderCustom rounded text-accent-dark font-bold">
+              <span className="px-2 py-0.5 bg-surface-raised border border-borderCustom rounded text-taiCoral font-bold">
                 Lag: {laggingTeam}
               </span>
             </div>

@@ -10,12 +10,11 @@
   --surface-raised: #FFFFFF;
   --ink: #1C2333;
   --ink-muted: #5B6472;
-  --accent: #F0631E;
-  --accent-dark: #D95315;
-  --accent-light: #FDEEE7;
-  --brand-purple: #6C4CE0;
-  --brand-purple-light: #F0ECFC;
-  --brand-teal: #2A6F6F;
+  --accent: #2A6F6F;
+  --accent-dark: #1E4F4F;
+  --accent-light: #DCEAEA;
+  --brand-violet: #6C4CE0;
+  --brand-coral: #F0631E;
   --score-low: #C9D6D6;
   --score-mid: #6FA3A3;
   --score-high: #2A6F6F;
