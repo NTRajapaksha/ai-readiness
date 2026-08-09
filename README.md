@@ -1,7 +1,7 @@
 > **Product Vision**: Clinical confidence crossed with a coaching companion. A high-craft diagnostic web application built for **Tai Labs** that turns organizational AI uncertainty into a clear readiness score, team-by-team breakdown, and targeted upskilling roadmap.
 
-🌐 **Live Deployed Application**: [https://tai-labs-ai-readiness.vercel.app](https://tai-labs-ai-readiness.vercel.app)  
-📁 **GitHub Repository**: [https://github.com/YOUR_USERNAME/tai-labs-ai-readiness](https://github.com/YOUR_USERNAME/tai-labs-ai-readiness)
+🌐 **Live Deployed Application**: [Visit](https://ai-readiness-rho-self.vercel.app/)
+
 
 ---
 
