@@ -2,6 +2,8 @@
 
 An AI readiness diagnostic web application built for **Tai Labs**. It enables organizations to generate a shareable diagnostic link, collect anonymous 2-minute team survey inputs, and view a real-time analytics dashboard with dimension breakdowns, team comparisons, and actionable upskilling roadmaps.
 
+**Live Demo**: [https://ai-readiness-rho-self.vercel.app](https://ai-readiness-rho-self.vercel.app/)
+
 ---
 
 ## 🚀 Quick Start
