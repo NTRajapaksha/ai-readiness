@@ -56,7 +56,7 @@ export default function DashboardPage() {
       setResponses(Array.isArray(respData) ? respData : []);
     } catch (err) {
       setError(true);
-    } flex: {
+    } finally {
       setLoading(false);
     }
   }
