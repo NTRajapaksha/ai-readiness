@@ -72,3 +72,13 @@ export function getScoreCategory(score: number): 'Early Stage' | 'Developing' | 
   if (score < 85) return 'Advanced';
   return 'AI Native';
 }
+
+/**
+ * Shared utility mapping score to monochrome scale color hex values:
+ * #C9D6D6 (low / <40) -> #6FA3A3 (mid / 40-69) -> #2A6F6F (high / >=70)
+ */
+export function getScoreColor(score: number): string {
+  if (score >= 70) return '#2A6F6F';
+  if (score >= 40) return '#6FA3A3';
+  return '#C9D6D6';
+}

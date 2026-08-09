@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { getScoreCategory } from '@/lib/scoring';
+import { getScoreCategory, getScoreColor } from '@/lib/scoring';
 
 interface ScoreGaugeProps {
   score: number; // 0 to 100
@@ -11,14 +11,8 @@ interface ScoreGaugeProps {
 export const ScoreGauge: React.FC<ScoreGaugeProps> = ({ score, totalResponses }) => {
   const [displayScore, setDisplayScore] = useState(0);
 
-  // Determine stroke color based on monochrome scale (#C9D6D6 low → #6FA3A3 mid → #2A6F6F high)
-  let strokeColor = '#C9D6D6';
-  if (score >= 40 && score < 70) {
-    strokeColor = '#6FA3A3';
-  } else if (score >= 70) {
-    strokeColor = '#2A6F6F';
-  }
-
+  // Shared color & category utilities from lib/scoring.ts
+  const strokeColor = getScoreColor(score);
   const category = getScoreCategory(score);
 
   useEffect(() => {

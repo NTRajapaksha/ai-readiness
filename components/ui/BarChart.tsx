@@ -1,6 +1,6 @@
 import React from 'react';
 import { DimensionScores } from '@/types';
-import { calculateOverallScore } from '@/lib/scoring';
+import { calculateOverallScore, getScoreCategory, getScoreColor } from '@/lib/scoring';
 
 interface BarChartProps {
   teamScores: Record<string, DimensionScores>;
@@ -8,9 +8,16 @@ interface BarChartProps {
 }
 
 export const BarChart: React.FC<BarChartProps> = ({ teamScores, responsesByTeam }) => {
-  const teams = Object.keys(teamScores);
+  const rawTeams = Object.keys(teamScores);
 
-  if (teams.length === 0) return null;
+  if (rawTeams.length === 0) return null;
+
+  // Sort teams ascending by score (teams needing attention surface first)
+  const teams = [...rawTeams].sort((a, b) => {
+    const scoreA = calculateOverallScore(teamScores[a]);
+    const scoreB = calculateOverallScore(teamScores[b]);
+    return scoreA - scoreB;
+  });
 
   return (
     <div className="p-6 bg-surface border border-borderCustom rounded-lg w-full">
@@ -24,21 +31,27 @@ export const BarChart: React.FC<BarChartProps> = ({ teamScores, responsesByTeam 
           const dims = teamScores[team];
           const overall = calculateOverallScore(dims);
           const responseCount = responsesByTeam[team] || 0;
-
-          // Bar color based on monochrome score scale
-          let barColor = 'bg-[#C9D6D6]';
-          if (overall >= 40 && overall < 70) {
-            barColor = 'bg-[#6FA3A3]';
-          } else if (overall >= 70) {
-            barColor = 'bg-[#2A6F6F]';
-          }
+          const color = getScoreColor(overall);
+          const category = getScoreCategory(overall);
 
           return (
             <div key={team} className="space-y-1.5">
-              <div className="flex items-center justify-between text-xs">
-                <span className="font-mono uppercase font-semibold text-ink">
-                  {team}
-                </span>
+              <div className="flex flex-wrap items-center justify-between gap-1 text-xs">
+                <div className="flex items-center gap-2">
+                  <span className="font-mono uppercase font-semibold text-ink">
+                    {team}
+                  </span>
+
+                  {/* Category Pill Tag matching ScoreGauge visual style */}
+                  <div className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-surface-raised border border-borderCustom rounded-full">
+                    <span
+                      className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: color }}
+                    />
+                    <span className="data-label text-[9px] text-ink">{category}</span>
+                  </div>
+                </div>
+
                 <div className="flex items-center gap-2">
                   <span className="text-ink-muted text-[11px]">
                     {responseCount} {responseCount === 1 ? 'member' : 'members'}
@@ -52,12 +65,12 @@ export const BarChart: React.FC<BarChartProps> = ({ teamScores, responsesByTeam 
               {/* Progress track */}
               <div className="h-2.5 w-full bg-borderCustom rounded-full overflow-hidden">
                 <div
-                  className={`h-full ${barColor} transition-all duration-500 ease-out`}
-                  style={{ width: `${overall}%` }}
+                  className="h-full transition-all duration-500 ease-out"
+                  style={{ width: `${overall}%`, backgroundColor: color }}
                 />
               </div>
 
-              {/* Mini dimension pills */}
+              {/* Mini dimension metrics */}
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] text-ink-muted font-mono pt-0.5">
                 <div>Fluency: <span className="text-ink">{dims.fluency}</span></div>
                 <div>Integration: <span className="text-ink">{dims.integration}</span></div>
