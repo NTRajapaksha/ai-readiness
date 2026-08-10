@@ -24,27 +24,34 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 🏛️ System Architecture
+## 🏛️ System Architecture & Data Flow
 
 ```mermaid
 flowchart TD
-    A[Admin Creates Assessment] -->|Generates /assess/id| B[Shareable Survey Link]
-    B --> C[Team Members Complete 2-Min Survey]
-    C -->|10 Behavior Questions| D[Scoring & Recommendation Engine]
-    D -->|Fluency, Integration, Culture, Risk, Leadership| E[Executive Dashboard]
-    E --> F[Circular SVG Score Gauge]
-    E --> G[5-Dimension Pentagon Radar Chart]
-    E --> H[Team Performance Breakdown]
-    E --> I[AI Executive Brief & Synthesis]
-    E --> J[3-Week Upskilling Playbook Drawer]
-    E --> K[PDF Report Export]
+    A["👤 Team Members Submit Survey (Q1–Q11)"] --> B["🧮 5-Dimension Scoring Engine"]
+    B --> C1["📊 Overall Readiness Score (0-100)"]
+    B --> C2["🕸️ 5-Axis Pentagon Radar Chart"]
+    B --> C3["📈 Team Performance Breakdown"]
+    
+    A --> D["📝 Qualitative Wishlist Processing"]
+    
+    C1 & C2 & C3 & D --> E["🤖 AI Executive Brief Generator"]
+    C1 & C2 & C3 --> F["🎯 Recommendation Engine"]
+    
+    E --> G1["📜 Strategic Diagnosis & Synthesis"]
+    E --> G2["⚡ Dynamic Key Takeaways Tiles"]
+    E --> G3["💡 Priority 1 Initiative Card"]
+    
+    F --> H1["🚀 3-Week Upskilling Roadmaps"]
+    F --> H2["🔍 Department Filter Pills"]
+    F --> H3["📋 Interactive Execution Playbooks"]
 ```
 
 ---
 
 ## 📐 Diagnostic Dimensions & Scoring Math
 
-The diagnostic measures organizational readiness across five core dimensions:
+The diagnostic evaluates organizational AI readiness across **five equal-weighted dimensions (20% each)**:
 
 | Dimension | Diagnostic Scope | Scoring Weight |
 | :--- | :--- | :---: |
@@ -69,13 +76,55 @@ All survey responses are normalized to a 0–100 scale prior to calculating dime
 
 ---
 
+## 🧠 How the AI Executive Brief & Upskilling Engine Works
+
+### 1. Multi-Provider LLM Synthesis & Fallback
+The Executive Brief ([`app/api/interpret/route.ts`](./app/api/interpret/route.ts)) generates a 2-paragraph C-suite synthesis interpreting quantitative scores and qualitative wishlist items.
+- **Supported LLM Providers**: Google Gemini (`gemini-1.5-flash`), OpenAI (`gpt-4o-mini`), Anthropic (`claude-3-haiku-20240307`), and Groq (`llama-3.3-70b-versatile`).
+- **8-Second Cold-Start Resilience**: All external API requests are wrapped in an **8-second `AbortController`**. If an API key is missing or an external provider times out during serverless cold starts, the system seamlessly falls back to the deterministic rule engine without throwing any UI errors.
+
+### 2. Recommended Upskilling Roadmap Trigger Rules
+The upskilling roadmap engine ([`lib/recommendations.ts`](./lib/recommendations.ts)) maps diagnostic metrics directly to **3-Week Coaching Playbooks**:
+
+- **Business-Wide Signals ($< 50/100$)**: Triggers org-wide coaching tracks (e.g. prompt labs for low fluency, data safety PDFs for low risk awareness).
+- **Team Gap Signals ($\text{Org Score} - \text{Team Score} \ge 20 \text{ points}$)**: Triggers department-specific sprint playbooks (e.g. `"Sales: Bridge Risk & Governance Gap"`).
+- **High-Readiness Fallback Track ($\ge 50/100$)**: Triggers custom internal agentic workflow prototyping for lead teams.
+- **Interactive 3-Week Playbooks**: Clicking any recommendation opens an interactive drawer detailing weekly objectives, actions, and deliverables.
+
+---
+
+## 💾 Multi-Tier Serverless Persistence Architecture
+
+To guarantee 100% data persistence on Vercel's ephemeral serverless infrastructure:
+
+```mermaid
+graph TD
+    UserSub["👤 User Submits Response"] --> POST["POST /api/responses"]
+    
+    POST --> S1["1. Process Memory Array"]
+    POST --> S2["2. Write to Writable /tmp/data/ Directory"]
+    POST --> S3["3. Write to ./data/ Directory"]
+    POST --> S4["4. Store in Browser localStorage (tai_responses_id)"]
+    
+    DashLoad["📊 Dashboard Page Load"] --> GET["GET /api/responses (force-dynamic)"]
+    GET --> FetchServer["Fetch Server Responses (/tmp + ./data)"]
+    DashLoad --> ReadLocal["Read LocalStorage (tai_responses_id)"]
+    
+    FetchServer & ReadLocal --> Merge["🔀 Deduplicate & Merge Engine (by Response ID)"]
+    Merge --> UI["Render Executive Analytics Dashboard"]
+```
+
+> **Why Dual Persistence Matters**:
+> Vercel Lambda containers reset between requests. Combining writable `/tmp` directory storage with client-side `localStorage` merging guarantees that survey submissions **never disappear or flap on refresh**, regardless of serverless container routing!
+
+---
+
 ## ⚙️ Core Technical Capabilities
 
-- **Deterministic Rule Engine**: Primary scoring and recommendation triggering run on deterministic mathematical formulas (`lib/scoring.ts` and `lib/recommendations.ts`). This guarantees 100% explainable metrics, zero hallucinations, and zero API latency.
-- **Multi-Provider LLM Synthesis**: For qualitative interpretation, the executive brief (`app/api/interpret/route.ts`) supports OpenAI (GPT-4o), Anthropic (Claude 3.5), Google Gemini (`gemini-1.5-flash`), and Groq (Llama 3.3). A 4-second timeout guard guarantees instant fallback to the rule engine if external services time out or lack credentials.
-- **Interactive Coaching Playbooks**: Each recommendation card links to a 3-week execution playbook drawer (`components/ui/PlaybookDrawer.tsx`) detailing weekly objectives, actions, and tangible deliverables.
+- **Deterministic Rule Engine**: Primary scoring and recommendation triggering run on deterministic mathematical formulas (`lib/scoring.ts` and `lib/recommendations.ts`), guaranteeing 100% explainable metrics and zero latency.
+- **Interactive Coaching Playbooks**: Each recommendation card links to a 3-week execution playbook drawer (`components/ui/PlaybookDrawer.tsx`) detailing weekly objectives, actions, and deliverables.
 - **Executive PDF Export**: Embedded print-optimized stylesheets (`@media print` in `app/globals.css`) enable 1-click PDF reporting suitable for leadership reviews.
-- **Reviewer Instant Demo Mode**: Administrators can populate sample team data instantly via the demo shortcut (`lib/demoData.ts`), which can be disabled via the `ENABLE_DEMO_MODE` flag.
+- **Reviewer Instant Demo Mode**: Administrators can populate sample team data instantly via the demo shortcut (`lib/demoData.ts`), tailored dynamically across configured organization departments.
 
 ---
 
@@ -90,15 +139,18 @@ All survey responses are normalized to a 0–100 scale prior to calculating dime
 ### What I Cut (And Why)
 
 1. **Heavy User Authentication & Account Walls**:
-   - *Rationale*: Requiring team members to create accounts before taking a 2-minute diagnostic survey drops submission completion rates by up to 60%. I replaced account walls with lightweight, zero-friction unique share links (`/assess/[businessId]`).
+   - *Rationale*: Requiring team members to create accounts before taking a 2-minute diagnostic survey drops submission completion rates by up to 60%. Replaced account walls with lightweight, zero-friction unique share links (`/assess/[businessId]`).
 
 2. **External Database Dependency for Reviewers**:
-   - *Rationale*: Replaced external Postgres/Prisma database setup with a local JSON persistence layer ([`lib/fileStore.ts`](./lib/fileStore.ts)) backed by an automatic memory fallback. Reviewers can clone and run `npm install && npm run dev` instantly with zero environment key setup.
+   - *Rationale*: Replaced complex external database requirements with a local file store ([`lib/fileStore.ts`](./lib/fileStore.ts)) backed by Vercel `/tmp` fallback storage and client-side `localStorage` merging. Reviewers can clone and run `npm install && npm run dev` instantly with zero environment key setup.
 
 ---
 
 ### What I'd Build Next (v2 Roadmap)
 
+- **Enterprise Qualitative AI Semantic Clustering (1,000+ Respondents)**:
+  - *Current Implementation*: For small-to-mid teams, the Qualitative Feedback section ([`QualitativeWall.tsx`](./components/ui/QualitativeWall.tsx)) features **instant search keyword filtering and paginated rendering** (6 items/page) to prevent browser DOM bloat and executive information overload.
+  - *Enterprise v2 Architecture*: For large enterprises with 5,000+ respondents, displaying individual quotes is unfeasible. In v2, an offline LLM batch pipeline runs TF-IDF / semantic vector clustering to automatically collapse 5,000 raw quotes into **Top 5 Priority Automation Themes** (e.g., *Theme 1: Customer Support Ticket Parsing — 420 requests*, *Theme 2: Contract Clause Verification — 310 requests*) with expandable quote samples under each theme.
 - **Dedicated Executive 1-on-1 Discovery Track**: Introduce a 3-minute C-suite sponsor diagnostic to contrast executive expectations against ground-level team scores.
 - **Supabase / Postgres Multi-Tenancy**: Transition `lib/fileStore.ts` to Supabase Postgres for enterprise multi-tenancy.
 - **Cohort Score Tracking**: Track score evolution month-over-month as departments complete upskilling tracks.
@@ -111,9 +163,9 @@ All survey responses are normalized to a 0–100 scale prior to calculating dime
 ```text
 ├── app/
 │   ├── api/
-│   │   ├── business/      # Assessment creation & retrieval endpoint
-│   │   ├── interpret/     # LLM synthesis & fallback endpoint
-│   │   └── responses/     # Survey submission & demo data endpoint
+│   │   ├── business/      # Assessment creation & retrieval endpoint (force-dynamic)
+│   │   ├── interpret/     # LLM synthesis & 8s fallback endpoint
+│   │   └── responses/     # Survey submission & demo data endpoint (force-dynamic)
 │   ├── assess/[businessId]/ # Team member 2-minute diagnostic wizard
 │   ├── dashboard/[businessId]/ # Executive analytics dashboard
 │   ├── globals.css        # Design tokens & print styling
@@ -123,7 +175,7 @@ All survey responses are normalized to a 0–100 scale prior to calculating dime
 │   └── ui/                # Gauge, charts, playbook drawer, and brief widgets
 ├── lib/
 │   ├── demoData.ts        # Reviewer sample dataset generator
-│   ├── fileStore.ts       # Persistence layer with memory fallback
+│   ├── fileStore.ts       # Persistence layer with /tmp fallback
 │   ├── questions.ts       # Question definitions & dimension mappings
 │   ├── recommendations.ts # Upskilling rule engine & 3-week playbooks
 │   └── scoring.ts         # Math normalization logic
