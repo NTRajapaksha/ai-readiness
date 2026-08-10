@@ -10,26 +10,26 @@ export function generateSampleResponses(businessId: string): AssessmentResponse[
   const sampleData: AssessmentResponse[] = [];
 
   const responseConfigs = [
-    // Engineering (High Fluency, High Integration, Moderate Risk/Culture)
-    { team: 'Engineering', fluency: 85, integration: 80, culture: 65, risk: 70 },
-    { team: 'Engineering', fluency: 90, integration: 85, culture: 70, risk: 75 },
-    { team: 'Engineering', fluency: 75, integration: 75, culture: 60, risk: 60 },
+    // Engineering (High Fluency, High Integration, Moderate Risk/Culture, High Leadership)
+    { team: 'Engineering', fluency: 85, integration: 80, culture: 65, risk: 70, leadership: 85 },
+    { team: 'Engineering', fluency: 90, integration: 85, culture: 70, risk: 75, leadership: 90 },
+    { team: 'Engineering', fluency: 75, integration: 75, culture: 60, risk: 60, leadership: 80 },
     
-    // Sales (Moderate Fluency, Low Integration, Low Culture, Low Risk awareness)
-    { team: 'Sales', fluency: 45, integration: 25, culture: 30, risk: 35 },
-    { team: 'Sales', fluency: 50, integration: 30, culture: 25, risk: 40 },
-    { team: 'Sales', fluency: 40, integration: 20, culture: 35, risk: 30 },
+    // Sales (Moderate Fluency, Low Integration, Low Culture, Low Risk awareness, Low Leadership)
+    { team: 'Sales', fluency: 45, integration: 25, culture: 30, risk: 35, leadership: 40 },
+    { team: 'Sales', fluency: 50, integration: 30, culture: 25, risk: 40, leadership: 45 },
+    { team: 'Sales', fluency: 40, integration: 20, culture: 35, risk: 30, leadership: 35 },
 
-    // Ops (Moderate Fluency, High Risk awareness, Low Integration)
-    { team: 'Ops', fluency: 55, integration: 40, culture: 50, risk: 80 },
-    { team: 'Ops', fluency: 60, integration: 45, culture: 45, risk: 85 },
+    // Ops (Moderate Fluency, High Risk awareness, Low Integration, Moderate Leadership)
+    { team: 'Ops', fluency: 55, integration: 40, culture: 50, risk: 80, leadership: 60 },
+    { team: 'Ops', fluency: 60, integration: 45, culture: 45, risk: 85, leadership: 65 },
 
-    // Marketing (High Fluency, Moderate Integration, Moderate Culture, Low Risk)
-    { team: 'Marketing', fluency: 80, integration: 65, culture: 75, risk: 40 },
-    { team: 'Marketing', fluency: 85, integration: 70, culture: 80, risk: 45 },
+    // Marketing (High Fluency, Moderate Integration, Moderate Culture, Low Risk, High Leadership)
+    { team: 'Marketing', fluency: 80, integration: 65, culture: 75, risk: 40, leadership: 75 },
+    { team: 'Marketing', fluency: 85, integration: 70, culture: 80, risk: 45, leadership: 80 },
 
-    // Support (Low Fluency, Low Integration, High Culture)
-    { team: 'Support', fluency: 35, integration: 30, culture: 60, risk: 50 },
+    // Support (Low Fluency, Low Integration, High Culture, Low Leadership)
+    { team: 'Support', fluency: 35, integration: 30, culture: 60, risk: 50, leadership: 40 },
   ];
 
   // 11 distinct, non-duplicative qualitative team wishlist submissions
@@ -57,7 +57,8 @@ export function generateSampleResponses(businessId: string): AssessmentResponse[
       { questionId: 'q6', value: config.culture, rawAnswer: 2 },
       { questionId: 'q7', value: config.risk, rawAnswer: config.risk > 50 ? 4 : 2 },
       { questionId: 'q8', value: config.risk, rawAnswer: config.risk > 50 ? 3 : 1 },
-      { questionId: 'q9', value: config.fluency, rawAnswer: 2 },
+      { questionId: 'q9', value: config.leadership, rawAnswer: config.leadership > 50 ? 4 : 2 },
+      { questionId: 'q10', value: config.leadership, rawAnswer: config.leadership > 50 ? 3 : 1 },
     ];
 
     sampleData.push({

@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { DimensionScores } from '@/types';
-import { DIMENSION_LABELS } from '@/lib/questions';
 
 interface RadarChartProps {
   dimensionScores: DimensionScores;
@@ -10,13 +9,13 @@ interface RadarChartProps {
 
 export const RadarChart: React.FC<RadarChartProps> = ({ dimensionScores }) => {
   // SVG Radar Dimensions with ample padding for full labels
-  const viewBoxWidth = 380;
-  const viewBoxHeight = 300;
+  const viewBoxWidth = 400;
+  const viewBoxHeight = 320;
   const centerX = viewBoxWidth / 2;
   const centerY = viewBoxHeight / 2;
   const radius = 75;
 
-  const keys: (keyof DimensionScores)[] = ['fluency', 'integration', 'culture', 'risk'];
+  const keys: (keyof DimensionScores)[] = ['fluency', 'integration', 'culture', 'risk', 'leadership'];
   const total = keys.length;
 
   const LABELS: Record<keyof DimensionScores, string> = {
@@ -24,6 +23,7 @@ export const RadarChart: React.FC<RadarChartProps> = ({ dimensionScores }) => {
     integration: 'Integration',
     culture: 'Shared AI Culture',
     risk: 'Risk & Governance',
+    leadership: 'Leadership Buy-In',
   };
 
   // Compute (x, y) coordinates for each axis
@@ -61,7 +61,7 @@ export const RadarChart: React.FC<RadarChartProps> = ({ dimensionScores }) => {
     <div className="flex flex-col items-center justify-center p-6 bg-surface border border-borderCustom rounded-lg w-full">
       <div className="flex items-center justify-between w-full mb-2">
         <span className="data-label">Org Readiness Radar</span>
-        <span className="text-xs text-ink-muted font-mono">4 Dimensions</span>
+        <span className="text-xs text-ink-muted font-mono">5 Dimensions</span>
       </div>
 
       <div className="relative w-full max-w-[340px] aspect-square flex items-center justify-center">
@@ -121,7 +121,7 @@ export const RadarChart: React.FC<RadarChartProps> = ({ dimensionScores }) => {
 
           {/* Category Axis Labels */}
           {keys.map((key, i) => {
-            const { x, y } = getCoordinates(i, 1.22);
+            const { x, y } = getCoordinates(i, 1.25);
             const score = dimensionScores[key] || 0;
             let textAnchor: 'middle' | 'end' | 'start' = 'middle';
             if (x < centerX - 15) textAnchor = 'end';

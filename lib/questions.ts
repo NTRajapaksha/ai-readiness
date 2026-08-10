@@ -1,12 +1,19 @@
 import { Question, Dimension } from '@/types';
 
-export const DIMENSIONS: readonly Dimension[] = ['fluency', 'integration', 'culture', 'risk'] as const;
+export const DIMENSIONS: readonly Dimension[] = [
+  'fluency',
+  'integration',
+  'culture',
+  'risk',
+  'leadership',
+] as const;
 
 export const DIMENSION_LABELS: Record<Dimension, string> = {
   fluency: 'Tool Fluency',
   integration: 'Workflow Integration',
   culture: 'Shared AI Culture',
   risk: 'Risk & Governance',
+  leadership: 'Leadership Buy-In',
 };
 
 export const TEAMS = [
@@ -89,18 +96,25 @@ export const QUESTIONS: readonly Question[] = [
   },
   {
     id: 'q9',
-    dimension: 'fluency',
-    type: 'multiple_choice',
-    text: 'How did you learn most of what you know about using AI tools?',
-    options: [
-      'Haven’t learned much yet',
-      'Trial and error on my own',
-      'Colleagues or online content',
-      'Formal training or courses',
-    ],
+    dimension: 'leadership',
+    type: 'likert',
+    text: 'How actively does your team leadership encourage, sponsor, and allocate time or budget for AI tools?',
+    labels: ['Restricts / discourages', 'Passively permits', 'Encourages informally', 'Sponsors tools & time', 'Active executive mandate'],
   },
   {
     id: 'q10',
+    dimension: 'leadership',
+    type: 'multiple_choice',
+    text: 'Has leadership established clear goals, safety guidance, or resource backing for AI in your workflow?',
+    options: [
+      'No guidance or support',
+      'Vague suggestions only',
+      'Clear team guidance',
+      'Explicit roadmap & budget backing',
+    ],
+  },
+  {
+    id: 'q11',
     dimension: 'integration',
     type: 'text_optional',
     text: 'Optional: What is one repetitive task you wish AI could help with, but currently doesn’t?',

@@ -17,6 +17,7 @@ export function calculateDimensionScores(responses: AssessmentResponse[]): Dimen
     integration: 0,
     culture: 0,
     risk: 0,
+    leadership: 0,
   };
 
   if (!responses || responses.length === 0) return result;

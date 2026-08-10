@@ -128,6 +128,36 @@ export function generateRecommendations(
     });
   }
 
+  if (overallDims.leadership < 50) {
+    recs.push({
+      id: 'rec-leadership-org',
+      title: 'Align executive sponsorship & clear AI resource allocation',
+      description: 'Employees report low leadership buy-in—executives must establish clear AI goals, explicit tool budgets, and dedicated learning time.',
+      priority: 'high',
+      dimension: 'leadership',
+      playbook: [
+        {
+          week: 'Week 1',
+          title: 'Executive Sponsor Sync',
+          action: 'Host a 45-minute leadership alignment session to define official AI objectives and data boundaries.',
+          deliverable: 'Executive AI Mandate Statement.',
+        },
+        {
+          week: 'Week 2',
+          title: 'Resource & Budget Provisioning',
+          action: 'Approve official tool licenses (Claude, ChatGPT Enterprise, Copilot) and dedicate 2 hours/week for training.',
+          deliverable: 'Approved enterprise AI tool budget.',
+        },
+        {
+          week: 'Week 3',
+          title: 'Leadership Milestone Review',
+          action: 'Establish bi-weekly ROI review meetings between department leads and executive sponsors.',
+          deliverable: 'Executive AI Adoption Dashboard.',
+        },
+      ],
+    });
+  }
+
   // Team-specific gaps (lagging org average by >= 20 points)
   for (const [teamName, dims] of Object.entries(teamDims)) {
     for (const dim of DIMENSIONS) {

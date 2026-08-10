@@ -76,6 +76,7 @@ export const BarChart: React.FC<BarChartProps> = ({ teamScores, responsesByTeam 
                 <div>Integration: <span className="text-ink">{dims.integration}</span></div>
                 <div>Culture: <span className="text-ink">{dims.culture}</span></div>
                 <div>Risk: <span className="text-ink">{dims.risk}</span></div>
+                <div>Leadership: <span className="text-ink">{dims.leadership || 0}</span></div>
               </div>
             </div>
           );

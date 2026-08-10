@@ -1,4 +1,4 @@
-export type Dimension = 'fluency' | 'integration' | 'culture' | 'risk';
+export type Dimension = 'fluency' | 'integration' | 'culture' | 'risk' | 'leadership';
 
 export type QuestionType = 'likert' | 'multiple_choice' | 'text_optional';
 
