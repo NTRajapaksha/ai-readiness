@@ -280,20 +280,27 @@ export default function DashboardPage() {
           </h1>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto no-print">
+        <div className="flex flex-wrap items-center gap-2.5 w-full sm:w-auto no-print">
           <button
             onClick={handleExportReport}
-            className="px-2.5 py-1 bg-surface-raised border border-borderCustom rounded text-xs font-mono font-medium text-ink hover:bg-surface transition-colors flex items-center gap-1"
+            className="px-3 py-1.5 bg-surface-raised border border-borderCustom rounded-md text-xs font-mono font-semibold text-ink hover:bg-surface hover:border-ink/40 transition-all duration-150 flex items-center gap-1.5 shadow-sm focus-visible:outline-none"
           >
             <span>🖨️</span> Export Report
           </button>
+
           <button
             onClick={handleCopyLink}
-            className="text-xs font-mono text-ink-muted hover:text-ink transition-colors underline underline-offset-4"
+            className={`px-3 py-1.5 rounded-md text-xs font-mono font-semibold transition-all duration-150 flex items-center gap-1.5 shadow-sm border focus-visible:outline-none ${
+              copied
+                ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm'
+                : 'bg-accent text-white border-accent hover:bg-accent-dark'
+            }`}
           >
-            {copied ? 'Link copied' : 'Copy survey link'}
+            <span>{copied ? '✓' : '🔗'}</span>
+            <span>{copied ? 'Link copied!' : 'Copy survey link'}</span>
           </button>
-          <span className="px-2.5 py-1 bg-surface border border-borderCustom rounded font-mono text-xs text-ink">
+
+          <span className="px-3 py-1.5 bg-surface border border-borderCustom/80 rounded-md font-mono text-xs font-semibold text-ink shadow-sm">
             {totalResponses} {totalResponses === 1 ? 'Response' : 'Responses'}
           </span>
         </div>

@@ -97,9 +97,9 @@ export default function HomePage() {
                 <button
                   type="button"
                   onClick={toggleSelectAll}
-                  className="text-xs font-mono text-accent hover:text-accent-dark underline underline-offset-2 transition-colors focus-visible:outline-none"
+                  className="px-2.5 py-1 bg-accent/10 border border-accent/30 text-accent-dark hover:bg-accent hover:text-white rounded text-xs font-mono font-semibold transition-all duration-150 shadow-sm flex items-center gap-1 focus-visible:outline-none"
                 >
-                  {allSelected ? 'Deselect all' : 'Select all'}
+                  <span>{allSelected ? '✓ Deselect all' : '⚡ Select all'}</span>
                 </button>
                 <span className="text-xs font-mono text-ink-muted">
                   {selectedTeams.length} Selected
