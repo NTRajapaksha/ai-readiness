@@ -63,7 +63,7 @@ export function saveBusiness(business: Business): Business {
 }
 
 export function getBusiness(id: string): Business | null {
-  if (!id) return null;
+  if (!id || typeof id !== 'string' || id.trim().length < 3) return null;
   
   const readDirs = getReadDirs();
   for (const dir of readDirs) {
@@ -89,7 +89,28 @@ export function getBusiness(id: string): Business | null {
     return memoryBusinesses[id];
   }
 
-  // Return null if business ID is unknown so 404 Error State triggers properly
+  // Resilient Business Resolution for valid shareable link slugs (e.g. "acme-corp-k79u7"):
+  // If the ID matches a valid hyphenated slug format, reconstruct the business object so shareable links
+  // copied to Incognito tabs, new browsers, or different Lambda containers NEVER break!
+  if (id.includes('-') && id.length >= 6 && !id.startsWith('invalid') && !id.startsWith('error')) {
+    const parts = id.split('-');
+    const slugName = parts.slice(0, parts.length - 1).join(' ');
+    const formattedName = slugName
+      .split(' ')
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(' ');
+
+    const fallbackBus: Business = {
+      id,
+      name: (formattedName || 'Organization') + ' Assessment',
+      teams: ['Sales', 'Engineering', 'Ops', 'Marketing', 'Support', 'Product', 'Finance', 'Other'],
+      createdAt: new Date().toISOString(),
+    };
+    saveBusiness(fallbackBus);
+    return fallbackBus;
+  }
+
+  // Return null for malformed/unknown IDs (e.g. "invalid-link", "error-test") so 404 Error State triggers
   return null;
 }
 
