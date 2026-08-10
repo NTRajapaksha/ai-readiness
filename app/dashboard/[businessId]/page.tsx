@@ -86,6 +86,7 @@ export default function DashboardPage() {
         body: JSON.stringify({
           businessId,
           action: 'inject_demo',
+          teams: business?.teams,
         }),
       });
 
@@ -189,8 +190,8 @@ export default function DashboardPage() {
                   <span className="data-label text-accent">Reviewer Shortcut</span>
                   <span className="text-[10px] font-mono text-ink-muted">Optional</span>
                 </div>
-                <p className="text-xs text-ink-muted">
-                  Want to review the full analytics, radar chart, and recommendation engine instantly without filling 10 surveys manually?
+                <p className="text-xs text-ink-muted leading-relaxed">
+                  Instantly populates a realistic 11-member benchmark dataset distributed across your organization&apos;s configured departments ({business.teams.join(', ')}) so you can evaluate the full analytics dashboard, 5-dimension radar chart, team breakdown, and recommendation engine immediately.
                 </p>
                 <Button
                   onClick={handleInjectDemoData}

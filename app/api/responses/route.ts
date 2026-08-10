@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
 
     // Check if demo responses injection requested
     if (body.action === 'inject_demo' && body.businessId) {
-      const demoData = generateSampleResponses(body.businessId);
+      const demoData = generateSampleResponses(body.businessId, body.teams);
       demoData.forEach((res) => saveResponse(res));
       return NextResponse.json({
         success: true,

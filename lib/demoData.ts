@@ -6,30 +6,30 @@ import { AssessmentResponse, Answer } from '@/types';
  */
 export const ENABLE_DEMO_MODE = true;
 
-export function generateSampleResponses(businessId: string): AssessmentResponse[] {
+export function generateSampleResponses(
+  businessId: string,
+  targetTeams?: string[]
+): AssessmentResponse[] {
   const sampleData: AssessmentResponse[] = [];
 
-  const responseConfigs = [
-    // Engineering (High Fluency, High Integration, Moderate Risk/Culture, High Leadership)
-    { team: 'Engineering', fluency: 85, integration: 80, culture: 65, risk: 70, leadership: 85 },
-    { team: 'Engineering', fluency: 90, integration: 85, culture: 70, risk: 75, leadership: 90 },
-    { team: 'Engineering', fluency: 75, integration: 75, culture: 60, risk: 60, leadership: 80 },
-    
-    // Sales (Moderate Fluency, Low Integration, Low Culture, Low Risk awareness, Low Leadership)
-    { team: 'Sales', fluency: 45, integration: 25, culture: 30, risk: 35, leadership: 40 },
-    { team: 'Sales', fluency: 50, integration: 30, culture: 25, risk: 40, leadership: 45 },
-    { team: 'Sales', fluency: 40, integration: 20, culture: 35, risk: 30, leadership: 35 },
+  // Use configured business departments if provided, otherwise default 5 departments
+  const teams =
+    Array.isArray(targetTeams) && targetTeams.length > 0
+      ? targetTeams
+      : ['Engineering', 'Sales', 'Ops', 'Marketing', 'Support'];
 
-    // Ops (Moderate Fluency, High Risk awareness, Low Integration, Moderate Leadership)
-    { team: 'Ops', fluency: 55, integration: 40, culture: 50, risk: 80, leadership: 60 },
-    { team: 'Ops', fluency: 60, integration: 45, culture: 45, risk: 85, leadership: 65 },
-
-    // Marketing (High Fluency, Moderate Integration, Moderate Culture, Low Risk, High Leadership)
-    { team: 'Marketing', fluency: 80, integration: 65, culture: 75, risk: 40, leadership: 75 },
-    { team: 'Marketing', fluency: 85, integration: 70, culture: 80, risk: 45, leadership: 80 },
-
-    // Support (Low Fluency, Low Integration, High Culture, Low Leadership)
-    { team: 'Support', fluency: 35, integration: 30, culture: 60, risk: 50, leadership: 40 },
+  const baseConfigs = [
+    { fluency: 85, integration: 80, culture: 65, risk: 70, leadership: 85 },
+    { fluency: 45, integration: 25, culture: 30, risk: 35, leadership: 40 },
+    { fluency: 55, integration: 40, culture: 50, risk: 80, leadership: 60 },
+    { fluency: 80, integration: 65, culture: 75, risk: 40, leadership: 75 },
+    { fluency: 35, integration: 30, culture: 60, risk: 50, leadership: 40 },
+    { fluency: 90, integration: 85, culture: 70, risk: 75, leadership: 90 },
+    { fluency: 50, integration: 30, culture: 25, risk: 40, leadership: 45 },
+    { fluency: 60, integration: 45, culture: 45, risk: 85, leadership: 65 },
+    { fluency: 85, integration: 70, culture: 80, risk: 45, leadership: 80 },
+    { fluency: 75, integration: 75, culture: 60, risk: 60, leadership: 80 },
+    { fluency: 40, integration: 20, culture: 35, risk: 30, leadership: 35 },
   ];
 
   // 11 distinct, non-duplicative qualitative team wishlist submissions
@@ -47,7 +47,10 @@ export function generateSampleResponses(businessId: string): AssessmentResponse[
     'Drafting responses for recurring customer support inquiries with verified docs.',
   ];
 
-  responseConfigs.forEach((config, idx) => {
+  baseConfigs.forEach((config, idx) => {
+    // Assign team dynamically from configured organization departments
+    const team = teams[idx % teams.length];
+
     const answers: Answer[] = [
       { questionId: 'q1', value: config.fluency, rawAnswer: 4 },
       { questionId: 'q2', value: config.fluency, rawAnswer: 4 },
@@ -64,7 +67,7 @@ export function generateSampleResponses(businessId: string): AssessmentResponse[
     sampleData.push({
       id: `resp-demo-${idx + 1}`,
       businessId,
-      team: config.team,
+      team,
       createdAt: new Date(Date.now() - idx * 3600000 * 4).toISOString(),
       answers,
       qualitativeWish: wishlists[idx],
