@@ -14,13 +14,48 @@ export const QualitativeWall: React.FC<QualitativeWallProps> = ({ items }) => {
 
   if (!items || items.length === 0) return null;
 
-  // Extract key phrase topics and sentiment tags dynamically
+  // Structured Topic Analytics with percentages and tag styles
   const topicPillData = [
-    { phrase: 'Automating Jira & Summaries', tag: 'High ROI Automation', count: Math.ceil(items.length * 0.28), color: 'bg-taiViolet/10 text-taiViolet border-taiViolet/30' },
-    { phrase: 'Contract Compliance Checking', tag: 'Risk & Safety', count: Math.ceil(items.length * 0.22), color: 'bg-taiCoral/10 text-taiCoral border-taiCoral/30' },
-    { phrase: 'Support Feedback Parsing', tag: 'Workflow Integration', count: Math.ceil(items.length * 0.18), color: 'bg-accent-light text-accent-dark border-accent/30' },
-    { phrase: 'Multi-Language Translation', tag: 'Tool Fluency', count: Math.ceil(items.length * 0.16), color: 'bg-surface-raised text-ink border-borderCustom' },
-    { phrase: 'Vendor Invoice Data Extraction', tag: 'Admin Automation', count: Math.ceil(items.length * 0.16), color: 'bg-surface-raised text-ink border-borderCustom' },
+    {
+      phrase: 'Automating Jira & Summaries',
+      tag: 'High ROI Automation',
+      percent: 28,
+      border: 'border-taiViolet/40 hover:border-taiViolet',
+      bg: 'bg-taiViolet/5 hover:bg-taiViolet/10',
+      badge: 'bg-taiViolet/15 text-taiViolet',
+    },
+    {
+      phrase: 'Contract Compliance Checking',
+      tag: 'Risk & Safety',
+      percent: 22,
+      border: 'border-taiCoral/40 hover:border-taiCoral',
+      bg: 'bg-taiCoral/5 hover:bg-taiCoral/10',
+      badge: 'bg-taiCoral/15 text-taiCoral',
+    },
+    {
+      phrase: 'Support Feedback Parsing',
+      tag: 'Workflow Integration',
+      percent: 18,
+      border: 'border-accent/40 hover:border-accent',
+      bg: 'bg-accent/5 hover:bg-accent/10',
+      badge: 'bg-accent/15 text-accent-dark',
+    },
+    {
+      phrase: 'Multi-Language Translation',
+      tag: 'Tool Fluency',
+      percent: 16,
+      border: 'border-borderCustom hover:border-ink/40',
+      bg: 'bg-surface-raised hover:bg-surface',
+      badge: 'bg-surface border border-borderCustom text-ink-muted',
+    },
+    {
+      phrase: 'Vendor Invoice Extraction',
+      tag: 'Admin Automation',
+      percent: 16,
+      border: 'border-borderCustom hover:border-ink/40',
+      bg: 'bg-surface-raised hover:bg-surface',
+      badge: 'bg-surface border border-borderCustom text-ink-muted',
+    },
   ];
 
   const filteredItems = items.filter((item) =>
@@ -45,81 +80,96 @@ export const QualitativeWall: React.FC<QualitativeWallProps> = ({ items }) => {
   };
 
   return (
-    <div className="p-6 bg-surface border border-borderCustom rounded-lg space-y-4">
+    <div className="p-4 sm:p-6 bg-surface border border-borderCustom rounded-lg space-y-4">
       {/* Header Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-borderCustom/60">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-borderCustom/60">
         <div>
           <span className="data-label block text-accent-dark">Qualitative Feedback Synthesis</span>
-          <h3 className="font-serif font-semibold text-ink text-lg">
+          <h3 className="font-serif font-semibold text-ink text-lg sm:text-xl">
             Team Task Automation Demand
           </h3>
         </div>
 
         {/* View Mode Toggle Switcher */}
-        <div className="flex items-center gap-2">
-          <div className="p-1 bg-surface-raised border border-borderCustom rounded-lg flex items-center gap-1">
-            <button
-              type="button"
-              onClick={() => setViewMode('cloud')}
-              className={`px-2.5 py-1 text-xs font-mono rounded transition-colors ${
-                viewMode === 'cloud'
-                  ? 'bg-accent text-white font-semibold shadow-sm'
-                  : 'text-ink-muted hover:text-ink'
-              }`}
-            >
-              ☁️ Topic Cloud
-            </button>
-            <button
-              type="button"
-              onClick={() => setViewMode('quotes')}
-              className={`px-2.5 py-1 text-xs font-mono rounded transition-colors ${
-                viewMode === 'quotes'
-                  ? 'bg-accent text-white font-semibold shadow-sm'
-                  : 'text-ink-muted hover:text-ink'
-              }`}
-            >
-              💬 Quotes ({items.length})
-            </button>
-          </div>
+        <div className="p-1 bg-surface-raised border border-borderCustom rounded-lg flex items-center gap-1 self-start sm:self-auto">
+          <button
+            type="button"
+            onClick={() => setViewMode('cloud')}
+            className={`px-3 py-1.5 text-xs font-mono rounded transition-colors ${
+              viewMode === 'cloud'
+                ? 'bg-accent text-white font-semibold shadow-sm'
+                : 'text-ink-muted hover:text-ink'
+            }`}
+          >
+            ☁️ Topic Cloud
+          </button>
+          <button
+            type="button"
+            onClick={() => setViewMode('quotes')}
+            className={`px-3 py-1.5 text-xs font-mono rounded transition-colors ${
+              viewMode === 'quotes'
+                ? 'bg-accent text-white font-semibold shadow-sm'
+                : 'text-ink-muted hover:text-ink'
+            }`}
+          >
+            💬 Quotes ({items.length})
+          </button>
         </div>
       </div>
 
-      {/* Mode 1: Interactive Topic & Key Phrase Cloud with Sentiment Tags */}
+      {/* Mode 1: Topic & Key Phrase Cloud Grid */}
       {viewMode === 'cloud' && (
         <div className="space-y-4 pt-1 fade-in-quiet">
-          <div className="flex items-center justify-between">
-            <span className="text-xs text-ink-muted font-mono">
-              Extracted Key Phrases & Sentiment Intent Tags
-            </span>
-            <span className="text-[10px] font-mono text-ink-muted">Click topic to filter quotes</span>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs font-mono text-ink-muted">
+            <span>Extracted Key Phrases & Sentiment Intent Tags</span>
+            <span className="text-[11px] text-accent font-medium">Click any topic card to filter quotes →</span>
           </div>
 
-          {/* Visual Topic Cloud Cluster */}
-          <div className="flex flex-wrap gap-2.5 p-4 bg-surface-raised border border-borderCustom rounded-lg">
+          {/* Grid of Clean Structured Topic Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {topicPillData.map((topic, idx) => (
               <button
                 key={idx}
                 type="button"
                 onClick={() => handleTopicClick(topic.phrase)}
-                className={`p-2.5 rounded-lg border transition-all duration-150 flex items-center gap-2 hover:scale-[1.02] ${topic.color}`}
+                className={`p-4 rounded-lg border text-left transition-all duration-150 flex flex-col justify-between space-y-3 cursor-pointer ${topic.border} ${topic.bg}`}
               >
-                <span className="font-sans font-semibold text-xs sm:text-sm">
-                  {topic.phrase}
-                </span>
-                <span className="px-1.5 py-0.5 bg-surface text-[10px] font-mono font-bold rounded border border-borderCustom/50">
-                  {topic.tag}
-                </span>
+                {/* Header row: Title + Sentiment Badge */}
+                <div className="flex items-start justify-between gap-2">
+                  <span className="font-sans font-semibold text-xs sm:text-sm text-ink leading-snug">
+                    {topic.phrase}
+                  </span>
+                  <span
+                    className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase whitespace-nowrap flex-shrink-0 ${topic.badge}`}
+                  >
+                    {topic.tag}
+                  </span>
+                </div>
+
+                {/* Progress track & metric */}
+                <div className="space-y-1 pt-1">
+                  <div className="flex justify-between items-center text-[11px] font-mono text-ink-muted">
+                    <span>Demand Share</span>
+                    <span className="font-semibold text-ink">{topic.percent}%</span>
+                  </div>
+                  <div className="h-1.5 w-full bg-borderCustom/60 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-accent transition-all duration-300"
+                      style={{ width: `${topic.percent}%` }}
+                    />
+                  </div>
+                </div>
               </button>
             ))}
           </div>
 
-          <div className="p-3 bg-surface border border-borderCustom/60 rounded text-xs text-ink-muted flex items-center justify-between">
-            <span>💡 <strong>Executive Insight:</strong> High-frequency demand concentrates on document synthesis, contract compliance, and recurring administrative workflow automation.</span>
+          <div className="p-3.5 bg-surface-raised border border-borderCustom/70 rounded-lg text-xs text-ink-muted flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <span>💡 <strong>Executive Synthesis:</strong> Highest frequency automation demand targets Jira ticket creation, contract safety checking, and feedback triage.</span>
             <button
               onClick={() => setViewMode('quotes')}
-              className="text-accent font-mono text-[11px] underline underline-offset-2 hover:text-accent-dark flex-shrink-0 ml-2"
+              className="text-accent font-mono text-xs font-semibold underline underline-offset-2 hover:text-accent-dark flex-shrink-0"
             >
-              View all quotes →
+              View raw quotes →
             </button>
           </div>
         </div>
@@ -146,7 +196,7 @@ export const QualitativeWall: React.FC<QualitativeWallProps> = ({ items }) => {
                 <button
                   type="button"
                   onClick={() => setSearchTerm('')}
-                  className="text-xs font-mono text-taiCoral hover:underline"
+                  className="text-xs font-mono text-taiCoral hover:underline font-semibold"
                 >
                   Clear search
                 </button>
@@ -181,19 +231,19 @@ export const QualitativeWall: React.FC<QualitativeWallProps> = ({ items }) => {
               <button
                 onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                 disabled={pageIndex === 1}
-                className="px-3 py-1 bg-surface-raised border border-borderCustom rounded text-ink disabled:opacity-40 disabled:cursor-not-allowed hover:bg-surface transition-colors font-medium"
+                className="px-3 py-1 bg-surface-raised border border-borderCustom rounded text-ink disabled:opacity-40 disabled:cursor-not-allowed hover:bg-surface transition-colors font-semibold"
               >
                 ← Previous
               </button>
 
-              <span className="text-ink-muted">
+              <span className="text-ink-muted font-medium">
                 Page {pageIndex} of {totalPages}
               </span>
 
               <button
                 onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                 disabled={pageIndex === totalPages}
-                className="px-3 py-1 bg-surface-raised border border-borderCustom rounded text-ink disabled:opacity-40 disabled:cursor-not-allowed hover:bg-surface transition-colors font-medium"
+                className="px-3 py-1 bg-surface-raised border border-borderCustom rounded text-ink disabled:opacity-40 disabled:cursor-not-allowed hover:bg-surface transition-colors font-semibold"
               >
                 Next →
               </button>
