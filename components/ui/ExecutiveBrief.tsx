@@ -99,8 +99,8 @@ export const ExecutiveBrief: React.FC<ExecutiveBriefProps> = ({
               className="text-[11px] font-mono bg-transparent text-ink font-semibold focus-visible:outline-none cursor-pointer max-w-[130px] sm:max-w-none truncate"
             >
               <option value="auto">Auto-Detect</option>
-              <option value="openai">OpenAI (GPT-4o)</option>
-              <option value="anthropic">Anthropic (Claude 3.5)</option>
+              <option value="openai">OpenAI (GPT-4o Mini)</option>
+              <option value="anthropic">Anthropic (Claude 3 Haiku)</option>
               <option value="gemini">Google (Gemini Flash)</option>
               <option value="groq">Groq (Llama 3.3)</option>
             </select>
@@ -209,16 +209,16 @@ export const ExecutiveBrief: React.FC<ExecutiveBriefProps> = ({
                   <span className="text-score-mid font-bold">⚠️</span> Capability Deficit
                 </div>
                 <p className="text-xs text-ink-muted leading-relaxed">
-                  <strong className="text-ink">{laggingTeam} & Support</strong> suffer severe adoption friction due to low tool fluency and workflow integration.
+                  <strong className="text-ink">{laggingTeam}</strong> suffers adoption friction due to lower tool fluency and workflow integration scores.
                 </p>
               </div>
 
               <div className="p-4 bg-surface-raised border border-borderCustom rounded-lg space-y-1.5">
                 <div className="flex items-center gap-1.5 text-xs font-semibold text-ink">
-                  <span className="text-accent-dark font-bold">🛡️</span> Governance Barrier
+                  <span className="text-accent-dark font-bold">🛡️</span> Primary Bottleneck
                 </div>
                 <p className="text-xs text-ink-muted leading-relaxed">
-                  Risk controls are high in Ops, but uncertainty about data safety halts routine daily task automation.
+                  Lowest dimension recorded in <strong className="text-ink">{lowestDimName}</strong> ({lowestDimScore}/100)—establishing explicit guidelines unlocks immediate productivity.
                 </p>
               </div>
             </div>

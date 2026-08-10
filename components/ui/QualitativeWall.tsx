@@ -19,7 +19,7 @@ export const QualitativeWall: React.FC<QualitativeWallProps> = ({ items }) => {
             key={idx}
             className="p-3.5 bg-surface-raised border border-borderCustom rounded text-xs sm:text-sm text-ink italic leading-relaxed"
           >
-            "{text}"
+            &ldquo;{text}&rdquo;
           </div>
         ))}
       </div>

@@ -79,7 +79,7 @@ export default function AssessPage() {
 
   const totalSteps = QUESTIONS.length;
   const currentQuestion = step > 0 && step <= totalSteps ? QUESTIONS[step - 1] : null;
-  const progressPercent = step === 0 ? 5 : Math.round((step / totalSteps) * 100);
+  const progressPercent = Math.round((step / (totalSteps + 1)) * 100);
 
   const handleRecordAnswer = (val: any) => {
     if (!currentQuestion) return;
@@ -119,7 +119,7 @@ export default function AssessPage() {
       const qualitativeWish = typeof answers['q11']?.raw === 'string' ? answers['q11'].raw : undefined;
 
       try {
-        await fetch('/api/responses', {
+        const res = await fetch('/api/responses', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -130,9 +130,15 @@ export default function AssessPage() {
           }),
         });
 
+        if (!res.ok) {
+          setError(true);
+          return;
+        }
+
         setStep(totalSteps + 1); // Move to completion state
       } catch (err) {
         console.error(err);
+        setError(true);
       } finally {
         setIsSubmitting(false);
       }
@@ -163,6 +169,7 @@ export default function AssessPage() {
 
         <div className="p-6 bg-surface border border-borderCustom rounded-lg space-y-6">
           <TeamSelect
+            teams={business.teams}
             selectedTeam={selectedTeam}
             onSelectTeam={(team) => setSelectedTeam(team)}
           />

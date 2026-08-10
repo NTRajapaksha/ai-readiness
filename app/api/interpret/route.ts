@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { DimensionScores } from '@/types';
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
     const {
       businessName,
       overallScore,
@@ -10,22 +10,28 @@ export async function POST(req: NextRequest) {
       teamScores,
       qualitativeWishes,
       selectedProvider,
-    } = body;
+    }: {
+      businessName: string;
+      overallScore: number;
+      dimensionScores: DimensionScores;
+      teamScores: Record<string, DimensionScores>;
+      qualitativeWishes: string[];
+      selectedProvider?: string;
+    } = await req.json();
 
-    // Detect Environment API Keys
     const openaiKey = process.env.OPENAI_API_KEY;
     const anthropicKey = process.env.ANTHROPIC_API_KEY;
-    const geminiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
+    const geminiKey = process.env.GEMINI_API_KEY;
     const groqKey = process.env.GROQ_API_KEY;
-    const customKey = process.env.LLM_API_KEY;
-    const customBaseUrl = process.env.LLM_BASE_URL || 'http://localhost:11434/v1';
+    const customKey = process.env.CUSTOM_LLM_API_KEY;
+    const customBaseUrl = process.env.CUSTOM_LLM_BASE_URL || 'https://api.openai.com/v1';
 
     const prompt = `
-You are the Lead AI Strategist at Tai Labs. Interpret the following AI Readiness Diagnostic data for "${businessName}":
-- Overall Score: ${overallScore}/100
-- Dimensions: Tool Fluency (${dimensionScores?.fluency || 0}), Workflow Integration (${dimensionScores?.integration || 0}), Shared AI Culture (${dimensionScores?.culture || 0}), Risk & Governance (${dimensionScores?.risk || 0})
-- Department Breakdown: ${JSON.stringify(teamScores || {})}
-- Qualitative Team Wishlist Responses: ${JSON.stringify(qualitativeWishes || [])}
+You are an executive AI adoption consultant analyzing diagnostic survey data for ${businessName}.
+Overall AI Readiness Score: ${overallScore}/100.
+Dimension Scores: Fluency ${dimensionScores.fluency}/100, Integration ${dimensionScores.integration}/100, Culture ${dimensionScores.culture}/100, Risk ${dimensionScores.risk}/100, Leadership ${dimensionScores.leadership}/100.
+Team Scores: ${JSON.stringify(teamScores)}.
+Qualitative Employee Wishes: ${JSON.stringify(qualitativeWishes.slice(0, 5))}.
 
 Provide a 2-paragraph Executive AI Readiness Synthesis:
 Strategic Diagnosis: Write a strategic diagnosis paragraph analyzing score bottlenecks and department imbalances.
@@ -35,8 +41,8 @@ Qualitative Synthesis: Write a qualitative synthesis paragraph analyzing team wi
 IMPORTANT: Do NOT use markdown headers (like ###) or title headers. Output plain text starting directly with "Strategic Diagnosis:" followed by your paragraph, and then "Qualitative Synthesis:" followed by your paragraph.
     `;
 
-    // 4-Second Strict Abort Controller Helper to prevent Vercel Serverless Function timeouts
-    const fetchWithTimeout = async (url: string, options: any = {}, timeoutMs: number = 4000) => {
+    // 8-Second Abort Controller Helper for serverless cold-start resilience
+    const fetchWithTimeout = async (url: string, options: any = {}, timeoutMs: number = 8000) => {
       const controller = new AbortController();
       const id = setTimeout(() => controller.abort(), timeoutMs);
       try {
@@ -59,8 +65,7 @@ IMPORTANT: Do NOT use markdown headers (like ###) or title headers. Output plain
           body: JSON.stringify({
             contents: [{ parts: [{ text: prompt }] }],
           }),
-        },
-        4000
+        }
       );
 
       if (res && res.ok) {
@@ -86,15 +91,14 @@ IMPORTANT: Do NOT use markdown headers (like ###) or title headers. Output plain
             model: 'gpt-4o-mini',
             messages: [{ role: 'user', content: prompt }],
           }),
-        },
-        4000
+        }
       );
 
       if (res && res.ok) {
         const data = await res.json();
         const text = data.choices?.[0]?.message?.content;
         if (text) {
-          return NextResponse.json({ interpretation: text, source: 'OpenAI GPT-4o' });
+          return NextResponse.json({ interpretation: text, source: 'OpenAI (GPT-4o Mini)' });
         }
       }
     }
@@ -115,15 +119,14 @@ IMPORTANT: Do NOT use markdown headers (like ###) or title headers. Output plain
             max_tokens: 600,
             messages: [{ role: 'user', content: prompt }],
           }),
-        },
-        4000
+        }
       );
 
       if (res && res.ok) {
         const data = await res.json();
         const text = data.content?.[0]?.text;
         if (text) {
-          return NextResponse.json({ interpretation: text, source: 'Anthropic Claude' });
+          return NextResponse.json({ interpretation: text, source: 'Anthropic (Claude 3 Haiku)' });
         }
       }
     }
@@ -142,8 +145,7 @@ IMPORTANT: Do NOT use markdown headers (like ###) or title headers. Output plain
             model: 'llama-3.3-70b-versatile',
             messages: [{ role: 'user', content: prompt }],
           }),
-        },
-        4000
+        }
       );
 
       if (res && res.ok) {
@@ -169,8 +171,7 @@ IMPORTANT: Do NOT use markdown headers (like ###) or title headers. Output plain
             model: 'gpt-3.5-turbo',
             messages: [{ role: 'user', content: prompt }],
           }),
-        },
-        4000
+        }
       );
 
       if (res && res.ok) {
@@ -182,14 +183,21 @@ IMPORTANT: Do NOT use markdown headers (like ###) or title headers. Output plain
       }
     }
 
-    // 6. Fast Fallback Engine (Guaranteed 0ms response if external APIs time out or fail)
-    const lowestDim = Object.entries(dimensionScores || {}).sort((a: any, b: any) => a[1] - b[1])[0]?.[0] || 'risk';
-    const wishesCount = (qualitativeWishes || []).length;
+    // Graceful Rule-Based Rule Fallback
+    const leadingTeam = Object.entries(teamScores || {}).sort(
+      (a, b) => Object.values(b[1]).reduce((sum, v) => sum + v, 0) - Object.values(a[1]).reduce((sum, v) => sum + v, 0)
+    )[0]?.[0] || 'Engineering';
 
-    const fallbackSummary = `Strategic Diagnosis: ${businessName} demonstrates an overall AI Readiness score of ${overallScore}/100. While baseline usage is established, your primary bottleneck centers around ${lowestDim.toUpperCase()} (scoring ${dimensionScores?.[lowestDim as keyof typeof dimensionScores] || 0}/100). The contrast across departments indicates that capabilities are currently siloed rather than systematically distributed.\n\nQualitative Synthesis: Based on ${wishesCount} open-ended team responses, your team's primary automation desire centers around document synthesis, repetitive reporting, and email drafting. Resolving data governance rules and deploying standardized templates for ${lowestDim} will unlock immediate momentum across your lowest-performing departments.`;
+    const fallbackInterpretation = `Strategic Diagnosis: ${businessName} demonstrates an overall readiness score of ${overallScore}/100 across 5 core dimensions. ${leadingTeam} currently leads adoption, while key organizational friction centers around workflow automation and executive resource alignment.\n\nQualitative Synthesis: Primary team automation demand targets document synthesis and repetitive administrative tasks. Recommended priority 1 initiative focuses on establishing standardized AI workflow templates and clear data governance guidelines.`;
 
-    return NextResponse.json({ interpretation: fallbackSummary, source: 'Tai Labs Diagnostic Engine' });
+    return NextResponse.json({
+      interpretation: fallbackInterpretation,
+      source: 'Tai Labs Rule Engine',
+    });
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to generate LLM interpretation' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Failed to generate interpretation' },
+      { status: 500 }
+    );
   }
 }

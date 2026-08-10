@@ -90,10 +90,7 @@ export default function DashboardPage() {
         }),
       });
 
-      const data = await res.json();
-      if (data && data.responses && Array.isArray(data.responses)) {
-        setResponses(data.responses);
-      }
+      await res.json();
       await loadDashboardData();
     } catch (err) {
       console.error(err);

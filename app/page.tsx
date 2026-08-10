@@ -49,8 +49,10 @@ export default function HomePage() {
       });
 
       const data = await res.json();
-      if (data.id) {
+      if (data && data.id) {
         router.push(`/dashboard/${data.id}`);
+      } else {
+        setIsSubmitting(false);
       }
     } catch (err) {
       console.error(err);

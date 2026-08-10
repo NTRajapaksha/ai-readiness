@@ -256,6 +256,9 @@ export function generateRecommendations(
     });
   }
 
-  // Sort by priority (high first)
-  return recs.sort((a, b) => (a.priority === 'high' ? -1 : 1));
+  // Sort by priority (high first, stable)
+  return recs.sort((a, b) => {
+    if (a.priority === b.priority) return 0;
+    return a.priority === 'high' ? -1 : 1;
+  });
 }

@@ -4,7 +4,7 @@ import { AssessmentResponse, Answer } from '@/types';
  * TOGGLE DEMO MODE HERE
  * Set to false or remove this file to disable demo data generation entirely.
  */
-export const ENABLE_DEMO_MODE = true;
+export const ENABLE_DEMO_MODE = process.env.NEXT_PUBLIC_DEMO_MODE !== 'false';
 
 export function generateSampleResponses(
   businessId: string,

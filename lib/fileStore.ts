@@ -39,7 +39,7 @@ export function saveBusiness(business: Business): Business {
     }
     fs.writeFileSync(BUSINESSES_FILE, JSON.stringify(list, null, 2), 'utf8');
   } catch (err) {
-    // Handled by memory fallback
+    console.warn('[fileStore] Filesystem write failed, using memory fallback:', err);
   }
   return business;
 }
@@ -83,6 +83,7 @@ export function getBusiness(id: string): Business | null {
 
 export function saveResponse(res: AssessmentResponse): AssessmentResponse {
   if (!res || !res.id) return res;
+  memoryResponses = memoryResponses.filter((r) => r && r.id !== res.id);
   memoryResponses.push(res);
   ensureDataDirectory();
   try {
@@ -92,10 +93,15 @@ export function saveResponse(res: AssessmentResponse): AssessmentResponse {
       list = JSON.parse(content);
       if (!Array.isArray(list)) list = [];
     }
-    list.push(res);
+    const idx = list.findIndex((r) => r && r.id === res.id);
+    if (idx >= 0) {
+      list[idx] = res;
+    } else {
+      list.push(res);
+    }
     fs.writeFileSync(RESPONSES_FILE, JSON.stringify(list, null, 2), 'utf8');
   } catch (err) {
-    // Handled by memory fallback
+    console.warn('[fileStore] Filesystem write failed, using memory fallback:', err);
   }
   return res;
 }
