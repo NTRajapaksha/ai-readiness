@@ -230,11 +230,9 @@ export default function AssessPage() {
         <div className="pt-4">
           <a
             href={`/dashboard/${businessId}`}
-            target="_blank"
-            rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-5 py-2.5 bg-accent text-white text-sm font-medium rounded hover:bg-accent-dark transition-colors shadow-sm"
           >
-            View Business Dashboard ↗
+            View Business Dashboard
           </a>
         </div>
       </div>
