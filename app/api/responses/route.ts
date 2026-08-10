@@ -34,6 +34,8 @@ export async function POST(req: NextRequest) {
       qualitativeWish: body.qualitativeWish || undefined,
     };
 
+    saveResponse(newResponse);
+
     const allResponses = getResponsesForBusiness(body.businessId);
 
     return NextResponse.json({
