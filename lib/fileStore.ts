@@ -6,8 +6,21 @@ import path from 'path';
 const PRIMARY_DATA_DIR = path.join(process.cwd(), 'data');
 const TMP_DATA_DIR = path.join('/tmp', 'data');
 
-let memoryBusinesses: Record<string, Business> = {};
-let memoryResponses: AssessmentResponse[] = [];
+// Attach memory stores to Node.js globalThis singleton to persist across module re-evaluations and warm Lambda invocations
+const globalForTaiStore = globalThis as unknown as {
+  memoryBusinesses?: Record<string, Business>;
+  memoryResponses?: AssessmentResponse[];
+};
+
+if (!globalForTaiStore.memoryBusinesses) {
+  globalForTaiStore.memoryBusinesses = {};
+}
+if (!globalForTaiStore.memoryResponses) {
+  globalForTaiStore.memoryResponses = [];
+}
+
+const memoryBusinesses = globalForTaiStore.memoryBusinesses;
+const memoryResponses = globalForTaiStore.memoryResponses;
 
 function getWritableDir(): string {
   try {
@@ -124,8 +137,14 @@ export function getBusiness(id: string): Business | null {
 
 export function saveResponse(res: AssessmentResponse): AssessmentResponse {
   if (!res || !res.id) return res;
-  memoryResponses = memoryResponses.filter((r) => r && r.id !== res.id);
-  memoryResponses.push(res);
+  
+  // Remove existing entry with same ID if any, and push to global memory
+  const idx = memoryResponses.findIndex((r) => r && r.id === res.id);
+  if (idx >= 0) {
+    memoryResponses[idx] = res;
+  } else {
+    memoryResponses.push(res);
+  }
   
   try {
     const map = new Map<string, AssessmentResponse>();

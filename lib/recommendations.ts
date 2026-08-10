@@ -1,6 +1,142 @@
 import { DimensionScores, Recommendation, Dimension, PlaybookStep } from '@/types';
 import { DIMENSION_LABELS, DIMENSIONS } from './questions';
 
+function getTeamPlaybook(dim: Dimension, teamName: string): PlaybookStep[] {
+  switch (dim) {
+    case 'fluency':
+      return [
+        {
+          week: 'Week 1',
+          title: `${teamName} Baseline & Tool Provisioning`,
+          action: `Conduct a 30-minute tool audit with ${teamName} leads to ensure verified access to enterprise LLM tools and resolve prompt friction.`,
+          deliverable: `100% ${teamName} tool access confirmation.`,
+        },
+        {
+          week: 'Week 2',
+          title: `${teamName} Foundational Prompting Workshop`,
+          action: `Run a hands-on lab tailored to ${teamName}'s core deliverables, covering context setting, system roles, and structured output formatting.`,
+          deliverable: `${teamName} starter prompt cheat-sheet.`,
+        },
+        {
+          week: 'Week 3',
+          title: `${teamName} Routine Task Sprint`,
+          action: `Have each ${teamName} member complete one routine drafting or research task using AI tools, logging time saved.`,
+          deliverable: `${teamName} tool fluency assessment log.`,
+        },
+      ];
+
+    case 'integration':
+      return [
+        {
+          week: 'Week 1',
+          title: `${teamName} Task Automation Audit`,
+          action: `Audit ${teamName}'s top manual processes to select one high-frequency workflow (taking >3 hrs/week) for template automation.`,
+          deliverable: `${teamName} workflow automation spec.`,
+        },
+        {
+          week: 'Week 2',
+          title: `${teamName} Custom Template Prototyping`,
+          action: `Co-build a standardized AI prompt template or workflow automation script tailored specifically to ${teamName} daily tasks.`,
+          deliverable: `Tested ${teamName} workflow template.`,
+        },
+        {
+          week: 'Week 3',
+          title: `${teamName} Workflow Rollout & ROI Check`,
+          action: `Deploy the automated workflow across all ${teamName} members and measure weekly processing time reduction.`,
+          deliverable: `${teamName} task automation ROI report.`,
+        },
+      ];
+
+    case 'culture':
+      return [
+        {
+          week: 'Week 1',
+          title: `${teamName} Internal Repository Setup`,
+          action: `Create a dedicated prompt-sharing channel and central repository for ${teamName} members to post successful workflows.`,
+          deliverable: `${teamName} prompt repository setup.`,
+        },
+        {
+          week: 'Week 2',
+          title: `${teamName} Peer Demo Standup`,
+          action: `Host a 20-minute showcase where ${teamName} members demo prompts and techniques that saved significant time during the week.`,
+          deliverable: `Recorded ${teamName} prompt walkthrough.`,
+        },
+        {
+          week: 'Week 3',
+          title: `${teamName} Cross-Team Buddy Pairing`,
+          action: `Pair ${teamName} members with AI champions from higher-scoring departments for weekly co-working and prompt exchange.`,
+          deliverable: `${teamName} peer coaching log.`,
+        },
+      ];
+
+    case 'risk':
+      return [
+        {
+          week: 'Week 1',
+          title: `${teamName} Data Boundary Review`,
+          action: `Review company data classification rules with ${teamName} leads, identifying specific green/yellow/red data types in their daily work.`,
+          deliverable: `${teamName}-specific data safety checklist.`,
+        },
+        {
+          week: 'Week 2',
+          title: `${teamName} PII Masking & Privacy Training`,
+          action: `Run a hands-on session demonstrating how ${teamName} members must sanitize customer PII and sensitive documents before prompting.`,
+          deliverable: `100% ${teamName} compliance sign-off.`,
+        },
+        {
+          week: 'Week 3',
+          title: `${teamName} Compliance & Extension Audit`,
+          action: `Audit browser extensions and AI tools used by ${teamName} to ensure full alignment with enterprise security policy.`,
+          deliverable: `${teamName} approved tool registry.`,
+        },
+      ];
+
+    case 'leadership':
+      return [
+        {
+          week: 'Week 1',
+          title: `${teamName} Executive Sponsor Alignment`,
+          action: `Host an executive alignment sync between ${teamName} department leads and executive sponsors to define explicit AI goals.`,
+          deliverable: `${teamName} AI strategic mandate statement.`,
+        },
+        {
+          week: 'Week 2',
+          title: `${teamName} Tool Budget & Time Allocation`,
+          action: `Approve official tool licenses and allocate 2 hours/week of dedicated, protected learning time for ${teamName} members.`,
+          deliverable: `Approved ${teamName} tool budget & schedule.`,
+        },
+        {
+          week: 'Week 3',
+          title: `${teamName} Executive Milestone Review`,
+          action: `Establish bi-weekly progress review syncs between ${teamName} leads and executive sponsors to track adoption metrics.`,
+          deliverable: `${teamName} executive adoption report.`,
+        },
+      ];
+
+    default:
+      return [
+        {
+          week: 'Week 1',
+          title: `${teamName} Diagnostic Alignment`,
+          action: `Review specific low-scoring survey responses with ${teamName} department leads.`,
+          deliverable: 'Tailored 3-week sprint goal.',
+        },
+        {
+          week: 'Week 2',
+          title: 'Targeted Hands-On Coaching',
+          action: `Run a dedicated 60-minute workshop tailored exclusively to ${teamName}'s daily deliverables.`,
+          deliverable: `Custom prompt library for ${teamName}.`,
+        },
+        {
+          week: 'Week 3',
+          title: 'Buddy Pairing Sync',
+          action: `Pair ${teamName} members with advanced champions from top-performing departments for co-working.`,
+          deliverable: 'Peer coaching check-in log.',
+        },
+      ];
+  }
+}
+
 export function generateRecommendations(
   overallDimsInput: DimensionScores,
   teamDimsInput: Record<string, DimensionScores>
@@ -200,26 +336,7 @@ export function generateRecommendations(
           priority: 'high',
           targetTeam: teamName,
           dimension: dim,
-          playbook: [
-            {
-              week: 'Week 1',
-              title: `${teamName} Diagnostic Alignment`,
-              action: `Review specific low-scoring survey responses with ${teamName} department leads.`,
-              deliverable: 'Tailored 3-week sprint goal.',
-            },
-            {
-              week: 'Week 2',
-              title: 'Targeted Hands-On Coaching',
-              action: `Run a dedicated 60-minute workshop tailored exclusively to ${teamName}'s daily deliverables.`,
-              deliverable: 'Custom prompt library for ' + teamName + '.',
-            },
-            {
-              week: 'Week 3',
-              title: 'Buddy Pairing Sync',
-              action: `Pair ${teamName} members with advanced champions from top-performing departments for co-working.`,
-              deliverable: 'Peer coaching check-in log.',
-            },
-          ],
+          playbook: getTeamPlaybook(dim, teamName),
         });
       }
     }
