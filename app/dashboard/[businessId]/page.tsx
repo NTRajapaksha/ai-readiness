@@ -253,7 +253,14 @@ export default function DashboardPage() {
     new Set(
       safeResponses
         .map((r) => r?.qualitativeWish)
-        .filter((w): w is string => Boolean(w && w.trim().length > 0))
+        .filter((w): w is string => {
+          if (!w || typeof w !== 'string') return false;
+          const trimmed = w.trim();
+          if (trimmed.length < 6) return false;
+          const lower = trimmed.toLowerCase();
+          if (['none', 'n/a', 'nothing', 'no idea', 'no', 'asdf', 'test', 'null'].includes(lower)) return false;
+          return true;
+        })
     )
   );
 

@@ -65,12 +65,45 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
         )}
 
         {isText && (
-          <div className="space-y-2">
+          <div className="space-y-3">
+            {/* Input Guide Card */}
+            <div className="p-3.5 bg-surface-raised border border-borderCustom rounded-lg text-xs space-y-2">
+              <div className="flex items-center gap-1.5 font-mono text-accent-dark font-semibold">
+                <span>💡 Input Guide: What makes a great response?</span>
+              </div>
+              <p className="text-ink-muted leading-relaxed">
+                Describe a concrete daily or weekly task you do in your role (e.g. drafting reports, checking contracts, parsing emails).
+              </p>
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                <button
+                  type="button"
+                  onClick={() => onAnswer('Automating meeting summaries and updating Jira tickets directly')}
+                  className="px-2 py-1 bg-surface border border-borderCustom/70 hover:border-accent rounded text-[11px] font-mono text-ink text-left transition-colors"
+                >
+                  + &ldquo;Automating meeting summaries & Jira tickets&rdquo;
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onAnswer('Checking customer contract clauses against compliance regulations')}
+                  className="px-2 py-1 bg-surface border border-borderCustom/70 hover:border-accent rounded text-[11px] font-mono text-ink text-left transition-colors"
+                >
+                  + &ldquo;Checking contract clauses for compliance&rdquo;
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onAnswer('Synthesizing weekly customer support feedback tickets into bug reports')}
+                  className="px-2 py-1 bg-surface border border-borderCustom/70 hover:border-accent rounded text-[11px] font-mono text-ink text-left transition-colors"
+                >
+                  + &ldquo;Synthesizing support tickets into bug reports&rdquo;
+                </button>
+              </div>
+            </div>
+
             <textarea
-              rows={4}
+              rows={3}
               value={selectedValue || ''}
               onChange={(e) => onAnswer(e.target.value)}
-              placeholder="e.g. Extracting key insights from 50-page vendor PDF files..."
+              placeholder="Describe your routine work task here..."
               className="w-full p-4 text-sm bg-surface-raised border border-borderCustom rounded-lg text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent resize-none"
             />
             <p className="text-xs text-ink-muted">Optional: Press next to skip if you have no specific task.</p>
