@@ -66,36 +66,31 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
 
         {isText && (
           <div className="space-y-3">
-            {/* Input Guide Card */}
-            <div className="p-3.5 bg-surface-raised border border-borderCustom rounded-lg text-xs space-y-2">
+            {/* Input Guide Reference Card */}
+            <div className="p-3.5 bg-surface-raised border border-borderCustom rounded-lg text-xs space-y-2.5">
               <div className="flex items-center gap-1.5 font-mono text-accent-dark font-semibold">
-                <span>💡 Input Guide: What makes a great response?</span>
+                <span>💡 Helpful Reference Examples</span>
               </div>
               <p className="text-ink-muted leading-relaxed">
-                Describe a concrete daily or weekly task you do in your role (e.g. drafting reports, checking contracts, parsing emails).
+                Think of a repetitive task in your weekly workflow. Here are a few general ideas across departments:
               </p>
-              <div className="flex flex-wrap gap-1.5 pt-1">
-                <button
-                  type="button"
-                  onClick={() => onAnswer('Automating meeting summaries and updating Jira tickets directly')}
-                  className="px-2 py-1 bg-surface border border-borderCustom/70 hover:border-accent rounded text-[11px] font-mono text-ink text-left transition-colors"
-                >
-                  + &ldquo;Automating meeting summaries & Jira tickets&rdquo;
-                </button>
-                <button
-                  type="button"
-                  onClick={() => onAnswer('Checking customer contract clauses against compliance regulations')}
-                  className="px-2 py-1 bg-surface border border-borderCustom/70 hover:border-accent rounded text-[11px] font-mono text-ink text-left transition-colors"
-                >
-                  + &ldquo;Checking contract clauses for compliance&rdquo;
-                </button>
-                <button
-                  type="button"
-                  onClick={() => onAnswer('Synthesizing weekly customer support feedback tickets into bug reports')}
-                  className="px-2 py-1 bg-surface border border-borderCustom/70 hover:border-accent rounded text-[11px] font-mono text-ink text-left transition-colors"
-                >
-                  + &ldquo;Synthesizing support tickets into bug reports&rdquo;
-                </button>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-0.5">
+                <div className="p-2 bg-surface border border-borderCustom/60 rounded text-[11px] text-ink flex items-start gap-1.5">
+                  <span className="text-accent font-bold">•</span>
+                  <span><strong>Engineering / Tech:</strong> Summarizing meeting action items & updating Jira tickets</span>
+                </div>
+                <div className="p-2 bg-surface border border-borderCustom/60 rounded text-[11px] text-ink flex items-start gap-1.5">
+                  <span className="text-accent font-bold">•</span>
+                  <span><strong>Legal / Ops:</strong> Reviewing contract clauses against compliance policies</span>
+                </div>
+                <div className="p-2 bg-surface border border-borderCustom/60 rounded text-[11px] text-ink flex items-start gap-1.5">
+                  <span className="text-accent font-bold">•</span>
+                  <span><strong>Sales / Marketing:</strong> Drafting personalized outreach emails from prospect data</span>
+                </div>
+                <div className="p-2 bg-surface border border-borderCustom/60 rounded text-[11px] text-ink flex items-start gap-1.5">
+                  <span className="text-accent font-bold">•</span>
+                  <span><strong>Finance / Admin:</strong> Extracting line items from vendor PDF invoices</span>
+                </div>
               </div>
             </div>
 

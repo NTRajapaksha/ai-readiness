@@ -91,6 +91,13 @@ The upskilling roadmap engine ([`lib/recommendations.ts`](./lib/recommendations.
 - **High-Readiness Fallback Track ($\ge 50/100$)**: Triggers custom internal agentic workflow prototyping for lead teams.
 - **Interactive 3-Week Playbooks**: Clicking any recommendation opens an interactive drawer detailing weekly objectives, actions, and deliverables.
 
+### 3. Automated Dynamic Topic Categorization Engine
+Instead of relying on static hardcoded categories, the qualitative analysis engine ([`lib/clustering.ts`](./lib/clustering.ts) & [`QualitativeWall.tsx`](./components/ui/QualitativeWall.tsx)) processes incoming user inputs dynamically:
+- **Dynamic Semantic Categorization**: Automatically parses raw employee wishlist submissions into matching workflow themes (*Meeting Summaries & Task Tracking*, *Contract & Document Compliance*, *Customer Support & Ticket Triage*, *Content Drafting & Localization*, *Invoice & Data Extraction*, *General Workflow Optimization*).
+- **Exact Demand Share Percentages**: Calculates real-time percentage demand share for each extracted topic based on the organization's actual submissions ($\text{Demand Share} = \text{Round}\left(\frac{\text{Category Count}}{\text{Total Submissions}} \times 100\right)$).
+- **Interactive Topic Cloud Switcher**: Executives can toggle between an interactive **Topic Cloud Grid** (with sentiment intent tags like `High ROI Automation`, `Risk & Safety`, `Workflow Integration`) and **Searchable Paginated Quotes** (6 items/page).
+- **Click-to-Filter Interactivity**: Clicking any topic card automatically filters the direct quotes list to display matching submissions for that specific topic.
+
 ---
 
 ## 💾 Multi-Tier Serverless Persistence Architecture
@@ -174,6 +181,7 @@ graph TD
 │   ├── assessment/        # Diagnostic question & input components
 │   └── ui/                # Gauge, charts, playbook drawer, and brief widgets
 ├── lib/
+│   ├── clustering.ts      # Automated dynamic topic extraction & demand share engine
 │   ├── demoData.ts        # Reviewer sample dataset generator
 │   ├── fileStore.ts       # Persistence layer with /tmp fallback
 │   ├── questions.ts       # Question definitions & dimension mappings
