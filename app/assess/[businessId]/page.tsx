@@ -140,9 +140,17 @@ export default function AssessPage() {
           try {
             const key = `tai_responses_${businessId}`;
             const existing = JSON.parse(localStorage.getItem(key) || '[]');
-            const updated = Array.isArray(existing) ? existing.filter((r: any) => r.id !== savedResp.id) : [];
-            updated.push(savedResp);
-            localStorage.setItem(key, JSON.stringify(updated));
+            const map = new Map<string, any>();
+            if (Array.isArray(existing)) {
+              existing.forEach((r: any) => r && r.id && map.set(r.id, r));
+            }
+            if (savedResp.allResponses && Array.isArray(savedResp.allResponses)) {
+              savedResp.allResponses.forEach((r: any) => r && r.id && map.set(r.id, r));
+            }
+            map.set(savedResp.id, savedResp);
+            const mergedList = Array.from(map.values());
+            localStorage.setItem(key, JSON.stringify(mergedList));
+            window.dispatchEvent(new Event('storage'));
           } catch (e) {
             // localStorage fallback
           }

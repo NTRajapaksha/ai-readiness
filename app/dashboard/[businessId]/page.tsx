@@ -36,6 +36,9 @@ export default function DashboardPage() {
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'high' | string>('all');
   const [activePlaybookRec, setActivePlaybookRec] = useState<Recommendation | null>(null);
 
+  // Cumulative Responses Guard: Preserves every seen response across Vercel Lambda routing and client refreshes
+  const seenResponsesMap = useRef<Map<string, AssessmentResponse>>(new Map());
+
   async function loadDashboardData() {
     try {
       const [busRes, respRes] = await Promise.all([
@@ -70,14 +73,23 @@ export default function DashboardPage() {
         } catch (e) {}
       }
 
-      const map = new Map<string, AssessmentResponse>();
+      // Merge serverList, localList, and previously seen responses cumulatively
       [...serverList, ...localList].forEach((item) => {
         if (item && item.id && Array.isArray(item.answers)) {
-          map.set(item.id, item);
+          seenResponsesMap.current.set(item.id, item);
         }
       });
 
-      setResponses(Array.from(map.values()));
+      const consolidated = Array.from(seenResponsesMap.current.values());
+
+      // Sync back to localStorage so all tabs share the full set
+      if (typeof window !== 'undefined' && consolidated.length > 0) {
+        try {
+          localStorage.setItem(`tai_responses_${businessId}`, JSON.stringify(consolidated));
+        } catch (e) {}
+      }
+
+      setResponses(consolidated);
     } catch (err) {
       setError(true);
     } finally {
@@ -88,6 +100,17 @@ export default function DashboardPage() {
   useEffect(() => {
     if (businessId) {
       loadDashboardData();
+
+      const handleStorage = () => loadDashboardData();
+      const handleFocus = () => loadDashboardData();
+
+      window.addEventListener('storage', handleStorage);
+      window.addEventListener('focus', handleFocus);
+
+      return () => {
+        window.removeEventListener('storage', handleStorage);
+        window.removeEventListener('focus', handleFocus);
+      };
     }
   }, [businessId]);
 

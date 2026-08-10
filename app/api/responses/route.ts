@@ -34,9 +34,12 @@ export async function POST(req: NextRequest) {
       qualitativeWish: body.qualitativeWish || undefined,
     };
 
-    saveResponse(newResponse);
+    const allResponses = getResponsesForBusiness(body.businessId);
 
-    return NextResponse.json(newResponse);
+    return NextResponse.json({
+      ...newResponse,
+      allResponses,
+    });
   } catch (error) {
     return NextResponse.json({ error: 'Failed to record response' }, { status: 500 });
   }
