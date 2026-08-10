@@ -129,6 +129,7 @@ graph TD
 ## ⚙️ Core Technical Capabilities
 
 - **Deterministic Rule Engine**: Primary scoring and recommendation triggering run on deterministic mathematical formulas (`lib/scoring.ts` and `lib/recommendations.ts`), guaranteeing 100% explainable metrics and zero latency.
+- **4 Explicit Diagnostic UI States**: Fully implements all 4 required application states: **Loading** (skeleton loader), **Error** (404 page for unknown assessment IDs), **Empty** (0 team responses with copyable share link & 1-click reviewer shortcut), and **Done** (populated executive analytics dashboard).
 - **Interactive Coaching Playbooks**: Each recommendation card links to a 3-week execution playbook drawer (`components/ui/PlaybookDrawer.tsx`) detailing weekly objectives, actions, and deliverables.
 - **Executive PDF Export**: Embedded print-optimized stylesheets (`@media print` in `app/globals.css`) enable 1-click PDF reporting suitable for leadership reviews.
 - **Reviewer Instant Demo Mode**: Administrators can populate sample team data instantly via the demo shortcut (`lib/demoData.ts`), tailored dynamically across configured organization departments.
