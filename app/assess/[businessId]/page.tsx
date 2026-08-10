@@ -135,6 +135,19 @@ export default function AssessPage() {
           return;
         }
 
+        const savedResp = await res.json();
+        if (typeof window !== 'undefined' && savedResp && savedResp.id) {
+          try {
+            const key = `tai_responses_${businessId}`;
+            const existing = JSON.parse(localStorage.getItem(key) || '[]');
+            const updated = Array.isArray(existing) ? existing.filter((r: any) => r.id !== savedResp.id) : [];
+            updated.push(savedResp);
+            localStorage.setItem(key, JSON.stringify(updated));
+          } catch (e) {
+            // localStorage fallback
+          }
+        }
+
         setStep(totalSteps + 1); // Move to completion state
       } catch (err) {
         console.error(err);

@@ -2,32 +2,50 @@ import { Business, AssessmentResponse } from '@/types';
 import fs from 'fs';
 import path from 'path';
 
-const DATA_DIR = path.join(process.cwd(), 'data');
-const BUSINESSES_FILE = path.join(DATA_DIR, 'businesses.json');
-const RESPONSES_FILE = path.join(DATA_DIR, 'responses.json');
+// Primary and Vercel Serverless Writable /tmp Directories
+const PRIMARY_DATA_DIR = path.join(process.cwd(), 'data');
+const TMP_DATA_DIR = path.join('/tmp', 'data');
 
-// Memory fallback if filesystem is read-only in serverless environment
 let memoryBusinesses: Record<string, Business> = {};
 let memoryResponses: AssessmentResponse[] = [];
 
-function ensureDataDirectory() {
+function getWritableDir(): string {
   try {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
+    if (!fs.existsSync(PRIMARY_DATA_DIR)) {
+      fs.mkdirSync(PRIMARY_DATA_DIR, { recursive: true });
     }
+    fs.accessSync(PRIMARY_DATA_DIR, fs.constants.W_OK);
+    return PRIMARY_DATA_DIR;
   } catch (err) {
-    // Fallback to memory
+    // Fallback to Vercel serverless writable /tmp directory
+    try {
+      if (!fs.existsSync(TMP_DATA_DIR)) {
+        fs.mkdirSync(TMP_DATA_DIR, { recursive: true });
+      }
+      return TMP_DATA_DIR;
+    } catch (e) {
+      return PRIMARY_DATA_DIR;
+    }
   }
+}
+
+function getReadDirs(): string[] {
+  const dirs: string[] = [];
+  if (fs.existsSync(PRIMARY_DATA_DIR)) dirs.push(PRIMARY_DATA_DIR);
+  if (fs.existsSync(TMP_DATA_DIR) && TMP_DATA_DIR !== PRIMARY_DATA_DIR) dirs.push(TMP_DATA_DIR);
+  return dirs;
 }
 
 export function saveBusiness(business: Business): Business {
   if (!business || !business.id) return business;
   memoryBusinesses[business.id] = business;
-  ensureDataDirectory();
+  
   try {
+    const targetDir = getWritableDir();
+    const filePath = path.join(targetDir, 'businesses.json');
     let list: Business[] = [];
-    if (fs.existsSync(BUSINESSES_FILE)) {
-      const content = fs.readFileSync(BUSINESSES_FILE, 'utf8');
+    if (fs.existsSync(filePath)) {
+      const content = fs.readFileSync(filePath, 'utf8');
       list = JSON.parse(content);
       if (!Array.isArray(list)) list = [];
     }
@@ -37,7 +55,7 @@ export function saveBusiness(business: Business): Business {
     } else {
       list.push(business);
     }
-    fs.writeFileSync(BUSINESSES_FILE, JSON.stringify(list, null, 2), 'utf8');
+    fs.writeFileSync(filePath, JSON.stringify(list, null, 2), 'utf8');
   } catch (err) {
     console.warn('[fileStore] Filesystem write failed, using memory fallback:', err);
   }
@@ -46,21 +64,25 @@ export function saveBusiness(business: Business): Business {
 
 export function getBusiness(id: string): Business | null {
   if (!id) return null;
-  ensureDataDirectory();
-  try {
-    if (fs.existsSync(BUSINESSES_FILE)) {
-      const content = fs.readFileSync(BUSINESSES_FILE, 'utf8');
-      const list: Business[] = JSON.parse(content);
-      if (Array.isArray(list)) {
-        const found = list.find((b) => b && b.id === id);
-        if (found) {
-          memoryBusinesses[id] = found;
-          return found;
+  
+  const readDirs = getReadDirs();
+  for (const dir of readDirs) {
+    const filePath = path.join(dir, 'businesses.json');
+    try {
+      if (fs.existsSync(filePath)) {
+        const content = fs.readFileSync(filePath, 'utf8');
+        const list: Business[] = JSON.parse(content);
+        if (Array.isArray(list)) {
+          const found = list.find((b) => b && b.id === id);
+          if (found) {
+            memoryBusinesses[id] = found;
+            return found;
+          }
         }
       }
+    } catch (err) {
+      // Handled below
     }
-  } catch (err) {
-    // Handled below
   }
 
   if (memoryBusinesses[id]) {
@@ -85,11 +107,13 @@ export function saveResponse(res: AssessmentResponse): AssessmentResponse {
   if (!res || !res.id) return res;
   memoryResponses = memoryResponses.filter((r) => r && r.id !== res.id);
   memoryResponses.push(res);
-  ensureDataDirectory();
+  
   try {
+    const targetDir = getWritableDir();
+    const filePath = path.join(targetDir, 'responses.json');
     let list: AssessmentResponse[] = [];
-    if (fs.existsSync(RESPONSES_FILE)) {
-      const content = fs.readFileSync(RESPONSES_FILE, 'utf8');
+    if (fs.existsSync(filePath)) {
+      const content = fs.readFileSync(filePath, 'utf8');
       list = JSON.parse(content);
       if (!Array.isArray(list)) list = [];
     }
@@ -99,7 +123,7 @@ export function saveResponse(res: AssessmentResponse): AssessmentResponse {
     } else {
       list.push(res);
     }
-    fs.writeFileSync(RESPONSES_FILE, JSON.stringify(list, null, 2), 'utf8');
+    fs.writeFileSync(filePath, JSON.stringify(list, null, 2), 'utf8');
   } catch (err) {
     console.warn('[fileStore] Filesystem write failed, using memory fallback:', err);
   }
@@ -108,22 +132,27 @@ export function saveResponse(res: AssessmentResponse): AssessmentResponse {
 
 export function getResponsesForBusiness(businessId: string): AssessmentResponse[] {
   if (!businessId) return [];
-  ensureDataDirectory();
-  let results: AssessmentResponse[] = [];
-  try {
-    if (fs.existsSync(RESPONSES_FILE)) {
-      const content = fs.readFileSync(RESPONSES_FILE, 'utf8');
-      const list: AssessmentResponse[] = JSON.parse(content);
-      if (Array.isArray(list)) {
-        results = list.filter((r) => r && r.businessId === businessId);
+  let diskResults: AssessmentResponse[] = [];
+  
+  const readDirs = getReadDirs();
+  for (const dir of readDirs) {
+    const filePath = path.join(dir, 'responses.json');
+    try {
+      if (fs.existsSync(filePath)) {
+        const content = fs.readFileSync(filePath, 'utf8');
+        const list: AssessmentResponse[] = JSON.parse(content);
+        if (Array.isArray(list)) {
+          const matches = list.filter((r) => r && r.businessId === businessId);
+          diskResults.push(...matches);
+        }
       }
+    } catch (err) {
+      // Handled below
     }
-  } catch (err) {
-    // Handled below
   }
 
   const memMatches = memoryResponses.filter((r) => r && r.businessId === businessId);
-  const combined = [...results, ...memMatches];
+  const combined = [...diskResults, ...memMatches];
 
   // Deduplicate by ID and ensure valid answers structure
   const map = new Map<string, AssessmentResponse>();

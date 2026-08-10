@@ -3,6 +3,9 @@ import { getBusiness, saveBusiness } from '@/lib/fileStore';
 import { TEAMS } from '@/lib/questions';
 import { Business } from '@/types';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();

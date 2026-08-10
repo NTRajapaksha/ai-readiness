@@ -53,9 +53,31 @@ export default function DashboardPage() {
       const respData = await respRes.json();
 
       setBusiness(busData);
+
+      let serverList: AssessmentResponse[] = [];
       if (Array.isArray(respData)) {
-        setResponses(respData);
+        serverList = respData;
       }
+
+      let localList: AssessmentResponse[] = [];
+      if (typeof window !== 'undefined') {
+        try {
+          const raw = localStorage.getItem(`tai_responses_${businessId}`);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            if (Array.isArray(parsed)) localList = parsed;
+          }
+        } catch (e) {}
+      }
+
+      const map = new Map<string, AssessmentResponse>();
+      [...serverList, ...localList].forEach((item) => {
+        if (item && item.id && Array.isArray(item.answers)) {
+          map.set(item.id, item);
+        }
+      });
+
+      setResponses(Array.from(map.values()));
     } catch (err) {
       setError(true);
     } finally {
@@ -90,7 +112,14 @@ export default function DashboardPage() {
         }),
       });
 
-      await res.json();
+      const data = await res.json();
+      if (data && data.responses && Array.isArray(data.responses)) {
+        if (typeof window !== 'undefined') {
+          try {
+            localStorage.setItem(`tai_responses_${businessId}`, JSON.stringify(data.responses));
+          } catch (e) {}
+        }
+      }
       await loadDashboardData();
     } catch (err) {
       console.error(err);
