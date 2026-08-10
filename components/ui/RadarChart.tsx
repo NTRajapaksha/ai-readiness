@@ -58,13 +58,13 @@ export const RadarChart: React.FC<RadarChartProps> = ({ dimensionScores }) => {
     .join(' ');
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 bg-surface border border-borderCustom rounded-lg w-full">
-      <div className="flex items-center justify-between w-full mb-2">
+    <div className="flex flex-col items-center justify-between p-5 sm:p-6 bg-surface border border-borderCustom rounded-lg w-full h-full min-h-[380px] max-h-[420px]">
+      <div className="flex items-center justify-between w-full mb-1 flex-shrink-0">
         <span className="data-label">Org Readiness Radar</span>
         <span className="text-xs text-ink-muted font-mono">5 Dimensions</span>
       </div>
 
-      <div className="relative w-full max-w-[340px] aspect-square flex items-center justify-center">
+      <div className="relative w-full max-w-[340px] aspect-square flex items-center justify-center my-auto">
         <svg viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`} className="w-full h-full">
           {/* Concentric Grid Lines */}
           {gridPoints.map((points, idx) => (

@@ -307,7 +307,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Hero Analytics Row (Score Gauge + Radar & Bar Charts) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
         {/* Top-Left Signature Score Gauge */}
         <ScoreGauge score={overallScore} totalResponses={totalResponses} />
 

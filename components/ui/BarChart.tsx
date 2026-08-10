@@ -20,13 +20,13 @@ export const BarChart: React.FC<BarChartProps> = ({ teamScores, responsesByTeam 
   });
 
   return (
-    <div className="p-6 bg-surface border border-borderCustom rounded-lg w-full">
-      <div className="flex items-center justify-between mb-4">
+    <div className="p-5 sm:p-6 bg-surface border border-borderCustom rounded-lg w-full h-full min-h-[380px] max-h-[420px] flex flex-col justify-between">
+      <div className="flex items-center justify-between mb-3 flex-shrink-0">
         <span className="data-label">Team Performance Breakdown</span>
         <span className="text-xs text-ink-muted font-mono">{teams.length} Teams</span>
       </div>
 
-      <div className="space-y-5">
+      <div className="space-y-4 overflow-y-auto max-h-[310px] pr-1 flex-1">
         {teams.map((team) => {
           const dims = teamScores[team];
           const overall = calculateOverallScore(dims);
@@ -35,7 +35,7 @@ export const BarChart: React.FC<BarChartProps> = ({ teamScores, responsesByTeam 
           const category = getScoreCategory(overall);
 
           return (
-            <div key={team} className="space-y-1.5">
+            <div key={team} className="space-y-1.5 pb-2 border-b border-borderCustom/40 last:border-b-0">
               <div className="flex flex-wrap items-center justify-between gap-1 text-xs">
                 <div className="flex items-center gap-2">
                   <span className="font-mono uppercase font-semibold text-ink">
