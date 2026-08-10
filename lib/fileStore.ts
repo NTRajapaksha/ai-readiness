@@ -89,18 +89,8 @@ export function getBusiness(id: string): Business | null {
     return memoryBusinesses[id];
   }
 
-  // Automatic Fallback: Construct a default Business for any businessId so shareable links NEVER fail!
-  const namePart = id.split('-')[0] || 'Organization';
-  const formattedName = namePart.charAt(0).toUpperCase() + namePart.slice(1);
-  const fallbackBus: Business = {
-    id,
-    name: formattedName + ' Organization',
-    teams: ['Sales', 'Engineering', 'Ops', 'Marketing', 'Support', 'Product', 'Finance'],
-    createdAt: new Date().toISOString(),
-  };
-
-  saveBusiness(fallbackBus);
-  return fallbackBus;
+  // Return null if business ID is unknown so 404 Error State triggers properly
+  return null;
 }
 
 export function saveResponse(res: AssessmentResponse): AssessmentResponse {

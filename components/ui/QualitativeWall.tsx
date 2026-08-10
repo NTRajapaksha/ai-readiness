@@ -60,7 +60,7 @@ export const QualitativeWall: React.FC<QualitativeWallProps> = ({ items }) => {
                 : 'text-ink-muted hover:text-ink'
             }`}
           >
-            ☁️ Topic Cloud
+            Topic Cloud
           </button>
           <button
             type="button"
@@ -71,7 +71,7 @@ export const QualitativeWall: React.FC<QualitativeWallProps> = ({ items }) => {
                 : 'text-ink-muted hover:text-ink'
             }`}
           >
-            💬 Quotes ({items.length})
+            Quotes ({items.length})
           </button>
         </div>
       </div>
@@ -123,7 +123,7 @@ export const QualitativeWall: React.FC<QualitativeWallProps> = ({ items }) => {
           </div>
 
           <div className="p-3.5 bg-surface-raised border border-borderCustom/70 rounded-lg text-xs text-ink-muted flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <span>💡 <strong>Dynamic Synthesis:</strong> Categorized from {items.length} raw employee submission{items.length === 1 ? '' : 's'} across {dynamicTopics.length} distinct workflow automation categories.</span>
+            <span><strong>Dynamic Synthesis:</strong> Categorized from {items.length} raw employee submission{items.length === 1 ? '' : 's'} across {dynamicTopics.length} distinct workflow automation categories.</span>
             <button
               onClick={() => setViewMode('quotes')}
               className="text-accent font-mono text-xs font-semibold underline underline-offset-2 hover:text-accent-dark flex-shrink-0"
@@ -147,7 +147,9 @@ export const QualitativeWall: React.FC<QualitativeWallProps> = ({ items }) => {
                 placeholder="Search wishlist items..."
                 className="w-full pl-8 pr-3 py-1.5 bg-surface-raised border border-borderCustom rounded text-xs text-ink placeholder:text-ink-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
               />
-              <span className="absolute left-2.5 top-1.5 text-xs text-ink-muted">🔍</span>
+              <svg className="w-3.5 h-3.5 absolute left-2.5 top-2 text-ink-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
             </div>
 
             <div className="flex items-center gap-2">
