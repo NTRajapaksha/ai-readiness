@@ -306,16 +306,18 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Hero Analytics Row (Score Gauge + Radar & Bar Charts) */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-        {/* Top-Left Signature Score Gauge */}
-        <ScoreGauge score={overallScore} totalResponses={totalResponses} />
+      {/* Hero Analytics Row (Stacked Score Gauge + Radar on Left, Team Breakdown Bar Chart on Right) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        {/* Left Column: Stacked Score Gauge (Top) & Radar Chart (Bottom) */}
+        <div className="lg:col-span-5 flex flex-col gap-6 justify-between">
+          <ScoreGauge score={overallScore} totalResponses={totalResponses} />
+          <RadarChart dimensionScores={dimensionScores} />
+        </div>
 
-        {/* Center Radar Chart */}
-        <RadarChart dimensionScores={dimensionScores} />
-
-        {/* Right Bar Chart (Team Breakdown) */}
-        <BarChart teamScores={teamScores} responsesByTeam={responsesByTeam} />
+        {/* Right Column: Full-Height Team Performance Breakdown */}
+        <div className="lg:col-span-7 flex flex-col">
+          <BarChart teamScores={teamScores} responsesByTeam={responsesByTeam} />
+        </div>
       </div>
 
       {/* LLM Strategic Interpretation & Synthesis Brief */}

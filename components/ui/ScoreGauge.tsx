@@ -46,10 +46,10 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({ score, totalResponses })
   const strokeDashoffset = circumference - (displayScore / 100) * circumference;
 
   return (
-    <div className="flex flex-col items-center justify-between p-5 sm:p-6 bg-surface border border-borderCustom rounded-lg text-center h-full min-h-[380px] max-h-[420px]">
-      <span className="data-label mb-2">Overall AI Readiness</span>
+    <div className="flex flex-col items-center justify-center p-6 bg-surface border border-borderCustom rounded-lg text-center h-full">
+      <span className="data-label mb-3">Overall AI Readiness</span>
 
-      <div className="relative w-[180px] h-[180px] flex items-center justify-center my-auto">
+      <div className="relative w-[180px] h-[180px] flex items-center justify-center">
         <svg className="w-full h-full transform -rotate-90" viewBox={`0 0 ${size} ${size}`}>
           {/* Background track */}
           <circle
@@ -84,22 +84,20 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({ score, totalResponses })
         </div>
       </div>
 
-      <div className="space-y-1 mt-2">
-        {/* Category Tag */}
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-raised border border-borderCustom rounded-full">
-          <span
-            className="w-2 h-2 rounded-full"
-            style={{ backgroundColor: strokeColor }}
-          />
-          <span className="data-label text-[11px] text-ink">{category}</span>
-        </div>
-
-        {typeof totalResponses === 'number' && (
-          <div className="text-xs text-ink-muted block">
-            Based on {totalResponses} team {totalResponses === 1 ? 'response' : 'responses'}
-          </div>
-        )}
+      {/* Category Tag */}
+      <div className="mt-4 inline-flex items-center gap-1.5 px-3 py-1 bg-surface-raised border border-borderCustom rounded-full">
+        <span
+          className="w-2 h-2 rounded-full"
+          style={{ backgroundColor: strokeColor }}
+        />
+        <span className="data-label text-[11px] text-ink">{category}</span>
       </div>
+
+      {typeof totalResponses === 'number' && (
+        <span className="text-xs text-ink-muted mt-2">
+          Based on {totalResponses} team {totalResponses === 1 ? 'response' : 'responses'}
+        </span>
+      )}
     </div>
   );
 };
