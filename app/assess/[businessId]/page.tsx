@@ -116,7 +116,7 @@ export default function AssessPage() {
         };
       });
 
-      const qualitativeWish = answers['q10']?.raw || undefined;
+      const qualitativeWish = typeof answers['q11']?.raw === 'string' ? answers['q11'].raw : undefined;
 
       try {
         await fetch('/api/responses', {

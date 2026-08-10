@@ -25,7 +25,7 @@ export const PlaybookDrawer: React.FC<PlaybookDrawerProps> = ({ recommendation, 
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span className="px-2 py-0.5 bg-accent-light text-accent-dark rounded text-[10px] font-mono font-semibold uppercase">
-                  {DIMENSION_LABELS[recommendation.dimension]}
+                  {DIMENSION_LABELS[recommendation.dimension] || 'Upskilling'}
                 </span>
                 {recommendation.targetTeam && (
                   <span className="px-2 py-0.5 bg-surface border border-borderCustom text-ink rounded text-[10px] font-mono font-semibold uppercase">
@@ -59,7 +59,7 @@ export const PlaybookDrawer: React.FC<PlaybookDrawerProps> = ({ recommendation, 
             </div>
 
             <div className="space-y-4 relative before:absolute before:left-3 before:top-3 before:bottom-3 before:w-0.5 before:bg-borderCustom">
-              {recommendation.playbook.map((step, idx) => (
+              {(recommendation.playbook || []).map((step, idx) => (
                 <div key={idx} className="relative pl-8 space-y-1">
                   <div className="absolute left-0 top-0.5 w-6 h-6 rounded-full bg-accent text-white flex items-center justify-center text-[10px] font-mono font-bold">
                     {idx + 1}
