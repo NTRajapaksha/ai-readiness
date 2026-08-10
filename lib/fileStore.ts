@@ -41,21 +41,32 @@ export function saveBusiness(business: Business): Business {
   memoryBusinesses[business.id] = business;
   
   try {
+    const map = new Map<string, Business>();
+    const readDirs = getReadDirs();
+    for (const dir of readDirs) {
+      const filePath = path.join(dir, 'businesses.json');
+      if (fs.existsSync(filePath)) {
+        try {
+          const content = fs.readFileSync(filePath, 'utf8');
+          const list: Business[] = JSON.parse(content);
+          if (Array.isArray(list)) {
+            list.forEach((b) => {
+              if (b && b.id) map.set(b.id, b);
+            });
+          }
+        } catch (e) {}
+      }
+    }
+
+    Object.values(memoryBusinesses).forEach((b) => {
+      if (b && b.id) map.set(b.id, b);
+    });
+
+    map.set(business.id, business);
+
     const targetDir = getWritableDir();
     const filePath = path.join(targetDir, 'businesses.json');
-    let list: Business[] = [];
-    if (fs.existsSync(filePath)) {
-      const content = fs.readFileSync(filePath, 'utf8');
-      list = JSON.parse(content);
-      if (!Array.isArray(list)) list = [];
-    }
-    const index = list.findIndex((b) => b && b.id === business.id);
-    if (index >= 0) {
-      list[index] = business;
-    } else {
-      list.push(business);
-    }
-    fs.writeFileSync(filePath, JSON.stringify(list, null, 2), 'utf8');
+    fs.writeFileSync(filePath, JSON.stringify(Array.from(map.values()), null, 2), 'utf8');
   } catch (err) {
     console.warn('[fileStore] Filesystem write failed, using memory fallback:', err);
   }
@@ -90,8 +101,6 @@ export function getBusiness(id: string): Business | null {
   }
 
   // Resilient Business Resolution for valid shareable link slugs (e.g. "acme-corp-k79u7"):
-  // If the ID matches a valid hyphenated slug format, reconstruct the business object so shareable links
-  // copied to Incognito tabs, new browsers, or different Lambda containers NEVER break!
   if (id.includes('-') && id.length >= 6 && !id.startsWith('invalid') && !id.startsWith('error')) {
     const parts = id.split('-');
     const slugName = parts.slice(0, parts.length - 1).join(' ');
@@ -110,7 +119,6 @@ export function getBusiness(id: string): Business | null {
     return fallbackBus;
   }
 
-  // Return null for malformed/unknown IDs (e.g. "invalid-link", "error-test") so 404 Error State triggers
   return null;
 }
 
@@ -120,21 +128,34 @@ export function saveResponse(res: AssessmentResponse): AssessmentResponse {
   memoryResponses.push(res);
   
   try {
+    const map = new Map<string, AssessmentResponse>();
+    const readDirs = getReadDirs();
+    for (const dir of readDirs) {
+      const filePath = path.join(dir, 'responses.json');
+      if (fs.existsSync(filePath)) {
+        try {
+          const content = fs.readFileSync(filePath, 'utf8');
+          const list: AssessmentResponse[] = JSON.parse(content);
+          if (Array.isArray(list)) {
+            list.forEach((item) => {
+              if (item && item.id) map.set(item.id, item);
+            });
+          }
+        } catch (e) {}
+      }
+    }
+
+    memoryResponses.forEach((item) => {
+      if (item && item.id) map.set(item.id, item);
+    });
+
+    map.set(res.id, res);
+
+    const consolidated = Array.from(map.values());
+
     const targetDir = getWritableDir();
     const filePath = path.join(targetDir, 'responses.json');
-    let list: AssessmentResponse[] = [];
-    if (fs.existsSync(filePath)) {
-      const content = fs.readFileSync(filePath, 'utf8');
-      list = JSON.parse(content);
-      if (!Array.isArray(list)) list = [];
-    }
-    const idx = list.findIndex((r) => r && r.id === res.id);
-    if (idx >= 0) {
-      list[idx] = res;
-    } else {
-      list.push(res);
-    }
-    fs.writeFileSync(filePath, JSON.stringify(list, null, 2), 'utf8');
+    fs.writeFileSync(filePath, JSON.stringify(consolidated, null, 2), 'utf8');
   } catch (err) {
     console.warn('[fileStore] Filesystem write failed, using memory fallback:', err);
   }
