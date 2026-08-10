@@ -58,7 +58,7 @@ export const RadarChart: React.FC<RadarChartProps> = ({ dimensionScores }) => {
     .join(' ');
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 bg-surface border border-borderCustom rounded-lg w-full h-full">
+    <div className="flex flex-col items-center justify-center p-6 bg-surface border border-borderCustom rounded-lg w-full">
       <div className="flex items-center justify-between w-full mb-2">
         <span className="data-label">Org Readiness Radar</span>
         <span className="text-xs text-ink-muted font-mono">5 Dimensions</span>

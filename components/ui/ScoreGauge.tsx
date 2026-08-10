@@ -46,7 +46,7 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({ score, totalResponses })
   const strokeDashoffset = circumference - (displayScore / 100) * circumference;
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 bg-surface border border-borderCustom rounded-lg text-center h-full">
+    <div className="flex flex-col items-center justify-center p-6 bg-surface border border-borderCustom rounded-lg text-center">
       <span className="data-label mb-3">Overall AI Readiness</span>
 
       <div className="relative w-[180px] h-[180px] flex items-center justify-center">

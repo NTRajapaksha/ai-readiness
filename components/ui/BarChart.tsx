@@ -20,7 +20,7 @@ export const BarChart: React.FC<BarChartProps> = ({ teamScores, responsesByTeam 
   });
 
   return (
-    <div className="p-6 bg-surface border border-borderCustom rounded-lg w-full h-full flex flex-col justify-between">
+    <div className="p-6 bg-surface border border-borderCustom rounded-lg w-full">
       <div className="flex items-center justify-between mb-4">
         <span className="data-label">Team Performance Breakdown</span>
         <span className="text-xs text-ink-muted font-mono">{teams.length} Teams</span>
