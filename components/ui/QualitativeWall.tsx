@@ -122,15 +122,7 @@ export const QualitativeWall: React.FC<QualitativeWallProps> = ({ items }) => {
             ))}
           </div>
 
-          <div className="p-3.5 bg-surface-raised border border-borderCustom/70 rounded-lg text-xs text-ink-muted flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <span><strong>Dynamic Synthesis:</strong> Categorized from {items.length} raw employee submission{items.length === 1 ? '' : 's'} across {dynamicTopics.length} distinct workflow automation categories.</span>
-            <button
-              onClick={() => setViewMode('quotes')}
-              className="text-accent font-mono text-xs font-semibold underline underline-offset-2 hover:text-accent-dark flex-shrink-0"
-            >
-              View raw quotes →
-            </button>
-          </div>
+
         </div>
       )}
 

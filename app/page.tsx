@@ -50,6 +50,11 @@ export default function HomePage() {
 
       const data = await res.json();
       if (data && data.id) {
+        if (typeof window !== 'undefined') {
+          try {
+            localStorage.setItem(`tai_business_${data.id}`, JSON.stringify(data));
+          } catch (e) {}
+        }
         router.push(`/dashboard/${data.id}`);
       } else {
         setIsSubmitting(false);

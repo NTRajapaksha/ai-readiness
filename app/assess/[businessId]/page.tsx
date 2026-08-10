@@ -27,13 +27,28 @@ export default function AssessPage() {
   useEffect(() => {
     async function loadBusiness() {
       try {
+        let data: Business | null = null;
         const res = await fetch(`/api/business?id=${businessId}`);
-        if (!res.ok) {
+        if (res.ok) {
+          data = await res.json();
+          if (typeof window !== 'undefined' && data) {
+            try {
+              localStorage.setItem(`tai_business_${businessId}`, JSON.stringify(data));
+            } catch (e) {}
+          }
+        } else if (typeof window !== 'undefined') {
+          try {
+            const raw = localStorage.getItem(`tai_business_${businessId}`);
+            if (raw) data = JSON.parse(raw);
+          } catch (e) {}
+        }
+
+        if (!data) {
           setError(true);
           setLoading(false);
           return;
         }
-        const data = await res.json();
+
         setBusiness(data);
         if (data.teams && data.teams.length > 0) {
           setSelectedTeam(data.teams[0]);

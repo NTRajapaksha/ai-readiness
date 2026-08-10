@@ -46,16 +46,35 @@ export default function DashboardPage() {
         fetch(`/api/responses?businessId=${businessId}`, { cache: 'no-store' }),
       ]);
 
-      if (!busRes.ok) {
+      let busData: Business | null = null;
+      if (busRes.ok) {
+        busData = await busRes.json();
+        if (typeof window !== 'undefined' && busData) {
+          try {
+            localStorage.setItem(`tai_business_${businessId}`, JSON.stringify(busData));
+          } catch (e) {}
+        }
+      } else if (typeof window !== 'undefined') {
+        try {
+          const raw = localStorage.getItem(`tai_business_${businessId}`);
+          if (raw) busData = JSON.parse(raw);
+        } catch (e) {}
+      }
+
+      if (!busData) {
         setError(true);
         setLoading(false);
         return;
       }
 
-      const busData = await busRes.json();
-      const respData = await respRes.json();
-
       setBusiness(busData);
+
+      let respData: any = [];
+      if (respRes.ok) {
+        try {
+          respData = await respRes.json();
+        } catch (e) {}
+      }
 
       let serverList: AssessmentResponse[] = [];
       if (Array.isArray(respData)) {
