@@ -63,16 +63,16 @@ export const ExecutiveBrief: React.FC<ExecutiveBriefProps> = ({
 
   // Find lowest and highest scoring teams
   const sortedTeams = Object.entries(teamScores || {}).sort((a, b) => {
-    const scoreA = Object.values(a[1]).reduce((acc, v) => acc + v, 0) / 4;
-    const scoreB = Object.values(b[1]).reduce((acc, v) => acc + v, 0) / 4;
+    const scoreA = a[1] && typeof a[1] === 'object' ? Object.values(a[1]).reduce((acc, v) => acc + (typeof v === 'number' ? v : 0), 0) / 5 : 0;
+    const scoreB = b[1] && typeof b[1] === 'object' ? Object.values(b[1]).reduce((acc, v) => acc + (typeof v === 'number' ? v : 0), 0) / 5 : 0;
     return scoreB - scoreA;
   });
 
   const leadingTeam = sortedTeams[0]?.[0] || 'Engineering';
   const laggingTeam = sortedTeams[sortedTeams.length - 1]?.[0] || 'Sales';
-  const lowestDimEntry = Object.entries(dimensionScores || {}).sort((a, b) => a[1] - b[1])[0];
+  const lowestDimEntry = Object.entries(dimensionScores || {}).sort((a, b) => (a[1] ?? 0) - (b[1] ?? 0))[0];
   const lowestDimName = lowestDimEntry ? lowestDimEntry[0].toUpperCase() : 'INTEGRATION';
-  const lowestDimScore = lowestDimEntry ? lowestDimEntry[1] : 51;
+  const lowestDimScore = lowestDimEntry ? lowestDimEntry[1] ?? 0 : 51;
 
   return (
     <div className="p-4 sm:p-6 bg-surface border border-borderCustom rounded-lg space-y-5 max-w-full overflow-hidden">
@@ -245,7 +245,7 @@ export const ExecutiveBrief: React.FC<ExecutiveBriefProps> = ({
               </p>
               <div className="flex flex-wrap gap-2 pt-1">
                 <span className="px-2 py-0.5 bg-surface border border-borderCustom rounded text-[10px] font-mono text-ink">
-                  ✓ Closes Support Integration Gap ({dimensionScores.integration}/100)
+                  ✓ Closes Support Integration Gap ({dimensionScores?.integration ?? 0}/100)
                 </span>
                 <span className="px-2 py-0.5 bg-surface border border-borderCustom rounded text-[10px] font-mono text-ink">
                   ✓ High ROI Automation

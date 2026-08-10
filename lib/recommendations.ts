@@ -2,10 +2,20 @@ import { DimensionScores, Recommendation, Dimension, PlaybookStep } from '@/type
 import { DIMENSION_LABELS, DIMENSIONS } from './questions';
 
 export function generateRecommendations(
-  overallDims: DimensionScores,
-  teamDims: Record<string, DimensionScores>
+  overallDimsInput: DimensionScores,
+  teamDimsInput: Record<string, DimensionScores>
 ): Recommendation[] {
   const recs: Recommendation[] = [];
+
+  const overallDims: DimensionScores = {
+    fluency: overallDimsInput?.fluency ?? 0,
+    integration: overallDimsInput?.integration ?? 0,
+    culture: overallDimsInput?.culture ?? 0,
+    risk: overallDimsInput?.risk ?? 0,
+    leadership: overallDimsInput?.leadership ?? 0,
+  };
+
+  const teamDims = teamDimsInput || {};
 
   // Business-wide weak signals (< 50)
   if (overallDims.fluency < 50) {
@@ -160,10 +170,15 @@ export function generateRecommendations(
 
   // Team-specific gaps (lagging org average by >= 20 points)
   for (const [teamName, dims] of Object.entries(teamDims)) {
+    if (!dims) continue;
+
     for (const dim of DIMENSIONS) {
-      const gap = overallDims[dim] - dims[dim];
+      const overallVal = overallDims[dim] ?? 0;
+      const teamVal = dims[dim] ?? 0;
+      const gap = overallVal - teamVal;
+
       if (gap >= 20) {
-        const dimLabel = DIMENSION_LABELS[dim];
+        const dimLabel = DIMENSION_LABELS[dim] || 'Readiness';
         let specText = `${teamName} is behind on ${dimLabel.toLowerCase()}—schedule a targeted workshop to bridge this gap before broader rollouts.`;
         
         if (dim === 'fluency') {
@@ -174,6 +189,8 @@ export function generateRecommendations(
           specText = `${teamName} hasn't embedded AI into daily workflows—partner with a technical coach to prototype an automated department template.`;
         } else if (dim === 'culture') {
           specText = `${teamName} operates in silos without sharing prompt discoveries—pair them with an advanced peer team for co-working sessions.`;
+        } else if (dim === 'leadership') {
+          specText = `${teamName} reports lack of leadership buy-in and resource backing—arrange an executive sync with ${teamName} department leads.`;
         }
 
         recs.push({

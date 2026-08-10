@@ -209,33 +209,37 @@ export default function DashboardPage() {
   }
 
   // State 4: Done (Populated with responses)
-  const dimensionScores = calculateDimensionScores(responses);
+  const safeResponses = Array.isArray(responses) ? responses : [];
+  const dimensionScores = calculateDimensionScores(safeResponses);
   const overallScore = calculateOverallScore(dimensionScores);
-  const teamScores = calculateTeamScores(responses, business.teams);
+  const teamScores = calculateTeamScores(safeResponses, business?.teams || []);
 
   const responsesByTeam: Record<string, number> = {};
-  responses.forEach((r) => {
-    responsesByTeam[r.team] = (responsesByTeam[r.team] || 0) + 1;
+  safeResponses.forEach((r) => {
+    if (r && r.team) {
+      responsesByTeam[r.team] = (responsesByTeam[r.team] || 0) + 1;
+    }
   });
 
-  const allRecommendations = generateRecommendations(dimensionScores, teamScores);
+  const allRecommendations = generateRecommendations(dimensionScores, teamScores) || [];
   const qualitativeFeedback = Array.from(
     new Set(
-      responses
-        .map((r) => r.qualitativeWish)
+      safeResponses
+        .map((r) => r?.qualitativeWish)
         .filter((w): w is string => Boolean(w && w.trim().length > 0))
     )
   );
 
   // Filter Logic
   const filteredRecommendations = allRecommendations.filter((rec) => {
+    if (!rec) return false;
     if (selectedFilter === 'all') return true;
     if (selectedFilter === 'high') return rec.priority === 'high';
     return rec.targetTeam === selectedFilter;
   });
 
   const availableTeamFilters = Array.from(
-    new Set(allRecommendations.map((r) => r.targetTeam).filter(Boolean))
+    new Set(allRecommendations.map((r) => r?.targetTeam).filter((t): t is string => Boolean(t)))
   );
 
   return (
