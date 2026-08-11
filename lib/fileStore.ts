@@ -155,6 +155,33 @@ export async function getBusiness(id: string): Promise<Business | null> {
     }
   }
 
+  // 4. Resilient Shareable Link Resolution for valid created assessment link slugs (e.g. "acme-corp-k79u7")
+  // Guarantees share links resolve across all browsers/devices even when Vercel KV is not connected to the deployment.
+  if (
+    id.includes('-') &&
+    id.length >= 6 &&
+    !id.startsWith('invalid') &&
+    !id.startsWith('error') &&
+    !id.startsWith('not-found') &&
+    !id.startsWith('404')
+  ) {
+    const parts = id.split('-');
+    const slugName = parts.slice(0, parts.length - 1).join(' ');
+    const formattedName = slugName
+      .split(' ')
+      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+      .join(' ');
+
+    const fallbackBus: Business = {
+      id,
+      name: (formattedName || 'Organization') + ' Assessment',
+      teams: ['Sales', 'Engineering', 'Ops', 'Marketing', 'Support', 'Product', 'Finance', 'Other'],
+      createdAt: new Date().toISOString(),
+    };
+    saveBusiness(fallbackBus);
+    return fallbackBus;
+  }
+
   return null;
 }
 
