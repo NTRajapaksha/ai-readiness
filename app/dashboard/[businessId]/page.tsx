@@ -133,14 +133,6 @@ export default function DashboardPage() {
     setLoading(false);
   }
 
-      setResponses(consolidated);
-    } catch (err) {
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  }
-
   useEffect(() => {
     if (businessId) {
       loadDashboardData();
