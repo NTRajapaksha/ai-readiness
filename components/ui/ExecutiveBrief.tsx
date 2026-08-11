@@ -233,19 +233,23 @@ export const ExecutiveBrief: React.FC<ExecutiveBriefProps> = ({
                     Recommended First Move
                   </span>
                   <h4 className="font-sans font-semibold text-ink text-xs sm:text-base leading-snug">
-                    Automated Support-to-Engineering Integration Pipeline
+                    {laggingTeam === leadingTeam
+                      ? `Automated ${laggingTeam} AI Workflow & Upskilling Track`
+                      : `Automated ${laggingTeam}-to-${leadingTeam} Workflow Integration Pipeline`}
                   </h4>
                 </div>
                 <span className="text-[10px] font-mono text-ink-muted bg-surface px-2 py-0.5 rounded border border-borderCustom self-start sm:self-auto">
-                  Target: Support & Engineering
+                  Target: {laggingTeam === leadingTeam ? laggingTeam : `${laggingTeam} & ${leadingTeam}`}
                 </span>
               </div>
               <p className="text-xs sm:text-sm text-ink-muted leading-relaxed pl-3 border-l-2 border-borderCustom">
-                Automatically ingest customer support tickets, parse recurring sentiment & bug themes, and auto-generate prioritized Jira issues directly into Engineering&apos;s sprint workflow.
+                {laggingTeam === leadingTeam
+                  ? `Deploy standardized AI workflow templates and structured prompt libraries to elevate ${laggingTeam}'s baseline readiness.`
+                  : `Establish automated data handoffs and shared prompt templates between ${laggingTeam} and ${leadingTeam} to address key departmental bottlenecks.`}
               </p>
               <div className="flex flex-wrap gap-2 pt-1">
                 <span className="px-2 py-0.5 bg-surface border border-borderCustom rounded text-[10px] font-mono text-ink">
-                  ✓ Closes Support Integration Gap ({dimensionScores?.integration ?? 0}/100)
+                  ✓ Closes {laggingTeam} {lowestDimName} Gap ({lowestDimScore}/100)
                 </span>
                 <span className="px-2 py-0.5 bg-surface border border-borderCustom rounded text-[10px] font-mono text-ink">
                   ✓ High ROI Automation

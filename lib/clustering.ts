@@ -114,7 +114,7 @@ export function extractDynamicTopics(items: string[]): DynamicTopic[] {
       tag: 'General Integration',
       percent,
       count: uncategorizedCount,
-      keyword: '',
+      keyword: 'general',
       border: 'border-borderCustom hover:border-ink/40',
       bg: 'bg-surface-raised hover:bg-surface',
       badge: 'bg-surface border border-borderCustom text-ink-muted',

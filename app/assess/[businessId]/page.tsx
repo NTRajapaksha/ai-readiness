@@ -191,7 +191,7 @@ export default function AssessPage() {
   if (step === 0) {
     return (
       <div className="w-full max-w-[560px] mx-auto space-y-8 py-6 sm:py-12 fade-in-quiet">
-        <ProgressBar progress={5} />
+        <ProgressBar progress={progressPercent} />
 
         <div className="space-y-2 text-center sm:text-left">
           <span className="data-label text-accent-dark">{business.name}</span>
