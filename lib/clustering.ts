@@ -4,6 +4,7 @@ export interface DynamicTopic {
   percent: number;
   count: number;
   keyword: string;
+  matchedItems: string[];
   border: string;
   bg: string;
   badge: string;
@@ -60,13 +61,12 @@ export function extractDynamicTopics(items: string[]): DynamicTopic[] {
     },
   ];
 
-  const counts: Record<string, number> = {};
-
+  const categoryMatchedItems: Record<string, string[]> = {};
   categories.forEach((cat) => {
-    counts[cat.id] = 0;
+    categoryMatchedItems[cat.id] = [];
   });
 
-  let uncategorizedCount = 0;
+  const uncategorizedItems: string[] = [];
 
   items.forEach((item) => {
     if (typeof item !== 'string') return;
@@ -75,14 +75,14 @@ export function extractDynamicTopics(items: string[]): DynamicTopic[] {
 
     for (const cat of categories) {
       if (cat.keywords.some((kw) => lower.includes(kw))) {
-        counts[cat.id]++;
+        categoryMatchedItems[cat.id].push(item);
         matched = true;
         break;
       }
     }
 
     if (!matched) {
-      uncategorizedCount++;
+      uncategorizedItems.push(item);
     }
   });
 
@@ -90,15 +90,16 @@ export function extractDynamicTopics(items: string[]): DynamicTopic[] {
   const result: DynamicTopic[] = [];
 
   categories.forEach((cat) => {
-    const count = counts[cat.id];
-    if (count > 0) {
-      const percent = Math.max(1, Math.round((count / totalInputs) * 100));
+    const matchedList = categoryMatchedItems[cat.id];
+    if (matchedList.length > 0) {
+      const percent = Math.max(1, Math.round((matchedList.length / totalInputs) * 100));
       result.push({
         phrase: cat.phrase,
         tag: cat.tag,
         percent,
-        count,
+        count: matchedList.length,
         keyword: cat.keywords[0],
+        matchedItems: matchedList,
         border: cat.border,
         bg: cat.bg,
         badge: cat.badge,
@@ -107,14 +108,15 @@ export function extractDynamicTopics(items: string[]): DynamicTopic[] {
   });
 
   // If there are unclassified inputs, add a General Workflow category
-  if (uncategorizedCount > 0) {
-    const percent = Math.max(1, Math.round((uncategorizedCount / totalInputs) * 100));
+  if (uncategorizedItems.length > 0) {
+    const percent = Math.max(1, Math.round((uncategorizedItems.length / totalInputs) * 100));
     result.push({
       phrase: 'General Workflow Optimization',
       tag: 'General Integration',
       percent,
-      count: uncategorizedCount,
+      count: uncategorizedItems.length,
       keyword: 'general',
+      matchedItems: uncategorizedItems,
       border: 'border-borderCustom hover:border-ink/40',
       bg: 'bg-surface-raised hover:bg-surface',
       badge: 'bg-surface border border-borderCustom text-ink-muted',

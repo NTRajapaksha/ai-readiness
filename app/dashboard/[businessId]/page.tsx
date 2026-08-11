@@ -39,14 +39,36 @@ export default function DashboardPage() {
   // Cumulative Responses Guard: Preserves every seen response across Vercel Lambda routing and client refreshes
   const seenResponsesMap = useRef<Map<string, AssessmentResponse>>(new Map());
 
+  useEffect(() => {
+    if (error && typeof window !== 'undefined' && businessId) {
+      try {
+        localStorage.removeItem(`tai_business_${businessId}`);
+        localStorage.removeItem(`tai_responses_${businessId}`);
+      } catch (e) {}
+    }
+  }, [error, businessId]);
+
   async function loadDashboardData() {
+    let busData: Business | null = null;
+    let busRes: Response | null = null;
+    let respRes: Response | null = null;
+
     try {
-      const [busRes, respRes] = await Promise.all([
+      [busRes, respRes] = await Promise.all([
         fetch(`/api/business?id=${businessId}`, { cache: 'no-store' }),
         fetch(`/api/responses?businessId=${businessId}`, { cache: 'no-store' }),
       ]);
+    } catch (networkErr) {
+      // Network failure / offline: try falling back to localStorage if available
+      if (typeof window !== 'undefined') {
+        try {
+          const raw = localStorage.getItem(`tai_business_${businessId}`);
+          if (raw) busData = JSON.parse(raw);
+        } catch (e) {}
+      }
+    }
 
-      let busData: Business | null = null;
+    if (busRes) {
       if (busRes.ok) {
         busData = await busRes.json();
         if (typeof window !== 'undefined' && busData) {
@@ -54,59 +76,62 @@ export default function DashboardPage() {
             localStorage.setItem(`tai_business_${businessId}`, JSON.stringify(busData));
           } catch (e) {}
         }
-      } else if (typeof window !== 'undefined') {
-        try {
-          const raw = localStorage.getItem(`tai_business_${businessId}`);
-          if (raw) busData = JSON.parse(raw);
-        } catch (e) {}
+      } else {
+        // Authoritative non-200 response (e.g. 404): trust server answer, do NOT use localStorage
+        busData = null;
       }
+    }
 
-      if (!busData) {
-        setError(true);
-        setLoading(false);
-        return;
-      }
+    if (!busData) {
+      setError(true);
+      setLoading(false);
+      return;
+    }
 
-      setBusiness(busData);
+    setBusiness(busData);
 
-      let respData: any = [];
-      if (respRes.ok) {
-        try {
-          respData = await respRes.json();
-        } catch (e) {}
-      }
+    let respData: any = [];
+    if (respRes && respRes.ok) {
+      try {
+        respData = await respRes.json();
+      } catch (e) {}
+    }
 
-      let serverList: AssessmentResponse[] = [];
-      if (Array.isArray(respData)) {
-        serverList = respData;
-      }
+    let serverList: AssessmentResponse[] = [];
+    if (Array.isArray(respData)) {
+      serverList = respData;
+    }
 
-      let localList: AssessmentResponse[] = [];
-      if (typeof window !== 'undefined') {
-        try {
-          const raw = localStorage.getItem(`tai_responses_${businessId}`);
-          if (raw) {
-            const parsed = JSON.parse(raw);
-            if (Array.isArray(parsed)) localList = parsed;
-          }
-        } catch (e) {}
-      }
-
-      // Merge serverList, localList, and previously seen responses cumulatively
-      [...serverList, ...localList].forEach((item) => {
-        if (item && item.id && Array.isArray(item.answers)) {
-          seenResponsesMap.current.set(item.id, item);
+    let localList: AssessmentResponse[] = [];
+    if (typeof window !== 'undefined') {
+      try {
+        const raw = localStorage.getItem(`tai_responses_${businessId}`);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed)) localList = parsed;
         }
-      });
+      } catch (e) {}
+    }
 
-      const consolidated = Array.from(seenResponsesMap.current.values());
-
-      // Sync back to localStorage so all tabs share the full set
-      if (typeof window !== 'undefined' && consolidated.length > 0) {
-        try {
-          localStorage.setItem(`tai_responses_${businessId}`, JSON.stringify(consolidated));
-        } catch (e) {}
+    // Merge serverList, localList, and previously seen responses cumulatively
+    [...serverList, ...localList].forEach((item) => {
+      if (item && item.id && Array.isArray(item.answers)) {
+        seenResponsesMap.current.set(item.id, item);
       }
+    });
+
+    const consolidated = Array.from(seenResponsesMap.current.values());
+
+    // Sync back to localStorage so all tabs share the full set
+    if (typeof window !== 'undefined' && consolidated.length > 0) {
+      try {
+        localStorage.setItem(`tai_responses_${businessId}`, JSON.stringify(consolidated));
+      } catch (e) {}
+    }
+
+    setResponses(consolidated);
+    setLoading(false);
+  }
 
       setResponses(consolidated);
     } catch (err) {

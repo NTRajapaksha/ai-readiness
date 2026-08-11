@@ -9,6 +9,7 @@ interface QualitativeWallProps {
 
 export const QualitativeWall: React.FC<QualitativeWallProps> = ({ items }) => {
   const [viewMode, setViewMode] = useState<'cloud' | 'quotes'>('cloud');
+  const [selectedTopic, setSelectedTopic] = useState<DynamicTopic | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
@@ -18,7 +19,9 @@ export const QualitativeWall: React.FC<QualitativeWallProps> = ({ items }) => {
   // Dynamically extract topic categories and demand share percentages from actual user inputs
   const dynamicTopics = extractDynamicTopics(items);
 
-  const filteredItems = items.filter((item) =>
+  const baseItems = selectedTopic ? selectedTopic.matchedItems : items;
+
+  const filteredItems = baseItems.filter((item) =>
     item.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -33,8 +36,15 @@ export const QualitativeWall: React.FC<QualitativeWallProps> = ({ items }) => {
   };
 
   const handleTopicClick = (topic: DynamicTopic) => {
-    setSearchTerm(topic.keyword || '');
+    setSelectedTopic(topic);
+    setSearchTerm('');
     setViewMode('quotes');
+    setCurrentPage(1);
+  };
+
+  const handleClearFilters = () => {
+    setSelectedTopic(null);
+    setSearchTerm('');
     setCurrentPage(1);
   };
 
@@ -131,27 +141,43 @@ export const QualitativeWall: React.FC<QualitativeWallProps> = ({ items }) => {
         <div className="space-y-4 fade-in-quiet">
           {/* Filter / Search Bar */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-1">
-            <div className="relative w-full sm:w-72">
-              <input
-                type="text"
-                value={searchTerm}
-                onChange={handleSearchChange}
-                placeholder="Search wishlist items..."
-                className="w-full pl-8 pr-3 py-1.5 bg-surface-raised border border-borderCustom rounded text-xs text-ink placeholder:text-ink-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
-              />
-              <svg className="w-3.5 h-3.5 absolute left-2.5 top-2 text-ink-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
+            <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+              <div className="relative w-full sm:w-72">
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                  placeholder="Search wishlist items..."
+                  className="w-full pl-8 pr-3 py-1.5 bg-surface-raised border border-borderCustom rounded text-xs text-ink placeholder:text-ink-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+                />
+                <svg className="w-3.5 h-3.5 absolute left-2.5 top-2 text-ink-muted pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+
+              {selectedTopic && (
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-accent/10 border border-accent/30 text-accent-dark text-xs rounded font-mono font-medium">
+                  <span>Topic: {selectedTopic.phrase} ({selectedTopic.count})</span>
+                  <button
+                    type="button"
+                    onClick={handleClearFilters}
+                    className="ml-1 hover:text-taiCoral font-bold text-sm"
+                    title="Clear topic filter"
+                  >
+                    ×
+                  </button>
+                </div>
+              )}
             </div>
 
             <div className="flex items-center gap-2">
-              {searchTerm && (
+              {(searchTerm || selectedTopic) && (
                 <button
                   type="button"
-                  onClick={() => setSearchTerm('')}
+                  onClick={handleClearFilters}
                   className="text-xs font-mono text-taiCoral hover:underline font-semibold"
                 >
-                  Clear search
+                  Clear all filters
                 </button>
               )}
               <span className="text-[11px] font-mono text-ink-muted">
