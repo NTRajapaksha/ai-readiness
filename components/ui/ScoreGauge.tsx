@@ -77,10 +77,10 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({ score, totalResponses })
 
         {/* Center score count */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="font-serif text-5xl font-semibold text-ink leading-none">
+          <span className="font-serif text-5xl sm:text-6xl font-semibold text-ink leading-none">
             {displayScore}
           </span>
-          <span className="text-xs text-ink-muted mt-1 font-mono">/ 100</span>
+          <span className="text-xs sm:text-sm text-ink-muted mt-1 font-mono">/ 100</span>
         </div>
       </div>
 
@@ -90,11 +90,11 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({ score, totalResponses })
           className="w-2 h-2 rounded-full"
           style={{ backgroundColor: strokeColor }}
         />
-        <span className="data-label text-[11px] text-ink">{category}</span>
+        <span className="data-label text-xs text-ink">{category}</span>
       </div>
 
       {typeof totalResponses === 'number' && (
-        <span className="text-xs text-ink-muted mt-2">
+        <span className="text-xs sm:text-sm text-ink-muted mt-2">
           Based on {totalResponses} team {totalResponses === 1 ? 'response' : 'responses'}
         </span>
       )}

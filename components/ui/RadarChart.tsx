@@ -9,11 +9,11 @@ interface RadarChartProps {
 
 export const RadarChart: React.FC<RadarChartProps> = ({ dimensionScores }) => {
   // SVG Radar Dimensions with ample padding for full labels
-  const viewBoxWidth = 400;
-  const viewBoxHeight = 320;
+  const viewBoxWidth = 440;
+  const viewBoxHeight = 340;
   const centerX = viewBoxWidth / 2;
   const centerY = viewBoxHeight / 2;
-  const radius = 75;
+  const radius = 82;
 
   const keys: (keyof DimensionScores)[] = ['fluency', 'integration', 'culture', 'risk', 'leadership'];
   const total = keys.length;
@@ -61,10 +61,10 @@ export const RadarChart: React.FC<RadarChartProps> = ({ dimensionScores }) => {
     <div className="flex flex-col items-center justify-center p-6 bg-surface border border-borderCustom rounded-lg w-full">
       <div className="flex items-center justify-between w-full mb-2">
         <span className="data-label">Org Readiness Radar</span>
-        <span className="text-xs text-ink-muted font-mono">5 Dimensions</span>
+        <span className="text-xs sm:text-sm text-ink-muted font-mono font-medium">5 Dimensions</span>
       </div>
 
-      <div className="relative w-full max-w-[340px] aspect-square flex items-center justify-center">
+      <div className="relative w-full max-w-[380px] aspect-square flex items-center justify-center">
         <svg viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`} className="w-full h-full">
           {/* Concentric Grid Lines */}
           {gridPoints.map((points, idx) => (
@@ -73,7 +73,7 @@ export const RadarChart: React.FC<RadarChartProps> = ({ dimensionScores }) => {
               points={points}
               fill="none"
               stroke="#E2E0D8"
-              strokeWidth="1"
+              strokeWidth="1.2"
             />
           ))}
 
@@ -88,7 +88,7 @@ export const RadarChart: React.FC<RadarChartProps> = ({ dimensionScores }) => {
                 x2={x}
                 y2={y}
                 stroke="#E2E0D8"
-                strokeWidth="1"
+                strokeWidth="1.2"
               />
             );
           })}
@@ -97,9 +97,9 @@ export const RadarChart: React.FC<RadarChartProps> = ({ dimensionScores }) => {
           <polygon
             points={dataPoints}
             fill="#2A6F6F"
-            fillOpacity="0.2"
+            fillOpacity="0.25"
             stroke="#2A6F6F"
-            strokeWidth="2"
+            strokeWidth="2.5"
           />
 
           {/* Data Points */}
@@ -111,17 +111,17 @@ export const RadarChart: React.FC<RadarChartProps> = ({ dimensionScores }) => {
                 key={i}
                 cx={x}
                 cy={y}
-                r="4"
+                r="4.5"
                 fill="#2A6F6F"
                 stroke="#FFFFFF"
-                strokeWidth="1.5"
+                strokeWidth="2"
               />
             );
           })}
 
           {/* Category Axis Labels */}
           {keys.map((key, i) => {
-            const { x, y } = getCoordinates(i, 1.25);
+            const { x, y } = getCoordinates(i, 1.28);
             const score = dimensionScores[key] || 0;
             let textAnchor: 'middle' | 'end' | 'start' = 'middle';
             if (x < centerX - 15) textAnchor = 'end';
@@ -134,17 +134,17 @@ export const RadarChart: React.FC<RadarChartProps> = ({ dimensionScores }) => {
                   y={y}
                   textAnchor={textAnchor}
                   fill="#1C2333"
-                  className="font-mono text-[10px] font-semibold uppercase"
+                  className="font-mono text-[11px] sm:text-xs font-bold uppercase"
                   dominantBaseline="middle"
                 >
                   {LABELS[key]}
                 </text>
                 <text
                   x={x}
-                  y={y + 12}
+                  y={y + 13}
                   textAnchor={textAnchor}
-                  fill="#5B6472"
-                  className="font-mono text-[9px]"
+                  fill="#475569"
+                  className="font-mono text-[10px] sm:text-[11px] font-medium"
                   dominantBaseline="middle"
                 >
                   {score}/100

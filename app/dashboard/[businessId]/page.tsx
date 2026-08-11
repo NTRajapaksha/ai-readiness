@@ -226,62 +226,62 @@ export default function DashboardPage() {
         <div className="pb-6 border-b border-borderCustom">
           <div>
             <span className="data-label text-accent-dark">Executive Dashboard</span>
-            <h1 className="text-2xl sm:text-3xl font-serif font-semibold text-ink">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-ink leading-tight">
               {business.name}
             </h1>
           </div>
         </div>
 
         {/* Empty State Card */}
-        <div className="max-w-xl mx-auto p-8 bg-surface border border-borderCustom rounded-lg text-center space-y-6">
-          <div className="w-12 h-12 bg-accent-light text-accent rounded-full flex items-center justify-center mx-auto text-xl font-bold">
+        <div className="max-w-xl sm:max-w-2xl mx-auto p-8 sm:p-10 bg-surface border border-borderCustom rounded-lg text-center space-y-6">
+          <div className="w-14 h-14 bg-accent-light text-accent rounded-full flex items-center justify-center mx-auto text-2xl font-bold">
             🔗
           </div>
 
           <div className="space-y-2">
-            <h2 className="text-xl font-serif font-semibold text-ink">
+            <h2 className="text-xl sm:text-2xl font-serif font-semibold text-ink">
               No responses yet
             </h2>
-            <p className="text-sm text-ink-muted leading-relaxed">
+            <p className="text-sm sm:text-base text-ink-muted leading-relaxed">
               Share this shareable link with your department team members to begin collecting AI readiness signals.
             </p>
           </div>
 
           {/* Copyable Share Link Input */}
-          <div className="flex flex-col sm:flex-row items-center gap-2 pt-2">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 pt-2">
             <input
               type="text"
               readOnly
               value={assessmentUrl}
-              className="w-full p-2.5 text-xs font-mono bg-surface-raised border border-borderCustom rounded text-ink focus-visible:outline-none"
+              className="w-full sm:w-80 p-3 text-xs sm:text-sm font-mono bg-surface-raised border border-borderCustom rounded text-ink select-all focus-visible:outline-none"
             />
             <Button
               onClick={handleCopyLink}
               variant="primary"
-              className="w-full sm:w-auto text-xs whitespace-nowrap py-2.5 px-4"
+              className="w-full sm:w-auto px-5 py-3 text-xs sm:text-sm font-semibold whitespace-nowrap"
             >
-              {copied ? 'Copied to clipboard' : 'Copy link'}
+              {copied ? '✓ Link Copied!' : 'Copy Link'}
             </Button>
           </div>
 
           {/* Easily Removable Instant Demo Mode Loader */}
           {ENABLE_DEMO_MODE && (
-            <div className="pt-6 border-t border-borderCustom/60">
-              <div className="p-4 bg-surface-raised border border-borderCustom rounded text-left space-y-2">
-                <div className="flex justify-between items-center">
-                  <span className="data-label text-accent">Reviewer Shortcut</span>
-                  <span className="text-[10px] font-mono text-ink-muted">Optional</span>
-                </div>
-                <p className="text-xs text-ink-muted leading-relaxed">
-                  Instantly populates a realistic 11-member benchmark dataset distributed across your organization&apos;s configured departments ({business.teams.join(', ')}) so you can evaluate the full analytics dashboard, 5-dimension radar chart, team breakdown, and recommendation engine immediately.
-                </p>
+            <div className="pt-6 border-t border-borderCustom/60 text-left space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="data-label text-xs">Reviewer Shortcut</span>
+                <span className="text-[11px] sm:text-xs font-mono text-ink-muted">Optional</span>
+              </div>
+              <p className="text-xs sm:text-sm text-ink-muted leading-relaxed">
+                Instantly populates a realistic 11-member benchmark dataset distributed across your organization&apos;s configured departments ({business.teams.join(', ')}) so you can evaluate the full analytics dashboard, 5-dimension radar chart, team breakdown, and recommendation engine immediately.
+              </p>
+              <div className="pt-1">
                 <Button
                   onClick={handleInjectDemoData}
                   disabled={isInjectingDemo}
                   variant="secondary"
-                  className="w-full text-xs py-2 mt-1"
+                  className="w-full py-3 text-xs sm:text-sm font-mono font-semibold"
                 >
-                  {isInjectingDemo ? 'Loading sample data...' : 'Populate with Sample Team Data'}
+                  {isInjectingDemo ? 'Injecting Sample Data...' : 'Populate with Sample Team Data'}
                 </Button>
               </div>
             </div>
@@ -334,7 +334,7 @@ export default function DashboardPage() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-borderCustom">
         <div>
           <span className="data-label text-accent-dark">Diagnostic Results</span>
-          <h1 className="text-2xl sm:text-3xl font-serif font-semibold text-ink">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-ink leading-tight">
             {business.name}
           </h1>
         </div>
@@ -342,14 +342,14 @@ export default function DashboardPage() {
         <div className="flex flex-wrap items-center gap-2.5 w-full sm:w-auto no-print">
           <button
             onClick={handleExportReport}
-            className="px-3 py-1.5 bg-surface-raised border border-borderCustom rounded-md text-xs font-mono font-semibold text-ink hover:bg-surface hover:border-ink/40 transition-all duration-150 flex items-center gap-1.5 shadow-sm focus-visible:outline-none"
+            className="px-4 py-2 bg-surface-raised border border-borderCustom rounded-md text-xs sm:text-sm font-mono font-semibold text-ink hover:bg-surface hover:border-ink/40 transition-all duration-150 flex items-center gap-2 shadow-sm focus-visible:outline-none"
           >
             <span>🖨️</span> Export Report
           </button>
 
           <button
             onClick={handleCopyLink}
-            className={`px-3 py-1.5 rounded-md text-xs font-mono font-semibold transition-all duration-150 flex items-center gap-1.5 shadow-sm border focus-visible:outline-none ${
+            className={`px-4 py-2 rounded-md text-xs sm:text-sm font-mono font-semibold transition-all duration-150 flex items-center gap-2 shadow-sm border focus-visible:outline-none ${
               copied
                 ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm'
                 : 'bg-accent text-white border-accent hover:bg-accent-dark'

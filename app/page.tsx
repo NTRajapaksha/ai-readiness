@@ -66,22 +66,22 @@ export default function HomePage() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto space-y-10 py-6 sm:py-12 fade-in-quiet">
+    <div className="max-w-2xl md:max-w-3xl mx-auto space-y-10 py-8 sm:py-16 fade-in-quiet">
       {/* Brand & Hero Headline */}
       <div className="space-y-4 text-center sm:text-left">
-        <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent-light text-accent-dark rounded-full text-xs font-mono font-semibold uppercase">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-accent-light text-accent-dark rounded-full text-xs sm:text-sm font-mono font-semibold uppercase">
           Tai Labs Coaching Instrument
         </div>
-        <h1 className="text-3xl sm:text-4xl font-serif font-semibold text-ink leading-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-ink leading-tight">
           Measure team AI readiness with clinical precision
         </h1>
-        <p className="text-sm sm:text-base text-ink-muted leading-relaxed">
+        <p className="text-base sm:text-lg text-ink-muted leading-relaxed">
           Turn AI uncertainty into a clear, team-by-team diagnostic score and targeted upskilling roadmap for your organization.
         </p>
       </div>
 
       {/* Assessment Creation Form */}
-      <Card variant="raised" className="space-y-6">
+      <Card variant="raised" className="space-y-6 sm:p-8">
         <form onSubmit={handleCreate} className="space-y-6">
           <div className="space-y-2">
             <label className="data-label block">Organization Name</label>
@@ -91,28 +91,23 @@ export default function HomePage() {
               onChange={(e) => setOrgName(e.target.value)}
               placeholder="e.g. Acme Corporation"
               required
-              className="w-full p-3 text-sm bg-bg border border-borderCustom rounded text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="w-full p-3.5 sm:p-4 text-sm sm:text-base bg-bg border border-borderCustom rounded text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             />
           </div>
 
           <div className="space-y-3">
             <div className="flex justify-between items-center">
               <label className="data-label">Departments to Assess</label>
-              <div className="flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={toggleSelectAll}
-                  className="px-2.5 py-1 bg-accent/10 border border-accent/30 text-accent-dark hover:bg-accent hover:text-white rounded text-xs font-mono font-semibold transition-all duration-150 shadow-sm flex items-center gap-1 focus-visible:outline-none"
-                >
-                  <span>{allSelected ? '✓ Deselect all' : '⚡ Select all'}</span>
-                </button>
-                <span className="text-xs font-mono text-ink-muted">
-                  {selectedTeams.length} Selected
-                </span>
-              </div>
+              <button
+                type="button"
+                onClick={toggleSelectAll}
+                className="text-xs sm:text-sm font-mono text-accent hover:underline font-semibold"
+              >
+                {allSelected ? '✓ Deselect all' : '+ Select all'}
+              </button>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
               {TEAMS.map((team) => {
                 const isSelected = selectedTeams.includes(team);
                 return (
@@ -120,22 +115,30 @@ export default function HomePage() {
                     key={team}
                     type="button"
                     onClick={() => toggleTeam(team)}
-                    className={`py-2 px-3 text-xs font-mono rounded border transition-colors flex items-center justify-between focus-visible:outline-none ${
+                    className={`px-3.5 py-2.5 sm:py-3 rounded text-xs sm:text-sm font-mono font-medium transition-all duration-150 flex items-center justify-between border ${
                       isSelected
-                        ? 'bg-accent text-white border-accent font-semibold'
-                        : 'bg-surface border-borderCustom text-ink-muted hover:text-ink'
+                        ? 'bg-accent text-white border-accent shadow-sm'
+                        : 'bg-bg text-ink-muted border-borderCustom hover:border-ink/40'
                     }`}
                   >
                     <span>{team}</span>
-                    <span className="text-[10px] ml-1">{isSelected ? '✓' : ''}</span>
+                    {isSelected && <span className="text-[11px] font-bold">✓</span>}
                   </button>
                 );
               })}
             </div>
+            <span className="text-[11px] sm:text-xs text-ink-muted font-mono block text-right">
+              {selectedTeams.length} Selected
+            </span>
           </div>
 
-          <Button type="submit" className="w-full py-3" disabled={isSubmitting}>
-            {isSubmitting ? 'Initializing Diagnostic...' : 'Create Assessment Link'}
+          <Button
+            type="submit"
+            variant="primary"
+            className="w-full py-3.5 sm:py-4 text-sm sm:text-base"
+            disabled={isSubmitting || selectedTeams.length === 0}
+          >
+            {isSubmitting ? 'Creating Link...' : 'Create Assessment Link'}
           </Button>
         </form>
       </Card>

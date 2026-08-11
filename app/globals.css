@@ -9,7 +9,7 @@
   --surface: #F0EEE7;
   --surface-raised: #FFFFFF;
   --ink: #1C2333;
-  --ink-muted: #5B6472;
+  --ink-muted: #475569;
   --accent: #2A6F6F;
   --accent-dark: #1E4F4F;
   --accent-light: #DCEAEA;
@@ -43,6 +43,12 @@ h1, .font-fraunces {
   text-transform: uppercase;
   color: var(--ink-muted);
   font-weight: 600;
+}
+
+@media (min-width: 640px) {
+  .data-label {
+    font-size: 0.8125rem;
+  }
 }
 
 /* Quiet 150ms fade-in transition on mount, strictly avoiding heavy bounces/glassmorphism */
