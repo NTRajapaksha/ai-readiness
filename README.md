@@ -1,5 +1,24 @@
 # Tai Labs — AI Readiness Assessment Tool
 
+**Most companies don't actually know how ready their teams are to work with AI.** This tool fixes that. A business admin enters their company name, picks their departments, and gets a shareable link. Team members click the link, answer 11 quick questions (~2 minutes, anonymous), and the dashboard instantly shows the company an overall AI readiness score, a breakdown by department, and a specific upskilling plan for each gap.
+
+No accounts. No setup. Just a link.
+
+## 🌐 Live Demo
+
+**[https://ai-readiness-rho-self.vercel.app/](https://ai-readiness-rho-self.vercel.app/)**
+
+> **How to try it in 60 seconds:**
+> 1. Open the link above → enter your company name → click **"Create Assessment Link"**
+> 2. Copy the survey link and open it in a new tab (or share it with colleagues)
+> 3. Complete the 11-question survey as a team member
+> 4. Return to the dashboard to see your score, radar chart, and coaching roadmap
+> 5. No responses yet? Hit **"Populate with Sample Team Data"** on the dashboard to see a full demo instantly.
+
+---
+
+# Tai Labs — AI Readiness Assessment Tool *(Technical Reference)*
+
 An AI readiness diagnostic web application built for **Tai Labs**. It enables organizations to generate a shareable diagnostic link, collect anonymous 2-minute team survey inputs, and view a real-time analytics dashboard with dimension breakdowns, team comparisons, and actionable upskilling roadmaps.
 
 ---
