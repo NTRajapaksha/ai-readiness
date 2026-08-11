@@ -47,23 +47,29 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ```mermaid
 flowchart TD
-    A["👤 Team Members Submit Survey (Q1–Q11)"] --> B["🧮 5-Dimension Scoring Engine"]
-    B --> C1["📊 Overall Readiness Score (0-100)"]
-    B --> C2["🕸️ 5-Axis Pentagon Radar Chart"]
-    B --> C3["📈 Team Performance Breakdown"]
-    
-    A --> D["📝 Qualitative Wishlist Processing"]
-    
-    C1 & C2 & C3 & D --> E["🤖 AI Executive Brief Generator"]
-    C1 & C2 & C3 --> F["🎯 Recommendation Engine"]
-    
-    E --> G1["📜 Strategic Diagnosis & Synthesis"]
-    E --> G2["⚡ Dynamic Key Takeaways Tiles"]
-    E --> G3["💡 Priority 1 Initiative Card"]
-    
-    F --> H1["🚀 3-Week Upskilling Roadmaps"]
-    F --> H2["🔍 Department Filter Pills"]
-    F --> H3["📋 Interactive Execution Playbooks"]
+    subgraph Layer1 ["1. Input & Data Ingestion"]
+        A["👤 Team Diagnostic Survey (Q1–Q10)"]
+        D["📝 Qualitative Wishlist Input (Q11)"]
+    end
+
+    subgraph Layer2 ["2. Processing & Analytics Core"]
+        B["🧮 Math Normalization Engine"] --> C1["📊 Overall Readiness Score"]
+        B --> C2["🕸️ 5-Dimension Pentagon Radar Chart"]
+        B --> C3["📈 Department Breakdown Chart"]
+        D --> C4["🏷️ Dynamic Topic Cloud & Clustering"]
+    end
+
+    subgraph Layer3 ["3. Intelligence & Recommendation"]
+        C1 & C2 & C3 & C4 --> E["🤖 Multi-LLM Executive Brief Generator"]
+        C1 & C2 & C3 --> F["🎯 Upskilling Recommendation Engine"]
+    end
+
+    subgraph Layer4 ["4. Executive Deliverables"]
+        E --> G1["📜 Strategic Diagnosis & Insights"]
+        E --> G2["💡 Priority 1 Initiative Recommendation"]
+        F --> H1["🚀 Department Upskilling Roadmaps"]
+        F --> H2["📋 Interactive 4-Week Execution Playbooks"]
+    end
 ```
 
 ---
