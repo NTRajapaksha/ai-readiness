@@ -55,24 +55,31 @@ IMPORTANT: Do NOT use markdown headers (like ###) or title headers. Output plain
       }
     };
 
-    // 1. Google Gemini Support (Primary: gemini-1.5-flash)
+    // 1. Google Gemini Support (Primary: gemini-flash-latest)
     if ((selectedProvider === 'gemini' || (!selectedProvider && geminiKey)) && geminiKey) {
-      const res = await fetchWithTimeout(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }],
-          }),
-        }
-      );
+      const models = ['gemini-flash-latest', 'gemini-1.5-flash', 'gemini-2.0-flash', 'gemini-1.5-pro'];
+      for (const model of models) {
+        try {
+          const res = await fetchWithTimeout(
+            `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${geminiKey}`,
+            {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                contents: [{ parts: [{ text: prompt }] }],
+              }),
+            }
+          );
 
-      if (res && res.ok) {
-        const data = await res.json();
-        const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-        if (text) {
-          return NextResponse.json({ interpretation: text, source: 'Google Gemini (Flash)' });
+          if (res && res.ok) {
+            const data = await res.json();
+            const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (text) {
+              return NextResponse.json({ interpretation: text, source: 'Google Gemini (Flash)' });
+            }
+          }
+        } catch (e) {
+          // Try next model
         }
       }
     }
