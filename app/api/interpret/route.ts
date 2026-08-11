@@ -55,8 +55,11 @@ IMPORTANT: Do NOT use markdown headers (like ###) or title headers. Output plain
       }
     };
 
+    const attemptedProviders: string[] = [];
+
     // 1. Google Gemini Support (Primary: gemini-flash-latest)
     if ((selectedProvider === 'gemini' || (!selectedProvider && geminiKey)) && geminiKey) {
+      attemptedProviders.push('Google Gemini');
       const models = ['gemini-flash-latest', 'gemini-1.5-flash', 'gemini-2.0-flash', 'gemini-1.5-pro'];
       for (const model of models) {
         try {
@@ -71,124 +74,184 @@ IMPORTANT: Do NOT use markdown headers (like ###) or title headers. Output plain
             }
           );
 
-          if (res && res.ok) {
+          if (!res) {
+            console.error(`[api/interpret] Gemini model ${model} request timed out or returned no response.`);
+            continue;
+          }
+
+          if (res.ok) {
             const data = await res.json();
             const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
             if (text) {
               return NextResponse.json({ interpretation: text, source: 'Google Gemini (Flash)' });
             }
+            console.error(`[api/interpret] Gemini model ${model} returned OK status but empty text payload.`);
+          } else {
+            const errorText = await res.text();
+            console.error(`[api/interpret] Gemini model ${model} failed with HTTP ${res.status}: ${errorText}`);
           }
         } catch (e) {
-          // Try next model
+          console.error(`[api/interpret] Gemini model ${model} encountered error:`, e);
         }
       }
     }
 
     // 2. OpenAI Support
     if ((selectedProvider === 'openai' || (!selectedProvider && openaiKey)) && openaiKey) {
-      const res = await fetchWithTimeout(
-        'https://api.openai.com/v1/chat/completions',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${openaiKey}`,
-          },
-          body: JSON.stringify({
-            model: 'gpt-4o-mini',
-            messages: [{ role: 'user', content: prompt }],
-          }),
-        }
-      );
+      attemptedProviders.push('OpenAI');
+      try {
+        const res = await fetchWithTimeout(
+          'https://api.openai.com/v1/chat/completions',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${openaiKey}`,
+            },
+            body: JSON.stringify({
+              model: 'gpt-4o-mini',
+              messages: [{ role: 'user', content: prompt }],
+            }),
+          }
+        );
 
-      if (res && res.ok) {
-        const data = await res.json();
-        const text = data.choices?.[0]?.message?.content;
-        if (text) {
-          return NextResponse.json({ interpretation: text, source: 'OpenAI (GPT-4o Mini)' });
+        if (!res) {
+          console.error('[api/interpret] OpenAI request timed out or returned no response.');
+        } else if (res.ok) {
+          const data = await res.json();
+          const text = data.choices?.[0]?.message?.content;
+          if (text) {
+            return NextResponse.json({ interpretation: text, source: 'OpenAI (GPT-4o Mini)' });
+          }
+          console.error('[api/interpret] OpenAI returned OK status but empty text payload.');
+        } else {
+          const errorText = await res.text();
+          console.error(`[api/interpret] OpenAI failed with HTTP ${res.status}: ${errorText}`);
         }
+      } catch (e) {
+        console.error('[api/interpret] OpenAI encountered error:', e);
       }
     }
 
     // 3. Anthropic Claude Support
     if ((selectedProvider === 'anthropic' || (!selectedProvider && anthropicKey)) && anthropicKey) {
-      const res = await fetchWithTimeout(
-        'https://api.anthropic.com/v1/messages',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': anthropicKey,
-            'anthropic-version': '2023-06-01',
-          },
-          body: JSON.stringify({
-            model: 'claude-3-haiku-20240307',
-            max_tokens: 600,
-            messages: [{ role: 'user', content: prompt }],
-          }),
-        }
-      );
+      attemptedProviders.push('Anthropic Claude');
+      try {
+        const res = await fetchWithTimeout(
+          'https://api.anthropic.com/v1/messages',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-api-key': anthropicKey,
+              'anthropic-version': '2023-06-01',
+            },
+            body: JSON.stringify({
+              model: 'claude-3-haiku-20240307',
+              max_tokens: 600,
+              messages: [{ role: 'user', content: prompt }],
+            }),
+          }
+        );
 
-      if (res && res.ok) {
-        const data = await res.json();
-        const text = data.content?.[0]?.text;
-        if (text) {
-          return NextResponse.json({ interpretation: text, source: 'Anthropic (Claude 3 Haiku)' });
+        if (!res) {
+          console.error('[api/interpret] Anthropic request timed out or returned no response.');
+        } else if (res.ok) {
+          const data = await res.json();
+          const text = data.content?.[0]?.text;
+          if (text) {
+            return NextResponse.json({ interpretation: text, source: 'Anthropic (Claude 3 Haiku)' });
+          }
+          console.error('[api/interpret] Anthropic returned OK status but empty text payload.');
+        } else {
+          const errorText = await res.text();
+          console.error(`[api/interpret] Anthropic failed with HTTP ${res.status}: ${errorText}`);
         }
+      } catch (e) {
+        console.error('[api/interpret] Anthropic encountered error:', e);
       }
     }
 
     // 4. Groq Llama Support
     if ((selectedProvider === 'groq' || (!selectedProvider && groqKey)) && groqKey) {
-      const res = await fetchWithTimeout(
-        'https://api.groq.com/openai/v1/chat/completions',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${groqKey}`,
-          },
-          body: JSON.stringify({
-            model: 'llama-3.3-70b-versatile',
-            messages: [{ role: 'user', content: prompt }],
-          }),
-        }
-      );
+      attemptedProviders.push('Groq');
+      try {
+        const res = await fetchWithTimeout(
+          'https://api.groq.com/openai/v1/chat/completions',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${groqKey}`,
+            },
+            body: JSON.stringify({
+              model: 'llama-3.3-70b-versatile',
+              messages: [{ role: 'user', content: prompt }],
+            }),
+          }
+        );
 
-      if (res && res.ok) {
-        const data = await res.json();
-        const text = data.choices?.[0]?.message?.content;
-        if (text) {
-          return NextResponse.json({ interpretation: text, source: 'Groq Llama 3.3' });
+        if (!res) {
+          console.error('[api/interpret] Groq request timed out or returned no response.');
+        } else if (res.ok) {
+          const data = await res.json();
+          const text = data.choices?.[0]?.message?.content;
+          if (text) {
+            return NextResponse.json({ interpretation: text, source: 'Groq Llama 3.3' });
+          }
+          console.error('[api/interpret] Groq returned OK status but empty text payload.');
+        } else {
+          const errorText = await res.text();
+          console.error(`[api/interpret] Groq failed with HTTP ${res.status}: ${errorText}`);
         }
+      } catch (e) {
+        console.error('[api/interpret] Groq encountered error:', e);
       }
     }
 
     // 5. Custom / Local Ollama / OpenRouter Support
     if (customKey) {
-      const res = await fetchWithTimeout(
-        `${customBaseUrl}/chat/completions`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${customKey}`,
-          },
-          body: JSON.stringify({
-            model: 'gpt-3.5-turbo',
-            messages: [{ role: 'user', content: prompt }],
-          }),
-        }
-      );
+      attemptedProviders.push('Custom LLM');
+      try {
+        const res = await fetchWithTimeout(
+          `${customBaseUrl}/chat/completions`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${customKey}`,
+            },
+            body: JSON.stringify({
+              model: 'gpt-3.5-turbo',
+              messages: [{ role: 'user', content: prompt }],
+            }),
+          }
+        );
 
-      if (res && res.ok) {
-        const data = await res.json();
-        const text = data.choices?.[0]?.message?.content;
-        if (text) {
-          return NextResponse.json({ interpretation: text, source: 'Custom LLM API' });
+        if (!res) {
+          console.error('[api/interpret] Custom LLM request timed out or returned no response.');
+        } else if (res.ok) {
+          const data = await res.json();
+          const text = data.choices?.[0]?.message?.content;
+          if (text) {
+            return NextResponse.json({ interpretation: text, source: 'Custom LLM API' });
+          }
+          console.error('[api/interpret] Custom LLM returned OK status but empty text payload.');
+        } else {
+          const errorText = await res.text();
+          console.error(`[api/interpret] Custom LLM failed with HTTP ${res.status}: ${errorText}`);
         }
+      } catch (e) {
+        console.error('[api/interpret] Custom LLM encountered error:', e);
       }
     }
+
+    // Log fallback summary line
+    const summaryMsg = attemptedProviders.length > 0
+      ? `Attempted providers: [${attemptedProviders.join(', ')}]. All attempts failed. Falling back to Tai Labs Rule Engine.`
+      : `No LLM API keys configured or matching selected provider. Falling back to Tai Labs Rule Engine.`;
+
+    console.error(`[api/interpret] ${summaryMsg}`);
 
     // Graceful Rule-Based Rule Fallback
     const leadingTeam = Object.entries(teamScores || {}).sort(
