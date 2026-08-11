@@ -13,7 +13,9 @@ export async function POST(req: NextRequest) {
     // Check if demo responses injection requested
     if (body.action === 'inject_demo' && body.businessId) {
       const demoData = generateSampleResponses(body.businessId, body.teams);
-      demoData.forEach((res) => saveResponse(res));
+      for (const res of demoData) {
+        await saveResponse(res);
+      }
       return NextResponse.json({
         success: true,
         count: demoData.length,
@@ -34,9 +36,9 @@ export async function POST(req: NextRequest) {
       qualitativeWish: body.qualitativeWish || undefined,
     };
 
-    saveResponse(newResponse);
+    await saveResponse(newResponse);
 
-    const allResponses = getResponsesForBusiness(body.businessId);
+    const allResponses = await getResponsesForBusiness(body.businessId);
 
     return NextResponse.json({
       ...newResponse,
@@ -55,7 +57,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Missing businessId parameter' }, { status: 400 });
   }
 
-  const responses = getResponsesForBusiness(businessId);
+  const responses = await getResponsesForBusiness(businessId);
   return NextResponse.json(responses, {
     headers: {
       'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',

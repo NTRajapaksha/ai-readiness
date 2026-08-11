@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
       createdAt: new Date().toISOString(),
     };
 
-    saveBusiness(newBusiness);
+    await saveBusiness(newBusiness);
 
     return NextResponse.json(newBusiness);
   } catch (error) {
@@ -37,7 +37,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Missing business ID' }, { status: 400 });
   }
 
-  const business = getBusiness(id);
+  const business = await getBusiness(id);
   if (!business) {
     return NextResponse.json({ error: 'Business not found' }, { status: 404 });
   }

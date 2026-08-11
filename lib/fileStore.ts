@@ -1,198 +1,125 @@
+import { kv } from '@vercel/kv';
 import { Business, AssessmentResponse } from '@/types';
-import fs from 'fs';
-import path from 'path';
 
-// Primary and Vercel Serverless Writable /tmp Directories
-const PRIMARY_DATA_DIR = path.join(process.cwd(), 'data');
-const TMP_DATA_DIR = path.join('/tmp', 'data');
+/**
+ * Detect whether Vercel KV environment variables are injected.
+ * Vercel automatically injects KV_REST_API_URL & KV_REST_API_TOKEN (or VERCEL_KV_REST_API_URL/TOKEN).
+ */
+const hasKvEnv = Boolean(
+  (process.env.KV_REST_API_URL || process.env.VERCEL_KV_REST_API_URL) &&
+  (process.env.KV_REST_API_TOKEN || process.env.VERCEL_KV_REST_API_TOKEN)
+);
 
-// Attach memory stores to Node.js globalThis singleton to persist across module re-evaluations and warm Lambda invocations
-const globalForTaiStore = globalThis as unknown as {
-  memoryBusinesses?: Record<string, Business>;
-  memoryResponses?: AssessmentResponse[];
+/**
+ * DEV-ONLY IN-MEMORY FALLBACK STORE
+ * Used ONLY when Vercel KV environment variables are not present locally,
+ * allowing `npm run dev` to work out-of-the-box without requiring a live KV connection.
+ */
+const globalForDevStore = globalThis as unknown as {
+  devBusinesses?: Record<string, Business>;
+  devResponses?: Record<string, AssessmentResponse[]>;
 };
 
-if (!globalForTaiStore.memoryBusinesses) {
-  globalForTaiStore.memoryBusinesses = {};
+if (!globalForDevStore.devBusinesses) {
+  globalForDevStore.devBusinesses = {};
 }
-if (!globalForTaiStore.memoryResponses) {
-  globalForTaiStore.memoryResponses = [];
-}
-
-const memoryBusinesses = globalForTaiStore.memoryBusinesses;
-const memoryResponses = globalForTaiStore.memoryResponses;
-
-function getWritableDir(): string {
-  try {
-    if (!fs.existsSync(PRIMARY_DATA_DIR)) {
-      fs.mkdirSync(PRIMARY_DATA_DIR, { recursive: true });
-    }
-    fs.accessSync(PRIMARY_DATA_DIR, fs.constants.W_OK);
-    return PRIMARY_DATA_DIR;
-  } catch (err) {
-    // Fallback to Vercel serverless writable /tmp directory
-    try {
-      if (!fs.existsSync(TMP_DATA_DIR)) {
-        fs.mkdirSync(TMP_DATA_DIR, { recursive: true });
-      }
-      return TMP_DATA_DIR;
-    } catch (e) {
-      return PRIMARY_DATA_DIR;
-    }
-  }
+if (!globalForDevStore.devResponses) {
+  globalForDevStore.devResponses = {};
 }
 
-function getReadDirs(): string[] {
-  const dirs: string[] = [];
-  if (fs.existsSync(PRIMARY_DATA_DIR)) dirs.push(PRIMARY_DATA_DIR);
-  if (fs.existsSync(TMP_DATA_DIR) && TMP_DATA_DIR !== PRIMARY_DATA_DIR) dirs.push(TMP_DATA_DIR);
-  return dirs;
-}
+const devBusinesses = globalForDevStore.devBusinesses;
+const devResponses = globalForDevStore.devResponses;
 
-export function saveBusiness(business: Business): Business {
+/**
+ * Saves a business record.
+ * Uses Vercel KV in connected environments or in-memory dev store for local dev.
+ */
+export async function saveBusiness(business: Business): Promise<Business> {
   if (!business || !business.id) return business;
-  memoryBusinesses[business.id] = business;
-  
-  try {
-    const map = new Map<string, Business>();
-    const readDirs = getReadDirs();
-    for (const dir of readDirs) {
-      const filePath = path.join(dir, 'businesses.json');
-      if (fs.existsSync(filePath)) {
-        try {
-          const content = fs.readFileSync(filePath, 'utf8');
-          const list: Business[] = JSON.parse(content);
-          if (Array.isArray(list)) {
-            list.forEach((b) => {
-              if (b && b.id) map.set(b.id, b);
-            });
-          }
-        } catch (e) {}
-      }
+
+  if (hasKvEnv) {
+    try {
+      await kv.set(`business:${business.id}`, business);
+    } catch (err) {
+      console.warn('[kvStore] Vercel KV saveBusiness failed, using dev fallback:', err);
+      devBusinesses[business.id] = business;
     }
-
-    Object.values(memoryBusinesses).forEach((b) => {
-      if (b && b.id) map.set(b.id, b);
-    });
-
-    map.set(business.id, business);
-
-    const targetDir = getWritableDir();
-    const filePath = path.join(targetDir, 'businesses.json');
-    fs.writeFileSync(filePath, JSON.stringify(Array.from(map.values()), null, 2), 'utf8');
-  } catch (err) {
-    console.warn('[fileStore] Filesystem write failed, using memory fallback:', err);
+  } else {
+    devBusinesses[business.id] = business;
   }
+
   return business;
 }
 
-export function getBusiness(id: string): Business | null {
+/**
+ * Fetches a business record by ID.
+ * Returns null if the business does not exist.
+ */
+export async function getBusiness(id: string): Promise<Business | null> {
   if (!id || typeof id !== 'string' || id.trim().length < 3) return null;
-  
-  const readDirs = getReadDirs();
-  for (const dir of readDirs) {
-    const filePath = path.join(dir, 'businesses.json');
+
+  if (hasKvEnv) {
     try {
-      if (fs.existsSync(filePath)) {
-        const content = fs.readFileSync(filePath, 'utf8');
-        const list: Business[] = JSON.parse(content);
-        if (Array.isArray(list)) {
-          const found = list.find((b) => b && b.id === id);
-          if (found) {
-            memoryBusinesses[id] = found;
-            return found;
-          }
-        }
-      }
+      const data = await kv.get<Business>(`business:${id}`);
+      if (data) return data;
     } catch (err) {
-      // Handled below
+      console.warn('[kvStore] Vercel KV getBusiness failed, trying dev fallback:', err);
     }
   }
 
-  if (memoryBusinesses[id]) {
-    return memoryBusinesses[id];
-  }
-
-  return null;
+  return devBusinesses[id] || null;
 }
 
-export function saveResponse(res: AssessmentResponse): AssessmentResponse {
-  if (!res || !res.id) return res;
-  
-  // Remove existing entry with same ID if any, and push to global memory
-  const idx = memoryResponses.findIndex((r) => r && r.id === res.id);
-  if (idx >= 0) {
-    memoryResponses[idx] = res;
-  } else {
-    memoryResponses.push(res);
-  }
-  
-  try {
-    const map = new Map<string, AssessmentResponse>();
-    const readDirs = getReadDirs();
-    for (const dir of readDirs) {
-      const filePath = path.join(dir, 'responses.json');
-      if (fs.existsSync(filePath)) {
-        try {
-          const content = fs.readFileSync(filePath, 'utf8');
-          const list: AssessmentResponse[] = JSON.parse(content);
-          if (Array.isArray(list)) {
-            list.forEach((item) => {
-              if (item && item.id) map.set(item.id, item);
-            });
-          }
-        } catch (e) {}
+/**
+ * Saves an assessment response record.
+ */
+export async function saveResponse(res: AssessmentResponse): Promise<AssessmentResponse> {
+  if (!res || !res.id || !res.businessId) return res;
+
+  if (hasKvEnv) {
+    try {
+      const current = (await kv.get<AssessmentResponse[]>(`responses:${res.businessId}`)) || [];
+      const updated = Array.isArray(current) ? [...current] : [];
+      const existingIdx = updated.findIndex((item) => item && item.id === res.id);
+      if (existingIdx >= 0) {
+        updated[existingIdx] = res;
+      } else {
+        updated.push(res);
       }
+      await kv.set(`responses:${res.businessId}`, updated);
+    } catch (err) {
+      console.warn('[kvStore] Vercel KV saveResponse failed, using dev fallback:', err);
+      const list = devResponses[res.businessId] || [];
+      const idx = list.findIndex((item) => item && item.id === res.id);
+      if (idx >= 0) list[idx] = res;
+      else list.push(res);
+      devResponses[res.businessId] = list;
     }
-
-    memoryResponses.forEach((item) => {
-      if (item && item.id) map.set(item.id, item);
-    });
-
-    map.set(res.id, res);
-
-    const consolidated = Array.from(map.values());
-
-    const targetDir = getWritableDir();
-    const filePath = path.join(targetDir, 'responses.json');
-    fs.writeFileSync(filePath, JSON.stringify(consolidated, null, 2), 'utf8');
-  } catch (err) {
-    console.warn('[fileStore] Filesystem write failed, using memory fallback:', err);
+  } else {
+    const list = devResponses[res.businessId] || [];
+    const idx = list.findIndex((item) => item && item.id === res.id);
+    if (idx >= 0) list[idx] = res;
+    else list.push(res);
+    devResponses[res.businessId] = list;
   }
+
   return res;
 }
 
-export function getResponsesForBusiness(businessId: string): AssessmentResponse[] {
+/**
+ * Fetches all responses recorded for a specific business ID.
+ */
+export async function getResponsesForBusiness(businessId: string): Promise<AssessmentResponse[]> {
   if (!businessId) return [];
-  let diskResults: AssessmentResponse[] = [];
-  
-  const readDirs = getReadDirs();
-  for (const dir of readDirs) {
-    const filePath = path.join(dir, 'responses.json');
+
+  if (hasKvEnv) {
     try {
-      if (fs.existsSync(filePath)) {
-        const content = fs.readFileSync(filePath, 'utf8');
-        const list: AssessmentResponse[] = JSON.parse(content);
-        if (Array.isArray(list)) {
-          const matches = list.filter((r) => r && r.businessId === businessId);
-          diskResults.push(...matches);
-        }
-      }
+      const data = await kv.get<AssessmentResponse[]>(`responses:${businessId}`);
+      if (Array.isArray(data)) return data;
     } catch (err) {
-      // Handled below
+      console.warn('[kvStore] Vercel KV getResponsesForBusiness failed, trying dev fallback:', err);
     }
   }
 
-  const memMatches = memoryResponses.filter((r) => r && r.businessId === businessId);
-  const combined = [...diskResults, ...memMatches];
-
-  // Deduplicate by ID and ensure valid answers structure
-  const map = new Map<string, AssessmentResponse>();
-  combined.forEach((item) => {
-    if (item && item.id && Array.isArray(item.answers)) {
-      map.set(item.id, item);
-    }
-  });
-
-  return Array.from(map.values());
+  return devResponses[businessId] || [];
 }
