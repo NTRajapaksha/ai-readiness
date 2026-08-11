@@ -105,57 +105,58 @@ All survey responses are normalized to a 0–100 scale prior to calculating dime
 
 ### 1. Multi-Provider LLM Synthesis & Fallback
 The Executive Brief ([`app/api/interpret/route.ts`](./app/api/interpret/route.ts)) generates a 2-paragraph C-suite synthesis interpreting quantitative scores and qualitative wishlist items.
-- **Supported LLM Providers**: Google Gemini (`gemini-1.5-flash`), OpenAI (`gpt-4o-mini`), Anthropic (`claude-3-haiku-20240307`), and Groq (`llama-3.3-70b-versatile`).
-- **8-Second Cold-Start Resilience**: All external API requests are wrapped in an **8-second `AbortController`**. If an API key is missing or an external provider times out during serverless cold starts, the system seamlessly falls back to the deterministic rule engine without throwing any UI errors.
+### 1. Multi-Provider LLM Synthesis & Fallback
+The Executive Brief ([`app/api/interpret/route.ts`](./app/api/interpret/route.ts)) generates a 2-paragraph C-suite synthesis interpreting quantitative scores and qualitative wishlist items.
+- **Supported LLM Providers**: Google Gemini (`gemini-flash-latest`, `gemini-1.5-flash`, `gemini-2.0-flash`), OpenAI (`gpt-4o-mini`), Anthropic (`claude-3-haiku-20240307`), Groq (`llama-3.3-70b-versatile`), and Custom API endpoints.
+- **8-Second Cold-Start Resilience**: All external API requests are wrapped in an **8-second `AbortController`**. If an API key is missing or an external provider times out during serverless cold starts, the system seamlessly falls back to the deterministic rule engine with diagnostic `console.error` logging.
 
 ### 2. Recommended Upskilling Roadmap Trigger Rules
-The upskilling roadmap engine ([`lib/recommendations.ts`](./lib/recommendations.ts)) maps diagnostic metrics directly to **3-Week Coaching Playbooks**:
+The upskilling roadmap engine ([`lib/recommendations.ts`](./lib/recommendations.ts)) maps diagnostic metrics directly to **4-Week Execution Playbooks**:
 
 - **Business-Wide Signals ($< 50/100$)**: Triggers org-wide coaching tracks (e.g. prompt labs for low fluency, data safety PDFs for low risk awareness).
 - **Team Gap Signals ($\text{Org Score} - \text{Team Score} \ge 20 \text{ points}$)**: Triggers department-specific sprint playbooks (e.g. `"Sales: Bridge Risk & Governance Gap"`).
 - **High-Readiness Fallback Track ($\ge 50/100$)**: Triggers custom internal agentic workflow prototyping for lead teams.
-- **Interactive 3-Week Playbooks**: Clicking any recommendation opens an interactive drawer detailing weekly objectives, actions, and deliverables.
+- **Interactive 4-Week Playbooks**: Clicking any recommendation opens an interactive drawer detailing weekly objectives, actions, and deliverables.
 
 ### 3. Automated Dynamic Topic Categorization Engine
 Instead of relying on static hardcoded categories, the qualitative analysis engine ([`lib/clustering.ts`](./lib/clustering.ts) & [`QualitativeWall.tsx`](./components/ui/QualitativeWall.tsx)) processes incoming user inputs dynamically:
 - **Dynamic Semantic Categorization**: Automatically parses raw employee wishlist submissions into matching workflow themes (*Meeting Summaries & Task Tracking*, *Contract & Document Compliance*, *Customer Support & Ticket Triage*, *Content Drafting & Localization*, *Invoice & Data Extraction*, *General Workflow Optimization*).
 - **Exact Demand Share Percentages**: Calculates real-time percentage demand share for each extracted topic based on the organization's actual submissions ($\text{Demand Share} = \text{Round}\left(\frac{\text{Category Count}}{\text{Total Submissions}} \times 100\right)$).
+- **Exact Item Membership Filtering**: Clicking any topic card filters the quote view to display the exact `matchedItems` belonging to that category, including uncategorized quotes under *General Workflow Optimization*.
 - **Interactive Topic Cloud Switcher**: Executives can toggle between an interactive **Topic Cloud Grid** (with sentiment intent tags like `High ROI Automation`, `Risk & Safety`, `Workflow Integration`) and **Searchable Paginated Quotes** (6 items/page).
-- **Click-to-Filter Interactivity**: Clicking any topic card automatically filters the direct quotes list to display matching submissions for that specific topic.
 
 ---
 
-## 💾 Multi-Tier Serverless Persistence Architecture
+## 💾 Shared Serverless Persistence Architecture (Vercel KV)
 
-To guarantee 100% data persistence on Vercel's ephemeral serverless infrastructure:
+To guarantee 100% data persistence across Vercel's multi-instance serverless infrastructure:
 
 ```mermaid
 graph TD
-    UserSub["👤 User Submits Response"] --> POST["POST /api/responses"]
+    UserSub["👤 User Submits Response / Business"] --> POST["POST /api/responses or /api/business"]
     
-    POST --> S1["1. Process Memory Array"]
-    POST --> S2["2. Write to Writable /tmp/data/ Directory"]
-    POST --> S3["3. Write to ./data/ Directory"]
-    POST --> S4["4. Store in Browser localStorage (tai_responses_id)"]
+    POST --> KV["⚡ Vercel KV (@vercel/kv) Store"]
+    KV --> Key1["Key: business:{id}"]
+    KV --> Key2["Key: responses:{businessId}"]
     
-    DashLoad["📊 Dashboard Page Load"] --> GET["GET /api/responses (force-dynamic)"]
-    GET --> FetchServer["Fetch Server Responses (/tmp + ./data)"]
-    DashLoad --> ReadLocal["Read LocalStorage (tai_responses_id)"]
+    DashLoad["📊 Dashboard / Survey Page Load"] --> GET["GET /api/business or /api/responses"]
+    GET --> FetchKV["Fetch Shared Vercel KV State"]
     
-    FetchServer & ReadLocal --> Merge["🔀 Deduplicate & Merge Engine (by Response ID)"]
-    Merge --> UI["Render Executive Analytics Dashboard"]
+    FetchKV --> Decision{"Found in KV?"}
+    Decision -- Yes (200) --> UI["Render Executive Dashboard / Survey"]
+    Decision -- No (404) --> Err["Authoritative 404 Error State"]
 ```
 
-> **Why Dual Persistence Matters**:
-> Vercel Lambda containers reset between requests. Combining writable `/tmp` directory storage with client-side `localStorage` merging guarantees that survey submissions **never disappear or flap on refresh**, regardless of serverless container routing!
+> **Why Vercel KV Shared Storage Matters**:
+> Serverless Lambda functions do not share local disk or memory state across container instances. Switching to **Vercel KV (`@vercel/kv`)** ensures that created assessments and team responses are instantly shared and accessible from any serverless instance, resolving 404s for non-existent IDs while preserving genuine organization data across cold starts. Local development (`npm run dev`) falls back to an in-memory dev store when KV environment keys are absent.
 
 ---
 
 ## ⚙️ Core Technical Capabilities
 
 - **Deterministic Rule Engine**: Primary scoring and recommendation triggering run on deterministic mathematical formulas (`lib/scoring.ts` and `lib/recommendations.ts`), guaranteeing 100% explainable metrics and zero latency.
-- **4 Explicit Diagnostic UI States**: Fully implements all 4 required application states: **Loading** (skeleton loader), **Error** (404 page for unknown assessment IDs), **Empty** (0 team responses with copyable share link & 1-click reviewer shortcut), and **Done** (populated executive analytics dashboard).
-- **Interactive Coaching Playbooks**: Each recommendation card links to a 3-week execution playbook drawer (`components/ui/PlaybookDrawer.tsx`) detailing weekly objectives, actions, and deliverables.
+- **4 Explicit Diagnostic UI States**: Fully implements all 4 required application states: **Loading** (skeleton loader), **Error** (authoritative 404 page for unknown assessment IDs), **Empty** (0 team responses with copyable share link & 1-click reviewer shortcut), and **Done** (populated executive analytics dashboard).
+- **Interactive Coaching Playbooks**: Each recommendation card links to an interactive execution playbook drawer (`components/ui/PlaybookDrawer.tsx`) detailing weekly objectives, actions, and deliverables.
 - **Executive PDF Export**: Embedded print-optimized stylesheets (`@media print` in `app/globals.css`) enable 1-click PDF reporting suitable for leadership reviews.
 - **Reviewer Instant Demo Mode**: Administrators can populate sample team data instantly via the demo shortcut (`lib/demoData.ts`), tailored dynamically across configured organization departments.
 
@@ -174,8 +175,8 @@ graph TD
 1. **Heavy User Authentication & Account Walls**:
    - *Rationale*: Requiring team members to create accounts before taking a 2-minute diagnostic survey drops submission completion rates by up to 60%. Replaced account walls with lightweight, zero-friction unique share links (`/assess/[businessId]`).
 
-2. **External Database Dependency for Reviewers**:
-   - *Rationale*: Replaced complex external database requirements with a local file store ([`lib/fileStore.ts`](./lib/fileStore.ts)) backed by Vercel `/tmp` fallback storage and client-side `localStorage` merging. Reviewers can clone and run `npm install && npm run dev` instantly with zero environment key setup.
+2. **Complex Relational SQL Schema Setup**:
+   - *Rationale*: Upgraded to **Vercel KV (`@vercel/kv`)** key-value storage for lightweight, zero-latency shared serverless persistence without requiring heavy SQL migration pipelines. Reviewers can run `npm run dev` locally with an in-memory dev fallback out-of-the-box.
 
 ---
 
@@ -185,7 +186,6 @@ graph TD
   - *Current Implementation*: For small-to-mid teams, the Qualitative Feedback section ([`QualitativeWall.tsx`](./components/ui/QualitativeWall.tsx)) features **instant search keyword filtering and paginated rendering** (6 items/page) to prevent browser DOM bloat and executive information overload.
   - *Enterprise v2 Architecture*: For large enterprises with 5,000+ respondents, displaying individual quotes is unfeasible. In v2, an offline LLM batch pipeline runs TF-IDF / semantic vector clustering to automatically collapse 5,000 raw quotes into **Top 5 Priority Automation Themes** (e.g., *Theme 1: Customer Support Ticket Parsing — 420 requests*, *Theme 2: Contract Clause Verification — 310 requests*) with expandable quote samples under each theme.
 - **Dedicated Executive 1-on-1 Discovery Track**: Introduce a 3-minute C-suite sponsor diagnostic to contrast executive expectations against ground-level team scores.
-- **Supabase / Postgres Multi-Tenancy**: Transition `lib/fileStore.ts` to Supabase Postgres for enterprise multi-tenancy.
 - **Cohort Score Tracking**: Track score evolution month-over-month as departments complete upskilling tracks.
 - **Anonymized Industry Benchmarking**: Compare team readiness scores against aggregated industry baselines in Sales, Engineering, and Operations.
 
@@ -197,7 +197,7 @@ graph TD
 ├── app/
 │   ├── api/
 │   │   ├── business/      # Assessment creation & retrieval endpoint (force-dynamic)
-│   │   ├── interpret/     # LLM synthesis & 8s fallback endpoint
+│   │   ├── interpret/     # Multi-LLM synthesis & 8s fallback endpoint
 │   │   └── responses/     # Survey submission & demo data endpoint (force-dynamic)
 │   ├── assess/[businessId]/ # Team member 2-minute diagnostic wizard
 │   ├── dashboard/[businessId]/ # Executive analytics dashboard
@@ -207,11 +207,11 @@ graph TD
 │   ├── assessment/        # Diagnostic question & input components
 │   └── ui/                # Gauge, charts, playbook drawer, and brief widgets
 ├── lib/
-│   ├── clustering.ts      # Automated dynamic topic extraction & demand share engine
+│   ├── clustering.ts      # Dynamic topic extraction & item membership clustering
 │   ├── demoData.ts        # Reviewer sample dataset generator
-│   ├── fileStore.ts       # Persistence layer with /tmp fallback
+│   ├── fileStore.ts       # Vercel KV (@vercel/kv) persistent store with dev fallback
 │   ├── questions.ts       # Question definitions & dimension mappings
-│   ├── recommendations.ts # Upskilling rule engine & 3-week playbooks
+│   ├── recommendations.ts # Upskilling rule engine & 4-week playbooks
 │   └── scoring.ts         # Math normalization logic
 └── types/                 # TypeScript interfaces
 ```
