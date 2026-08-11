@@ -206,16 +206,13 @@ export default function DashboardPage() {
     return (
       <div className="space-y-8 fade-in-quiet">
         {/* Dashboard Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-borderCustom">
+        <div className="pb-6 border-b border-borderCustom">
           <div>
             <span className="data-label text-accent-dark">Executive Dashboard</span>
             <h1 className="text-2xl sm:text-3xl font-serif font-semibold text-ink">
               {business.name}
             </h1>
           </div>
-          <span className="px-3 py-1 bg-surface border border-borderCustom rounded font-mono text-xs text-ink-muted">
-            0 Team Responses
-          </span>
         </div>
 
         {/* Empty State Card */}
