@@ -68,7 +68,7 @@ flowchart TD
         E --> G1["📜 Strategic Diagnosis & Insights"]
         E --> G2["💡 Priority 1 Initiative Recommendation"]
         F --> H1["🚀 Department Upskilling Roadmaps"]
-        F --> H2["📋 Interactive 4-Week Execution Playbooks"]
+        F --> H2["📋 Interactive 3-Week Execution Playbooks"]
     end
 ```
 
@@ -105,18 +105,16 @@ All survey responses are normalized to a 0–100 scale prior to calculating dime
 
 ### 1. Multi-Provider LLM Synthesis & Fallback
 The Executive Brief ([`app/api/interpret/route.ts`](./app/api/interpret/route.ts)) generates a 2-paragraph C-suite synthesis interpreting quantitative scores and qualitative wishlist items.
-### 1. Multi-Provider LLM Synthesis & Fallback
-The Executive Brief ([`app/api/interpret/route.ts`](./app/api/interpret/route.ts)) generates a 2-paragraph C-suite synthesis interpreting quantitative scores and qualitative wishlist items.
 - **Supported LLM Providers**: Google Gemini (`gemini-flash-latest`, `gemini-1.5-flash`, `gemini-2.0-flash`), OpenAI (`gpt-4o-mini`), Anthropic (`claude-3-haiku-20240307`), Groq (`llama-3.3-70b-versatile`), and Custom API endpoints.
 - **8-Second Cold-Start Resilience**: All external API requests are wrapped in an **8-second `AbortController`**. If an API key is missing or an external provider times out during serverless cold starts, the system seamlessly falls back to the deterministic rule engine with diagnostic `console.error` logging.
 
 ### 2. Recommended Upskilling Roadmap Trigger Rules
-The upskilling roadmap engine ([`lib/recommendations.ts`](./lib/recommendations.ts)) maps diagnostic metrics directly to **4-Week Execution Playbooks**:
+The upskilling roadmap engine ([`lib/recommendations.ts`](./lib/recommendations.ts)) maps diagnostic metrics directly to **3-Week Coaching Playbooks**:
 
 - **Business-Wide Signals ($< 50/100$)**: Triggers org-wide coaching tracks (e.g. prompt labs for low fluency, data safety PDFs for low risk awareness).
 - **Team Gap Signals ($\text{Org Score} - \text{Team Score} \ge 20 \text{ points}$)**: Triggers department-specific sprint playbooks (e.g. `"Sales: Bridge Risk & Governance Gap"`).
 - **High-Readiness Fallback Track ($\ge 50/100$)**: Triggers custom internal agentic workflow prototyping for lead teams.
-- **Interactive 4-Week Playbooks**: Clicking any recommendation opens an interactive drawer detailing weekly objectives, actions, and deliverables.
+- **Interactive 3-Week Playbooks**: Clicking any recommendation opens an interactive drawer detailing weekly objectives, actions, and deliverables.
 
 ### 3. Automated Dynamic Topic Categorization Engine
 Instead of relying on static hardcoded categories, the qualitative analysis engine ([`lib/clustering.ts`](./lib/clustering.ts) & [`QualitativeWall.tsx`](./components/ui/QualitativeWall.tsx)) processes incoming user inputs dynamically:
@@ -211,7 +209,7 @@ graph TD
 │   ├── demoData.ts        # Reviewer sample dataset generator
 │   ├── fileStore.ts       # Vercel KV (@vercel/kv) persistent store with dev fallback
 │   ├── questions.ts       # Question definitions & dimension mappings
-│   ├── recommendations.ts # Upskilling rule engine & 4-week playbooks
+│   ├── recommendations.ts # Upskilling rule engine & 3-week playbooks
 │   └── scoring.ts         # Math normalization logic
 └── types/                 # TypeScript interfaces
 ```
